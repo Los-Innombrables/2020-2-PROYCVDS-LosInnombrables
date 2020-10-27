@@ -1,5 +1,5 @@
 create table if not exists Laboratorio (
-	id int primary key,
+	id serial primary key,
 	nombre varchar(50) not null,
 	fechaDeCreacion date not null,
 	fechaDeCierre date null,
@@ -12,8 +12,8 @@ create table if not exists TipoElemento (
 );
 
 create table if not exists Rol (
-	id int primary key,
-	nombre varchar(50) not null,
+	id serial primary key,
+	nombre varchar(50) unique not null,
 	descripcion varchar(500) not null
 );
 
@@ -30,7 +30,7 @@ create table if not exists Usuario (
 );
 
 create table if not exists Equipo (
-	id int primary key,
+	id serial primary key,
 	nombre varchar(50) not null,
 	laboratorio int null,
 	activo boolean not null,
@@ -38,7 +38,7 @@ create table if not exists Equipo (
 );
 
 create table if not exists Elemento (
-	id int primary key,
+	id serial primary key,
 	tipo varchar(50) not null,
 	equipo int null,
 	marca varchar(50) not null,
@@ -50,7 +50,7 @@ create table if not exists Elemento (
 );
 
 create table if not exists Novedad (
-	id int primary key,
+	id serial primary key,
 	responsable int not null,
 	equipo int null,
 	elemento int null,
