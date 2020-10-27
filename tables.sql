@@ -24,7 +24,7 @@ create table if not exists Usuario (
 	correo varchar(50) unique not null,
 	username varchar(50) unique not null,
 	passwd varchar(260) not null,
-	estado varchar(50) not null,
+	activo boolean not null,
 	rol int not null,
 	constraint fk_Usuario_Rol foreign key (rol) references Rol(id)
 );

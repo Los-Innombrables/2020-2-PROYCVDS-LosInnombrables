@@ -20,6 +20,15 @@ import java.util.List;
 @SessionScoped
 
 public class LoginBean {
+    // Creo que acá se crea la sesion en el navegador, se puede usar un filter para
+    // restringir ciertas páginas, como por ejemplo las que sean /user/*, para que
+    // haga verificación de que existe una sesión abierta antes de acceder a esas
+    // páginas:
+    // https://stackoverflow.com/questions/8480100/how-implement-a-login-filter-in-jsf
+    // https://codenotfound.com/jsf-login-servlet-filter-example.html
+
+    // TODO: verificar credenciales con la base de datos y crear la sesion con esas
+    // credenciales
     public void login() {
         Subject currentUser = SecurityUtils.getSubject();
         if (!currentUser.isAuthenticated()) {
