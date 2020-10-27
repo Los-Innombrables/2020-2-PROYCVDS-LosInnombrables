@@ -1,6 +1,7 @@
 package edu.eci.cvds.entities;
 
 public class Rol {
+
     private int id;
     private String nombre;
     private String descripcion;
