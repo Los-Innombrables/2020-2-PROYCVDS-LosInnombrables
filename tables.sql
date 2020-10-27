@@ -11,14 +11,22 @@ create table if not exists TipoElemento (
 	descripcion varchar(500) null
 );
 
+create table if not exists Rol (
+	id int primary key,
+	nombre varchar(50) not null,
+	descripcion varchar(500) not null
+);
+
 create table if not exists Usuario (
 	carnet int primary key,
 	nombre varchar(50) not null,
 	apellido varchar(50) not null,
-	correo varchar(50) not null,
-	username varchar(50) not null,
+	correo varchar(50) unique not null,
+	username varchar(50) unique not null,
 	passwd varchar(260) not null,
-	estado varchar(50) not null
+	estado varchar(50) not null,
+	rol int not null,
+	constraint fk_Usuario_Rol foreign key (rol) references Rol(id)
 );
 
 create table if not exists Equipo (
