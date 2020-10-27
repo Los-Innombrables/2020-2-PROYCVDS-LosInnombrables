@@ -2,6 +2,8 @@ package edu.eci.cvds.guice;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import edu.eci.cvds.persistence.UsuarioDAO;
+import edu.eci.cvds.persistence.mybatis.MyBatisUserDAO;
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
 
@@ -23,6 +25,7 @@ public class GuiceContextListener {
                 this.setClassPathResource("mybatis-config.xml");
                 /* Falta Poner los servicios */
                 /* Falta Poner las DAO*/
+                this.bind(UsuarioDAO.class).to(MyBatisUserDAO.class);
             }
         });
 
