@@ -20,7 +20,7 @@
         <result property="correo" column="correo"/>
         <result property="username" column="username"/>
         <result property="passwd" column="passwd"/>
-        <result property="estado" column="estado"/>
+        <result property="activo" column="activo"/>
         <result property="rol" column="rol"/>
     </resultMap>
 

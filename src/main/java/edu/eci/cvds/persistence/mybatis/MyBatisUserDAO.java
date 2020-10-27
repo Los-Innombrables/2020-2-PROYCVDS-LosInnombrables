@@ -17,7 +17,7 @@ public class MyBatisUserDAO implements UsuarioDAO {
             Usuario usuario = usuarioMapper.logIn(username, passwd);
             if (usuario == null){
                 throw new HistorialEquiposException("Credenciales Invalidas");
-            } else if(usuario.getEstado().equals(false)){
+            } else if(usuario.getActivo() == false){
                 throw new HistorialEquiposException("Usuario Inactivo");
             }
             else{

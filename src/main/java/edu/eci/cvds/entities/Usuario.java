@@ -8,18 +8,18 @@ public class Usuario {
     private String correo;
     private String userName;
     private String passwd;
-    private String estado;
+    private boolean activo;
 
     public Usuario(){}
 
-    public Usuario(int carnet, String nombre, String apellido, String correo, String userName, String passwd, String estado){
+    public Usuario(int carnet, String nombre, String apellido, String correo, String userName, String passwd, boolean activo){
         this.carnet = carnet;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
         this.userName = userName;
         this.passwd = passwd;
-        this.estado = estado;
+        this.activo = activo;
     }
 
 
@@ -71,11 +71,11 @@ public class Usuario {
         this.passwd = passwd;
     }
 
-    public String getEstado() {
-        return estado;
+    public boolean getActivo() {
+        return activo;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }
