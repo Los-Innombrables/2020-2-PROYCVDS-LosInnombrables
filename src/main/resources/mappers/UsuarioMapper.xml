@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.UsuarioMapper">
+
+    <!-- LogIn -->
+    <select id="logIn" resultMap="UsuarioResult">
+        SELECT *
+        FROM Usuario
+        WHERE username=#{username} AND passwd=#{passwd}
+    </select>
+
+    <!-- Resultado Usuario -->
+    <resultMap type="Usuario" id="UsuarioResult">
+        <result property="carnet" column="carnet"/>
+        <result property="nombre" column="nombre"/>
+        <result property="apellido" column="apellido"/>
+        <result property="correo" column="correo"/>
+        <result property="username" column="username"/>
+        <result property="passwd" column="passwd"/>
+        <result property="estado" column="estado"/>
+        <result property="rol" column="rol"/>
+    </resultMap>
+
+</mapper>
