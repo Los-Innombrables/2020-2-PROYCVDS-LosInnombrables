@@ -10,7 +10,7 @@ import javax.servlet.ServletContextEvent;
 
 public class GuiceContextListener {
 
-    public void contextDestriyed(ServletContextEvent servletContextEvent){
+    public void contextDestroyed(ServletContextEvent servletContextEvent){
         ServletContext servletContext = servletContextEvent.getServletContext();
         servletContext.removeAttribute(Injector.class.getName());
     }
