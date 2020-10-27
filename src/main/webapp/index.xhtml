@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -26,10 +28,10 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Objetivos</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Servicios</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Portafolio</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contacto</a></li>
                         <!-- Agregado para login -->
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/faces/login.xhtml">Login</a></li>
                     </ul>
@@ -45,8 +47,13 @@
                         <hr class="divider my-4" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 font-weight-light mb-5">Start Bootstrap can help you build better websites using the Bootstrap framework! Just download a theme and start customizing, no strings attached!</p>
-                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+                        <p class="text-white-75 font-weight-light mb-5" align="left">
+                            Software y hardware especializado con una organización física acorde a las necesidades de
+                            trabajo individual y de grupo de sus usuarios, y acorde a las necesidades metodológicas de
+                            las decanaturas y sus profesores para desarrollar sus actividades de docencia,
+                            investigación y extensión.
+                        </p>
+                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Saber Mas</a>
                     </div>
                 </div>
             </div>
@@ -56,10 +63,22 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8 text-center">
-                        <h2 class="text-white mt-0">We've got what you need!</h2>
+                        <h2 class="text-white mt-0">Nuestros Objetivos</h2>
                         <hr class="divider light my-4" />
-                        <p class="text-white-50 mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! Choose one of our open source, free to download, and easy to use themes! No strings attached!</p>
-                        <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
+                        <p class="text-white-50 mb-4" align="left">
+                            Atender las necesidades de configuración, alistamiento y soporte de hardware y software del
+                            los laboratorios, de tal manera que se encuentren disponibles para sus usuarios.
+                        </p>
+                        <p class="text-white-50 mb-4" align="left">
+                            Dar soporte a sus usuarios en la instalación y configuración de plataformas requeridas para
+                            la correcta operación de su infraestructura tecnológica.
+                        </p>
+                        <p class="text-white-50 mb-4" align="left">
+                            Mantener en buen estado las instalaciones y los equipos de última tecnología necesarios para
+                            realizar las actividades académicas y de investigación de la comunidad perteneciente a la
+                            Decanatura de Ingeniería de Sistemas.
+                        </p>
+                        <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Empezar!</a>
                     </div>
                 </div>
             </div>
@@ -67,35 +86,35 @@
         <!-- Services-->
         <section class="page-section" id="services">
             <div class="container">
-                <h2 class="text-center mt-0">At Your Service</h2>
+                <h2 class="text-center mt-0">A Tu Servicio !</h2>
                 <hr class="divider my-4" />
                 <div class="row">
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <i class="fas fa-4x fa-gem text-primary mb-4"></i>
-                            <h3 class="h4 mb-2">Sturdy Themes</h3>
-                            <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
+                            <h3 class="h4 mb-2">Calidad Tecnica</h3>
+                            <p class="text-muted mb-0">Profesionales más que calificados.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
-                            <h3 class="h4 mb-2">Up to Date</h3>
-                            <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
+                            <h3 class="h4 mb-2">Ultima Tecnologia</h3>
+                            <p class="text-muted mb-0">Tecnología a la Vanguardia, para complementar tu educación teórica.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <i class="fas fa-4x fa-globe text-primary mb-4"></i>
-                            <h3 class="h4 mb-2">Ready to Publish</h3>
-                            <p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>
+                            <h3 class="h4 mb-2">Abiertos al Mundo</h3>
+                            <p class="text-muted mb-0">Competencias de Programacion y Pentesting, Nacional y Internacional.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <i class="fas fa-4x fa-heart text-primary mb-4"></i>
-                            <h3 class="h4 mb-2">Made with Love</h3>
-                            <p class="text-muted mb-0">Is it really open source if it's not made with love?</p>
+                            <h3 class="h4 mb-2">Calidad Humana</h3>
+                            <p class="text-muted mb-0">Siempre dispuestos a ayudarte.</p>
                         </div>
                     </div>
                 </div>
@@ -110,7 +129,7 @@
                             <img class="img-fluid" src="assets/img/portfolio/thumbnails/1.jpg" alt="" />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">LabInfo</div>
-                                <div class="project-name">LabInfo</div>
+                                <div class="project-name">Plataformas Computacionales</div>
                             </div>
                         </a>
                     </div>
@@ -119,7 +138,7 @@
                             <img class="img-fluid" src="assets/img/portfolio/thumbnails/2.jpg" alt="" />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">LabInfo</div>
-                                <div class="project-name">LabInfo</div>
+                                <div class="project-name">Redes De Computadores</div>
                             </div>
                         </a>
                     </div>
@@ -128,7 +147,7 @@
                             <img class="img-fluid" src="assets/img/portfolio/thumbnails/3.jpg" alt="" />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">LabInfo</div>
-                                <div class="project-name">LabInfo</div>
+                                <div class="project-name">Aula Inteligente</div>
                             </div>
                         </a>
                     </div>
@@ -137,7 +156,7 @@
                             <img class="img-fluid" src="assets/img/portfolio/thumbnails/4.jpg" alt="" />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">LabInfo</div>
-                                <div class="project-name">LabInfo</div>
+                                <div class="project-name">Fundamentos de Computacion</div>
                             </div>
                         </a>
                     </div>
@@ -146,7 +165,7 @@
                             <img class="img-fluid" src="assets/img/portfolio/thumbnails/5.jpg" alt="" />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">LabInfo</div>
-                                <div class="project-name">LabInfo</div>
+                                <div class="project-name">Laboratorio de videojuegos</div>
                             </div>
                         </a>
                     </div>
@@ -155,20 +174,20 @@
                             <img class="img-fluid" src="assets/img/portfolio/thumbnails/6.jpg" alt="" />
                             <div class="portfolio-box-caption p-3">
                                 <div class="project-category text-white-50">LabInfo</div>
-                                <div class="project-name">LabInfo</div>
+                                <div class="project-name">Multimedia y Móviles</div>
                             </div>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Call to action-->
-        <!--<section class="page-section bg-dark text-white">
+         <!--Call to action-->
+        <section class="page-section bg-dark text-white">
             <div class="container text-center">
-                <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
-                <a class="btn btn-light btn-xl" href="https://startbootstrap.com/themes/creative/">Download Now!</a>
+                <h2 class="mb-4">Ingresa a Nuestra Universidad!</h2>
+                <a class="btn btn-light btn-xl" href="https://www.escuelaing.edu.co/es/programas/ingenieria-de-sistemas/">Inscribete Ahora!</a>
             </div>
-        </section>-->
+        </section>
         <!-- Contact-->
         <section class="page-section" id="contact">
             <div class="container">
@@ -188,7 +207,7 @@
                     <div class="col-lg-4 mr-auto text-center">
                         <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
                         <!-- Make sure to change the email address in BOTH the anchor text and the link target below!-->
-                        <a class="d-block" href="mailto:contact@yourwebsite.com">labinfo@escuelaing.edu.co
+                        <a class="d-block" href="mailto:labinfo@escuelaing.edu.co">labinfo@escuelaing.edu.co
                         </a>
                     </div>
                 </div>
