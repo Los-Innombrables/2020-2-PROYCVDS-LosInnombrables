@@ -47,13 +47,14 @@ public class LoginBean extends BasePageBean {
             return null;
         } else {
             context.getExternalContext().getSessionMap().put("user", usuario);
-            return "/faces/index.xhtml?faces-redirect=true";
+            String webpage = redirectPage(usuario.getRol());
+            return webpage + "?faces-redirect=true";
         }
     }
 
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "/faces/index.xhtml?faces-redirect=true";
+        return "/faces/main.xhtml?faces-redirect=true";
     }
 
     private String convertSHA256(String password) {
@@ -89,5 +90,21 @@ public class LoginBean extends BasePageBean {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String redirectPage(int rol){
+        String webPage = "";
+        switch (rol){
+            case 1:
+                webPage = "/faces/dashboard/admin/main.xhtml";
+                break;
+            case 2:
+                webPage = "/faces/dashboard/monitor/";
+                break;
+            case 3:
+                webPage = "/faces/dashboard/profesor/";
+                break;
+        }
+        return webPage;
     }
 }
