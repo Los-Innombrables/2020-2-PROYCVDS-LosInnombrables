@@ -1,19 +1,17 @@
 package edu.eci.cvds.view;
 
-import edu.eci.cvds.entities.Usuario;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.crypto.hash.Sha256Hash;
-import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.Subject;
+import com.google.inject.Inject;
 
-import java.util.List;
+import edu.eci.cvds.entities.Usuario;
+import edu.eci.cvds.services.ServicesUsuario;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "loginBean")
@@ -29,11 +27,65 @@ public class LoginBean {
 
     // TODO: verificar credenciales con la base de datos y crear la sesion con esas
     // credenciales
-    public void login() {
-        Subject currentUser = SecurityUtils.getSubject();
-        if (!currentUser.isAuthenticated()) {
-            UsernamePasswordToken token = new UsernamePasswordToken("daniel", "daniel");
-            currentUser.login(token);
+
+    @Inject
+    private ServicesUsuario servicesUsuario;
+
+    private String userName;
+    private String password;
+
+    public String login() {
+        Usuario usuario = servicesUsuario.logInUsuario(userName, convertSHA256(password));
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        if (usuario == null) {
+            context.addMessage(null, new FacesMessage("Unknown login, try again"));
+            // username = null;
+            // password = null;
+            return null;
+        } else {
+            context.getExternalContext().getSessionMap().put("user", usuario);
+            return "/faces/index.xhtml?faces-redirect=true";
         }
+    }
+
+    public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "/faces/index.xhtml?faces-redirect=true";
+    }
+
+    private String convertSHA256(String password) {
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        byte[] hash = md.digest(password.getBytes());
+        StringBuffer sb = new StringBuffer();
+
+        for (byte b : hash) {
+            sb.append(String.format("%02x", b));
+        }
+
+        return sb.toString();
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
