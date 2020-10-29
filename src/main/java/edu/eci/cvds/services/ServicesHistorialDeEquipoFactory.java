@@ -19,10 +19,10 @@ public class ServicesHistorialDeEquipoFactory {
                 this.install(JdbcHelper.PostgreSQL);
                 setEnvironmentId("development");
                 this.setClassPathResource("mybatis-config.xml");
-                /* Falta Poner los servicios */
-                this.bind(ServicesUsuario.class).to(ServicesUsuarioImpl.class);
                 /* Falta Poner las DAO*/
                 this.bind(UsuarioDAO.class).to(MyBatisUserDAO.class);
+                /* Falta Poner los servicios */
+                this.bind(ServicesUsuario.class).to(ServicesUsuarioImpl.class);
             }
         });
     }

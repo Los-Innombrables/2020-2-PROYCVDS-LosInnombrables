@@ -10,9 +10,11 @@ public class Usuario {
     private String passwd;
     private boolean activo;
 
+    private int rol;
+
     public Usuario(){}
 
-    public Usuario(int carnet, String nombre, String apellido, String correo, String userName, String passwd, boolean activo){
+    public Usuario(int carnet, String nombre, String apellido, String correo, String userName, String passwd, boolean activo, int rol){
         this.carnet = carnet;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -20,8 +22,8 @@ public class Usuario {
         this.userName = userName;
         this.passwd = passwd;
         this.activo = activo;
+        this.rol = rol;
     }
-
 
     public int getCarnet() {
         return carnet;
@@ -71,11 +73,19 @@ public class Usuario {
         this.passwd = passwd;
     }
 
-    public boolean getActivo() {
+    public boolean isActivo() {
         return activo;
     }
 
     public void setActivo(boolean activo) {
         this.activo = activo;
+    }
+
+    public int getRol() {
+        return rol;
+    }
+
+    public void setRol(int rol) {
+        this.rol = rol;
     }
 }

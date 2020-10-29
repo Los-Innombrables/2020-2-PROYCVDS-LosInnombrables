@@ -12,6 +12,7 @@ public class MyBatisUserDAO implements UsuarioDAO {
     @Inject
     private UsuarioMapper usuarioMapper;
 
+    @Override
     public boolean logIn(String username, String passwd) throws HistorialEquiposException{
         try{
             Usuario usuario = usuarioMapper.logIn(username, passwd);
@@ -26,6 +27,7 @@ public class MyBatisUserDAO implements UsuarioDAO {
         }
     }
 
+    @Override
     public Usuario logInUsuario(String username, String passwd) throws HistorialEquiposException{
         try{
             Usuario usuario = usuarioMapper.logIn(username, passwd);

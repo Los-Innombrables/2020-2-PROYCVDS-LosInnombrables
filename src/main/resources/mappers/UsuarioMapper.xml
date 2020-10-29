@@ -10,7 +10,7 @@
     <select id="logIn" resultMap="UsuarioResult">
         SELECT *
         FROM Usuario
-        WHERE username=#{username} AND passwd=#{passwd} AND activo=true
+        WHERE username=#{username} AND passwd=#{passwd}
     </select>
 
     <!-- Resultado Usuario -->
@@ -19,7 +19,7 @@
         <result property="nombre" column="nombre"/>
         <result property="apellido" column="apellido"/>
         <result property="correo" column="correo"/>
-        <result property="username" column="username"/>
+        <result property="userName" column="username"/>
         <result property="passwd" column="passwd"/>
         <result property="activo" column="activo"/>
         <result property="rol" column="rol"/>

@@ -11,7 +11,8 @@
     <properties resource="config.properties">
     </properties>
     <typeAliases>
-        <!-- Falta agregar -->
+        <!--TODO: Agregar Aliases-->
+        <typeAlias type="edu.eci.cvds.entities.Usuario" alias="Usuario"/>
     </typeAliases>
 
     <environments default="development">
@@ -27,7 +28,8 @@
     </environments>
 
     <mappers>
-        <!-- Falta agregar -->
+        <!--TODO: Agregar Mappers-->
+        <mapper resource="mappers/UsuarioMapper.xml"/>
     </mappers>
 
 
