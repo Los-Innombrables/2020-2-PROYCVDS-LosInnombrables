@@ -15,18 +15,28 @@ public class MyBatisUserDAO implements UsuarioDAO {
     public boolean logIn(String username, String passwd) throws HistorialEquiposException{
         try{
             Usuario usuario = usuarioMapper.logIn(username, passwd);
-            if (usuario == null){
+            if (usuario == null) {
                 throw new HistorialEquiposException("Credenciales Invalidas");
-            } else if(usuario.getActivo() == false){
-                throw new HistorialEquiposException("Usuario Inactivo");
             }
             else{
-                boolean result = (usuario.getUserName().equals(username) && usuario.getPasswd().equals(passwd));
-                return result;
+                return true;
             }
         }catch (Exception e){
-            throw new HistorialEquiposException("Credenciales Invalidas");
+            throw new HistorialEquiposException("Usuario o Contraseña Incorrectos");
         }
     }
 
+    public Usuario logInUsuario(String username, String passwd) throws HistorialEquiposException{
+        try{
+            Usuario usuario = usuarioMapper.logIn(username, passwd);
+            if (usuario == null) {
+                throw new HistorialEquiposException("Credenciales Invalidas");
+            }
+            else{
+                return usuario;
+            }
+        }catch (Exception e){
+            throw new HistorialEquiposException("Usuario o Contraseña Incorrectos");
+        }
+    }
 }
