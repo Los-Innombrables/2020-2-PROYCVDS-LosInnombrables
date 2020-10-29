@@ -11,8 +11,8 @@ public class TipoElemento {
     public TipoElemento(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-
     }
+
     public String getNombre() {
         return nombre;
     }
@@ -28,7 +28,5 @@ public class TipoElemento {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-
 
 }
