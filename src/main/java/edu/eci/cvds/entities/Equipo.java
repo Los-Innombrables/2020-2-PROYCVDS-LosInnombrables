@@ -1,18 +1,17 @@
 package edu.eci.cvds.entities;
 
-import java.util.Date;
 public class Equipo {
     int id;
     int laboratorio;
     String nombre;
     Boolean activo;
 
+    public Equipo() {
+    }
 
-    public Equipo(){}
-
-    public Equipo(int id, int laboratorio, String nombre, Boolean activo){
+    public Equipo(int id, int laboratorio, String nombre, Boolean activo) {
         this.id = id;
-        this.nombre=nombre;
+        this.nombre = nombre;
         this.laboratorio = laboratorio;
         this.activo = activo;
     }
@@ -48,6 +47,5 @@ public class Equipo {
     public void setActivo(Boolean activo) {
         this.activo = activo;
     }
-
 
 }

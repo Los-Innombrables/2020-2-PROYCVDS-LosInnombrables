@@ -8,16 +8,12 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
-
 //@WebFilter("/faces/dashboard/*")
-@WebFilter("/faces/index.xhtml")
+//@WebFilter("/faces/index.xhtml")
 public class LoginFilter implements Filter {
 
     public static final String LOGIN_PAGE = "/faces/login.xhtml";
@@ -41,12 +37,12 @@ public class LoginFilter implements Filter {
         if (loggedIn) {
             chain.doFilter(request, response);
         } else if (ajaxRequest) {
-            System.out.println("ajax");
+            // System.out.println("ajax");
             response.setContentType("text/xml");
             response.setCharacterEncoding("UTF-8");
             // response.getWriter().printf(AJAX_REDIRECT_XML, LOGIN_PAGE);
         } else {
-            System.out.println("Filter Working");
+            // System.out.println("Filter Working");
             res.sendRedirect(LOGIN_PAGE);
         }
     }

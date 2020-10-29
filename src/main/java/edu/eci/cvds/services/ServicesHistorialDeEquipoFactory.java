@@ -13,21 +13,23 @@ public class ServicesHistorialDeEquipoFactory {
     private static ServicesHistorialDeEquipoFactory instance = new ServicesHistorialDeEquipoFactory();
     private static Injector injector;
 
-    public ServicesHistorialDeEquipoFactory(){
+    public ServicesHistorialDeEquipoFactory() {
         injector = Guice.createInjector(new XMLMyBatisModule() {
+            @Override
             protected void initialize() {
-                this.install(JdbcHelper.PostgreSQL);
+                // install(JdbcHelper.PostgreSQL);
                 setEnvironmentId("development");
-                this.setClassPathResource("mybatis-config.xml");
-                /* Falta Poner las DAO*/
-                this.bind(UsuarioDAO.class).to(MyBatisUserDAO.class);
+                setClassPathResource("mybatis-config.xml");
+
+                /* Falta Poner las DAO */
+                bind(UsuarioDAO.class).to(MyBatisUserDAO.class);
                 /* Falta Poner los servicios */
-                this.bind(ServicesUsuario.class).to(ServicesUsuarioImpl.class);
+                bind(ServicesUsuario.class).to(ServicesUsuarioImpl.class);
             }
         });
     }
 
-    public static ServicesHistorialDeEquipoFactory getInstance(){
+    public static ServicesHistorialDeEquipoFactory getInstance() {
         return instance;
     }
 

@@ -2,6 +2,7 @@ package edu.eci.cvds.view;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Objects;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -17,7 +18,7 @@ import edu.eci.cvds.services.ServicesUsuario;
 @ManagedBean(name = "loginBean")
 @SessionScoped
 
-public class LoginBean {
+public class LoginBean extends BasePageBean {
     // Creo que acá se crea la sesion en el navegador, se puede usar un filter para
     // restringir ciertas páginas, como por ejemplo las que sean /user/*, para que
     // haga verificación de que existe una sesión abierta antes de acceder a esas
@@ -28,6 +29,8 @@ public class LoginBean {
     // TODO: verificar credenciales con la base de datos y crear la sesion con esas
     // credenciales
 
+    private static final long serialVersionUID = 1L;
+
     @Inject
     private ServicesUsuario servicesUsuario;
 
@@ -35,13 +38,12 @@ public class LoginBean {
     private String password;
 
     public String login() {
+        System.out.println(Objects.isNull(servicesUsuario));
         Usuario usuario = servicesUsuario.logInUsuario(userName, convertSHA256(password));
         FacesContext context = FacesContext.getCurrentInstance();
 
         if (usuario == null) {
             context.addMessage(null, new FacesMessage("Unknown login, try again"));
-            // username = null;
-            // password = null;
             return null;
         } else {
             context.getExternalContext().getSessionMap().put("user", usuario);

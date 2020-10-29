@@ -11,24 +11,26 @@ import org.mybatis.guice.datasource.helper.JdbcHelper;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
-public class GuiceContextListener {
+public class GuiceContextListener implements ServletContextListener {
 
-    public void contextDestroyed(ServletContextEvent servletContextEvent){
+    public void contextDestroyed(ServletContextEvent servletContextEvent) {
         ServletContext servletContext = servletContextEvent.getServletContext();
         servletContext.removeAttribute(Injector.class.getName());
     }
 
-    public void contextInitialized(ServletContextEvent servletContextEvent){
+    public void contextInitialized(ServletContextEvent servletContextEvent) {
         Injector injector = Guice.createInjector(new XMLMyBatisModule() {
+            @Override
             protected void initialize() {
-                this.install(JdbcHelper.PostgreSQL);
-                this.setEnvironmentId("development");
-                this.setClassPathResource("mybatis-config.xml");
+                install(JdbcHelper.PostgreSQL);
+                setEnvironmentId("development");
+                setClassPathResource("mybatis-config.xml");
                 /* Falta Poner los servicios */
-                this.bind(ServicesUsuario.class).to(ServicesUsuarioImpl.class);
-                /* Falta Poner las DAO*/
-                this.bind(UsuarioDAO.class).to(MyBatisUserDAO.class);
+                bind(ServicesUsuario.class).to(ServicesUsuarioImpl.class);
+                /* Falta Poner las DAO */
+                bind(UsuarioDAO.class).to(MyBatisUserDAO.class);
             }
         });
 
