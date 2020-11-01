@@ -11,7 +11,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>Registrar Equipos</title>
+    <title>Registrar Elementos</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"/>
@@ -70,7 +70,7 @@
                     <a class="collapse-item" href="">Usuarios</a>
                     <a class="collapse-item" href="">Laboratorios</a>
                     <a class="collapse-item" href="registrarEquipo.xhtml">Equipos</a>
-                    <a class="collapse-item" href="">Elementos</a>
+                    <a class="collapse-item" href="registrarElemento.xhtml">Elementos</a>
                     <a class="collapse-item" href="">Novedades</a>
                 </div>
             </div>
@@ -251,7 +251,7 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Registrar Equipos</h1>
+                <h1 class="h3 mb-2 text-gray-800">Registrar Elementos</h1>
 
                 <!-- DataTales Example -->
                 <!--div class="card shadow mb-4">
@@ -265,64 +265,39 @@
                     <h:form id="Form_formulario">
                         <!--Parte del equipo-->
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Equipo:</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Elemento:</h6>
                         </div>
                         <div class="card-body">
                             <h:panelGrid columns="6" cellpadding="5" class="h3 mb-2 text-gray-800">
 
-                                <p:outputLabel for="nombre" value="Nombre:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText id="nombre" name="nombre" class="form-control bg-light border-0 small"
-                                             type="text" required="true" placeholder="Nombre equipo" binding="#{nombre}"/>
+                                <p:outputLabel for="Tipo" value="Tipo:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                <p:inputText id="Tipo" name="Tipo" class="form-control bg-light border-0 small"
+                                             type="text" required="true" placeholder="Tipo" binding="#{tipo}"/>
 
-                                <p:outputLabel for="laboratorio" value="Laboratorio:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText name="laboratorio" class="form-control bg-light border-0 small" id="laboratorio"
-                                             type="number" required="true" placeholder="id del laboratorio" binding="#{laboratorio}"/>
+                                <p:outputLabel for="Equipo" value="Equipo:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                <p:inputText name="Equipo" class="form-control bg-light border-0 small" id="Equipo"
+                                             type="text" required="true" placeholder="Equipo" binding="#{equipo}"/>
 
-                                <p:outputLabel value="Estado:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText name="estado" class="form-control bg-light border-0 small" id="activo"
-                                             type="text" required="true" placeholder="Activo/Inactivo" binding="#{estado}"/>
+                                <p:outputLabel for="Marca" value="Marca:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                <p:inputText name="Marca" class="form-control bg-light border-0 small" id="Marca"
+                                             type="text" required="true" placeholder="Marca" binding="#{marca}"/>
 
-                            </h:panelGrid>
-                        </div>
-                        <hr class="sidebar-divider"/>
-                        <!--Parte de elementos asociados-->
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Elementos:</h6>
-                        </div>
-                        <div class="card-body">
-                            <h:panelGrid columns="8" cellpadding="5" class="h3 mb-2 text-gray-800">
-                                <p:outputLabel value="Torre:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText name="torre" class="form-control bg-light border-0 small" id="torre" type="number" required="true" placeholder="Id Torre" />
+                                <p:outputLabel for="Referencia" value="Referencia:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                <p:inputText name="Referencia" class="form-control bg-light border-0 small" id="Referencia"
+                                             type="text" required="true" placeholder="Referencia" binding="#{referencia}"/>
 
-                                <p:outputLabel value="Pantalla:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText name="pantalla" class="form-control bg-light border-0 small" id="pantalla" type="number" required="true" placeholder="Id Pantalla" />
+                                <p:outputLabel for="Activo" value="Referencia:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                <p:inputText name="Activo" class="form-control bg-light border-0 small" id="Activo"
+                                             type="text" required="true" placeholder="Activo" binding="#{activo}"/>
 
-                                <p:outputLabel value="Mouse:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText name="mouse" class="form-control bg-light border-0 small" id="mouse" type="number" required="true" placeholder="Id Mouse" />
-
-                                <p:outputLabel value="Teclado:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText name="teclado" class="form-control bg-light border-0 small" id="teclado" type="number" required="true" placeholder="Id Teclado" />
                             </h:panelGrid>
                         </div>
                         <div class="modal-footer">
                             <!-- Convertir en commnad button -->
                             <p:commandButton styleClass="ui-priority-primary" update="Form_formulario"
-                                             actionListener="#{equipoBean.registrarEquipo(nombre.value, estado.value, laboratorio.value)}"
-                                             href="registrarEquipo.xhtml" value="Registrar"/>
+                                             href="registrarElemento.xhtml" value="Registrar"/>
                         </div>
                     </h:form>
-                </div>
-
-                <h:form id="form_Registar">
-                    <hr class="sidebar-divider"/>
-                    <p:outputLabel class="form-control bg-light border-0 small">
-                        Recuerde que para registrar un Equipo debe asociarlo a todos sus elementos,
-                        Si desea agregar mas elementos utilice el siguiente boton:
-                    </p:outputLabel>
-                    <br/>
-                </h:form>
-                <div>
-                    <a class="btn btn-primary" href="registrarElemento.xhtml">Registrar Elemento</a>
                 </div>
             </div>
             <!-- /.container-fluid -->

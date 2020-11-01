@@ -3,7 +3,6 @@ package edu.eci.cvds.view;
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.services.ServicesEquipo;
-import edu.eci.cvds.services.ServicesUsuario;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -22,6 +21,16 @@ public class EquipoBean extends BasePageBean{
 
     public List<Equipo> consultarEquipos(){
         return servicesEquipo.consultarEquipos();
+    }
+
+    public void registrarEquipo(String nombre, String activo, int laboratorio){
+        Equipo equipo;
+        if (activo.equalsIgnoreCase("inactivo")){
+            equipo = new Equipo(1, laboratorio, nombre, false);
+        }else{
+            equipo = new Equipo(1, laboratorio, nombre, true);
+        }
+        servicesEquipo.addEquipo(equipo);
     }
 
 }

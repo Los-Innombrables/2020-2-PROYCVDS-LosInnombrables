@@ -6,11 +6,16 @@
 <mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.UsuarioMapper">
 
     <!-- LogIn -->
-    <!-- Arreglar activo o no -->
     <select id="logIn" resultMap="UsuarioResult">
         SELECT *
         FROM Usuario
-        WHERE username=#{username} AND passwd=#{passwd}
+        WHERE username=#{username} AND passwd=#{passwd} AND activo=true
+    </select>
+
+    <!-- Consultar -->
+    <select id="consultarUsuarios" resultMap="UsuarioResult">
+        SELECT *
+        FROM Usuario
     </select>
 
     <!-- Resultado Usuario -->

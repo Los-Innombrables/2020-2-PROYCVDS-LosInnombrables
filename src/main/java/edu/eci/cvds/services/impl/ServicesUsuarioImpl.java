@@ -5,6 +5,8 @@ import edu.eci.cvds.entities.Usuario;
 import edu.eci.cvds.persistence.UsuarioDAO;
 import edu.eci.cvds.services.ServicesUsuario;
 
+import java.util.List;
+
 public class ServicesUsuarioImpl implements ServicesUsuario {
 
     @Inject
@@ -24,6 +26,15 @@ public class ServicesUsuarioImpl implements ServicesUsuario {
         try {
             return usuarioDAO.logInUsuario(username, passwd);
         } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public List<Usuario> consultarUsuarios() {
+        try{
+            return usuarioDAO.consultarUsuarios();
+        }catch (Exception e){
             return null;
         }
     }

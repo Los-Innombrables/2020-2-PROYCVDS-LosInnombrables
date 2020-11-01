@@ -28,6 +28,7 @@ public class MyBatisEquipoDAO implements EquipoDAO {
         try{
             return equipoMapper.consultarEquipos();
         }catch (Exception e){
+            e.printStackTrace();
             throw new PersistenceException("Error Al Consultar Equipos");
         }
 

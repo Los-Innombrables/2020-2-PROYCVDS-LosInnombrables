@@ -6,6 +6,7 @@ import edu.eci.cvds.persistence.UsuarioDAO;
 import edu.eci.cvds.persistence.mybatis.mappers.UsuarioMapper;
 
 import javax.inject.Inject;
+import java.util.List;
 
 public class MyBatisUserDAO implements UsuarioDAO {
 
@@ -41,4 +42,14 @@ public class MyBatisUserDAO implements UsuarioDAO {
             throw new HistorialEquiposException("Usuario o Contraseña Incorrectos");
         }
     }
+
+    @Override
+    public List<Usuario> consultarUsuarios() throws HistorialEquiposException {
+        try{
+            return usuarioMapper.consultarUsuarios();
+        }catch (Exception e){
+            throw new HistorialEquiposException("Usuario o Contraseña Incorrectos");
+        }
+    }
+
 }

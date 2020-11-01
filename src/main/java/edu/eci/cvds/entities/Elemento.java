@@ -84,6 +84,7 @@ public class Elemento {
     }
 
     public String getNombre() {
+        this.nombre = (this.marca + " " + this.referencia);
         return nombre;
     }
 
