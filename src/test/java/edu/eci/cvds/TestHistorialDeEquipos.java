@@ -31,7 +31,7 @@ public class TestHistorialDeEquipos {
     public void loginValido() {
         try {
             boolean respuesta;
-            respuesta = servicesUsuario.logIn("homie",
+            respuesta = servicesUsuario.logIn("homie.simpson",
                     "a4e5c1418bdae16978bb91c2cffac2dd972ec15bb99f501e8788dde940cb0235");
             Assert.assertTrue(respuesta);
         } catch (Exception e) {
