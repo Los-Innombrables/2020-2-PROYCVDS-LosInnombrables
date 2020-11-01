@@ -2,15 +2,9 @@ package edu.eci.cvds.services;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import edu.eci.cvds.persistence.ElementoDAO;
-import edu.eci.cvds.persistence.EquipoDAO;
-import edu.eci.cvds.persistence.UsuarioDAO;
-import edu.eci.cvds.persistence.mybatis.MyBatisElementoDAO;
-import edu.eci.cvds.persistence.mybatis.MyBatisEquipoDAO;
-import edu.eci.cvds.persistence.mybatis.MyBatisUserDAO;
-import edu.eci.cvds.services.impl.ServicesElementoImpl;
-import edu.eci.cvds.services.impl.ServicesEquipoImpl;
-import edu.eci.cvds.services.impl.ServicesUsuarioImpl;
+import edu.eci.cvds.persistence.*;
+import edu.eci.cvds.persistence.mybatis.*;
+import edu.eci.cvds.services.impl.*;
 import org.mybatis.guice.XMLMyBatisModule;
 
 public class ServicesHistorialDeEquipoFactory {
@@ -25,15 +19,20 @@ public class ServicesHistorialDeEquipoFactory {
                 // install(JdbcHelper.PostgreSQL);
                 setEnvironmentId("development");
                 setClassPathResource("mybatis-config.xml");
-
                 /* Falta Poner las DAO */
                 bind(UsuarioDAO.class).to(MyBatisUserDAO.class);
                 bind(EquipoDAO.class).to(MyBatisEquipoDAO.class);
                 bind(ElementoDAO.class).to(MyBatisElementoDAO.class);
+                bind(LaboratorioDAO.class).to(MyBatisLaboratorioDAO.class);
+                bind(NovedadDAO.class).to(MyBatisNovedadDAO.class);
+                bind(TipoElementoDAO.class).to(MyBatisTipoElementoDAO.class);
                 /* Falta Poner los servicios */
                 bind(ServicesUsuario.class).to(ServicesUsuarioImpl.class);
                 bind(ServicesEquipo.class).to(ServicesEquipoImpl.class);
                 bind(ServicesElemento.class).to(ServicesElementoImpl.class);
+                bind(ServicesLaboratorio.class).to(ServicesLaboratorioImpl.class);
+                bind(ServicesNovedad.class).to(ServicesNovedadImpl.class);
+                bind(ServicesTipoElemento.class).to(ServicesTipoElementoImpl.class);
 
             }
         });
@@ -48,5 +47,13 @@ public class ServicesHistorialDeEquipoFactory {
     }
 
     public ServicesEquipo getServicesEquipo(){return injector.getInstance(ServicesEquipo.class);}
+
+    public ServicesElemento getServicesElemento(){return injector.getInstance(ServicesElemento.class);}
+
+    public ServicesLaboratorio getServicesLaboratorio(){return injector.getInstance(ServicesLaboratorio.class);}
+
+    public ServicesNovedad getServicesNovedad(){return injector.getInstance(ServicesNovedad.class);}
+
+    public ServicesTipoElemento getServicesTipoElemento(){return injector.getInstance(ServicesTipoElemento.class);}
 
 }

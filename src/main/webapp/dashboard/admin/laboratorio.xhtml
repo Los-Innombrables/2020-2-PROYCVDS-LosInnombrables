@@ -11,7 +11,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>Registrar Equipos</title>
+    <title>Laboratorios</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"/>
@@ -25,7 +25,8 @@
 
 </h:head>
 
-<h:body id="page-top">
+<body id="page-top">
+
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -251,83 +252,37 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Registrar Equipos</h1>
+                <h1 class="h3 mb-2 text-gray-800">Laboratorios</h1>
 
                 <!-- DataTales Example -->
-                <!--div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Registrar Equipos - LabInfo</h6>
-                    </div>
-
-                </div>-->
-                <!-- Registrar equipos -->
                 <div class="card shadow mb-4">
-                    <h:form id="Form_formulario">
-                        <!--Parte del equipo-->
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Equipo:</h6>
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Laboratorios - Historial De Equipos</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <p:dataTable var="laboratorio" value="#{laboratorioBean.consultarLaboratorios()}" class="table table-bordered" style="width:100%" width="100%" cellspacing="0" paginator="true"
+                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" tableStyleClass="table table-striped table-bordered p-3 mb-2 bg-primary text-white">
+                                <p:column headerText="Identificador">
+                                    <h:outputText value="#{laboratorio.getId()}"/>
+                                </p:column>
+                                <p:column headerText="Nombre">
+                                    <h:outputText value="#{laboratorio.getNombre()}" />
+                                </p:column>
+                                <p:column headerText="Estado">
+                                    <h:outputText value="#{laboratorio.getActivo()}" />
+                                </p:column>
+                                <p:column headerText="Fecha De Creacion">
+                                    <h:outputText value="#{laboratorio.getFechadeCreacion()}" />
+                                </p:column>
+                                <p:column headerText="Fecha De Cierre">
+                                    <h:outputText value="#{laboratorio.getFechadeCierre()}" />
+                                </p:column>
+                            </p:dataTable>
                         </div>
-                        <div class="card-body">
-                            <h:panelGrid columns="6" cellpadding="5" class="h3 mb-2 text-gray-800">
-
-                                <p:outputLabel for="nombre" value="Nombre:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText id="nombre" name="nombre" class="form-control bg-light border-0 small"
-                                             type="text" required="true" placeholder="Nombre equipo" binding="#{nombre}"/>
-
-                                <p:outputLabel for="laboratorio" value="Laboratorio:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText name="laboratorio" class="form-control bg-light border-0 small" id="laboratorio"
-                                             type="number" required="true" placeholder="id del laboratorio" binding="#{laboratorio}"/>
-
-                                <p:outputLabel value="Estado:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <h:selectOneMenu name="Estado" id="estado" value="#{equipoBean.tipoEstado}" required="true" binding="#{estado}"
-                                                 type="text"  class="form-control" >
-                                    <f:selectItem itemLabel="----------" itemValue="" />
-                                    <f:selectItem itemLabel="Activo" itemValue="Activo" />
-                                    <f:selectItem itemLabel="Inactivo" itemValue="Inactivo" />
-                                </h:selectOneMenu>
-
-                            </h:panelGrid>
-                        </div>
-                        <hr class="sidebar-divider"/>
-                        <!--Parte de elementos asociados-->
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Elementos:</h6>
-                        </div>
-                        <div class="card-body">
-                            <h:panelGrid columns="8" cellpadding="5" class="h3 mb-2 text-gray-800">
-                                <p:outputLabel value="Torre:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText name="torre" class="form-control bg-light border-0 small" id="torre" type="number" required="true" placeholder="Id Torre" />
-
-                                <p:outputLabel value="Pantalla:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText name="pantalla" class="form-control bg-light border-0 small" id="pantalla" type="number" required="true" placeholder="Id Pantalla" />
-
-                                <p:outputLabel value="Mouse:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText name="mouse" class="form-control bg-light border-0 small" id="mouse" type="number" required="true" placeholder="Id Mouse" />
-
-                                <p:outputLabel value="Teclado:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText name="teclado" class="form-control bg-light border-0 small" id="teclado" type="number" required="true" placeholder="Id Teclado" />
-                            </h:panelGrid>
-                        </div>
-                        <div class="modal-footer">
-                            <!-- Convertir en commnad button -->
-                            <p:commandButton styleClass="ui-priority-primary" update="Form_formulario"
-                                             actionListener="#{equipoBean.registrarEquipo(nombre.value, estado.value, laboratorio.value)}"
-                                             href="registrarEquipo.xhtml" value="Registrar"/>
-                        </div>
-                    </h:form>
+                    </div>
                 </div>
 
-                <h:form id="form_Registar">
-                    <hr class="sidebar-divider"/>
-                    <p:outputLabel class="form-control bg-light border-0 small">
-                        Recuerde que para registrar un Equipo debe asociarlo a todos sus elementos,
-                        Si desea agregar mas elementos utilice el siguiente boton:
-                    </p:outputLabel>
-                    <br/>
-                </h:form>
-                <div>
-                    <a class="btn btn-primary" href="registrarElemento.xhtml">Registrar Elemento</a>
-                </div>
             </div>
             <!-- /.container-fluid -->
 
@@ -391,6 +346,6 @@
 <!-- Page level custom scripts -->
 <script src="js/demo/datatables-demo.js"></script>
 
-</h:body>
+</body>
 
 </html>

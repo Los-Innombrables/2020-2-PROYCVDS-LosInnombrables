@@ -2,15 +2,11 @@ package edu.eci.cvds;
 
 import com.google.inject.Inject;
 
-import edu.eci.cvds.entities.Equipo;
-import edu.eci.cvds.services.ServicesEquipo;
+import edu.eci.cvds.entities.*;
+import edu.eci.cvds.services.*;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Assert;
 import org.junit.Test;
-
-import edu.eci.cvds.entities.Usuario;
-import edu.eci.cvds.services.ServicesHistorialDeEquipoFactory;
-import edu.eci.cvds.services.ServicesUsuario;
 
 import java.util.ArrayList;
 
@@ -21,10 +17,18 @@ public class TestHistorialDeEquipos {
 
     ServicesUsuario servicesUsuario;
     ServicesEquipo servicesEquipo;
+    ServicesLaboratorio servicesLaboratorio;
+    ServicesElemento servicesElemento;
+    ServicesNovedad servicesNovedad;
+    ServicesTipoElemento servicesTipoElemento;
 
     public TestHistorialDeEquipos() {
         servicesUsuario = ServicesHistorialDeEquipoFactory.getInstance().getServicesUsuario();
         servicesEquipo = ServicesHistorialDeEquipoFactory.getInstance().getServicesEquipo();
+        servicesLaboratorio = ServicesHistorialDeEquipoFactory.getInstance().getServicesLaboratorio();
+        servicesElemento = ServicesHistorialDeEquipoFactory.getInstance().getServicesElemento();
+        servicesNovedad = ServicesHistorialDeEquipoFactory.getInstance().getServicesNovedad();
+        servicesTipoElemento = ServicesHistorialDeEquipoFactory.getInstance().getServicesTipoElemento();
     }
 
     @Test
@@ -86,6 +90,56 @@ public class TestHistorialDeEquipos {
     public void consultarEquiposTest() {
         try {
             ArrayList<Equipo> equipos = (ArrayList<Equipo>) servicesEquipo.consultarEquipos();
+            Assert.assertTrue(true);
+        } catch (Exception e) {
+            Assert.assertTrue(false);
+        }
+    }
+
+    @Test
+    public void consultarUsuariosTest() {
+        try {
+            ArrayList<Usuario> usuarios = (ArrayList<Usuario>) servicesUsuario.consultarUsuarios();
+            Assert.assertTrue(true);
+        } catch (Exception e) {
+            Assert.assertTrue(false);
+        }
+    }
+
+    @Test
+    public void consultarLaboratoriosTest() {
+        try {
+            ArrayList<Laboratorio> laboratorios = (ArrayList<Laboratorio>) servicesLaboratorio.consultarLaboratorios();
+            Assert.assertTrue(true);
+        } catch (Exception e) {
+            Assert.assertTrue(false);
+        }
+    }
+
+    @Test
+    public void consultarElementosTest() {
+        try {
+            ArrayList<Elemento> elementos = (ArrayList<Elemento>) servicesElemento.consultarElementos();
+            Assert.assertTrue(true);
+        } catch (Exception e) {
+            Assert.assertTrue(false);
+        }
+    }
+
+    @Test
+    public void consultarNovedadesTest() {
+        try {
+            ArrayList<Novedad> novedades = (ArrayList<Novedad>) servicesNovedad.consultarNovedades();
+            Assert.assertTrue(true);
+        } catch (Exception e) {
+            Assert.assertTrue(false);
+        }
+    }
+
+    @Test
+    public void consultarTipoElementoTest() {
+        try {
+            ArrayList<TipoElemento> tipoElementos = (ArrayList<TipoElemento>) servicesTipoElemento.consultarTipoElemento();
             Assert.assertTrue(true);
         } catch (Exception e) {
             Assert.assertTrue(false);

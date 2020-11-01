@@ -6,7 +6,7 @@ import edu.eci.cvds.services.ServicesEquipo;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import java.util.List;
+import java.util.*;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "equipoBean")
@@ -15,6 +15,7 @@ import java.util.List;
 public class EquipoBean extends BasePageBean{
 
     private static final long serialVersionUID = 1L;
+    private String tipoEstado;
 
     @Inject
     private ServicesEquipo servicesEquipo;
@@ -33,4 +34,11 @@ public class EquipoBean extends BasePageBean{
         servicesEquipo.addEquipo(equipo);
     }
 
+    public String getTipoEstado() {
+        return tipoEstado;
+    }
+
+    public void setTipoEstado(String tipoEstado) {
+        this.tipoEstado = tipoEstado;
+    }
 }

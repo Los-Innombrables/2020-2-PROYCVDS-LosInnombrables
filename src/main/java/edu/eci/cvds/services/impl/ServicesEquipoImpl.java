@@ -5,6 +5,8 @@ import edu.eci.cvds.persistence.EquipoDAO;
 import edu.eci.cvds.services.ServicesEquipo;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ServicesEquipoImpl implements ServicesEquipo {
