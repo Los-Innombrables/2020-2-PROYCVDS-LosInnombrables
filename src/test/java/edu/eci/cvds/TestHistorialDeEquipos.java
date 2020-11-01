@@ -2,6 +2,8 @@ package edu.eci.cvds;
 
 import com.google.inject.Inject;
 
+import edu.eci.cvds.entities.Equipo;
+import edu.eci.cvds.services.ServicesEquipo;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,15 +12,19 @@ import edu.eci.cvds.entities.Usuario;
 import edu.eci.cvds.services.ServicesHistorialDeEquipoFactory;
 import edu.eci.cvds.services.ServicesUsuario;
 
+import java.util.ArrayList;
+
 public class TestHistorialDeEquipos {
 
     @Inject
     private SqlSession sqlSession;
 
     ServicesUsuario servicesUsuario;
+    ServicesEquipo servicesEquipo;
 
     public TestHistorialDeEquipos() {
         servicesUsuario = ServicesHistorialDeEquipoFactory.getInstance().getServicesUsuario();
+        servicesEquipo = ServicesHistorialDeEquipoFactory.getInstance().getServicesEquipo();
     }
 
     @Test
@@ -60,6 +66,27 @@ public class TestHistorialDeEquipos {
             boolean respuesta;
             respuesta = servicesUsuario.logIn("admin", "admin");
             Assert.assertFalse(respuesta);
+        } catch (Exception e) {
+            Assert.assertTrue(false);
+        }
+    }
+
+    @Test
+    public void adicionarEquipoTest() {
+        try {
+            Equipo equipo = new Equipo(1, 0, "EquipoPrueba", true);
+            servicesEquipo.addEquipo(equipo);
+            Assert.assertTrue(true);
+        } catch (Exception e) {
+            Assert.assertTrue(false);
+        }
+    }
+
+    @Test
+    public void consultarEquiposTest() {
+        try {
+            ArrayList<Equipo> equipos = (ArrayList<Equipo>) servicesEquipo.consultarEquipos();
+            Assert.assertTrue(true);
         } catch (Exception e) {
             Assert.assertTrue(false);
         }

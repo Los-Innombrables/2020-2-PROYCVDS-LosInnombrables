@@ -13,6 +13,7 @@
     <typeAliases>
         <!--TODO: Agregar Aliases-->
         <typeAlias type="edu.eci.cvds.entities.Usuario" alias="Usuario"/>
+        <typeAlias type="edu.eci.cvds.entities.Equipo" alias="Equipo"/>
     </typeAliases>
 
     <environments default="development">
@@ -30,6 +31,7 @@
     <mappers>
         <!--TODO: Agregar Mappers-->
         <mapper resource="mappers/UsuarioMapper.xml"/>
+        <mapper resource="mappers/EquipoMapper.xml"/>
     </mappers>
 
 

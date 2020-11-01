@@ -36,18 +36,21 @@ public class LoginBean extends BasePageBean {
 
     private String userName;
     private String password;
+    private String canLog = " ";
 
     public String login() {
-        System.out.println(Objects.isNull(servicesUsuario));
+        /*System.out.println(Objects.isNull(servicesUsuario));*/
         Usuario usuario = servicesUsuario.logInUsuario(userName, convertSHA256(password));
         FacesContext context = FacesContext.getCurrentInstance();
 
         if (usuario == null) {
             context.addMessage(null, new FacesMessage("Unknown login, try again"));
+            this.setCanLog("Contraseña o Usuario Incorrectos");
             return null;
         } else {
             context.getExternalContext().getSessionMap().put("user", usuario);
             String webpage = redirectPage(usuario.getRol());
+            this.setCanLog(" ");
             return webpage + "?faces-redirect=true";
         }
     }
@@ -106,5 +109,13 @@ public class LoginBean extends BasePageBean {
                 break;
         }
         return webPage;
+    }
+
+    public String getCanLog() {
+        return canLog;
+    }
+
+    public void setCanLog(String canLog) {
+        this.canLog = canLog;
     }
 }
