@@ -3,6 +3,7 @@ package edu.eci.cvds.view;
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Laboratorio;
+import edu.eci.cvds.exceptions.HistorialEquiposException;
 import edu.eci.cvds.services.ServicesElemento;
 
 import javax.faces.bean.ManagedBean;
@@ -36,12 +37,12 @@ public class ElementoBean extends BasePageBean{
     @Inject
     private ServicesElemento servicesElemento;
 
-    public List<Elemento> consultarElementos(){
+    public List<Elemento> consultarElementos() throws HistorialEquiposException {
         elementos = servicesElemento.consultarElementos();
         return  elementos;
     }
 
-    public void makeElementoMap() {
+    public void makeElementoMap() throws HistorialEquiposException {
         consultarElementos();
         elementoMapTorre = new LinkedHashMap<String,Integer>();
         elementoMapPantalla = new LinkedHashMap<String,Integer>();
@@ -63,12 +64,12 @@ public class ElementoBean extends BasePageBean{
         }
     }
 
-    public void actualizarEquipoAsociado(int id, int equipo){
+    public void actualizarEquipoAsociado(int id, int equipo) throws HistorialEquiposException {
         servicesElemento.actualizarEquipoAsociado(id , equipo);
     }
 
     /*-------------Getter-Setter-------------*/
-    public Map<String, Integer> getElementoMapTorre() {
+    public Map<String, Integer> getElementoMapTorre() throws HistorialEquiposException {
         this.makeElementoMap();
         return elementoMapTorre;
     }

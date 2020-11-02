@@ -2,6 +2,7 @@ package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Novedad;
+import edu.eci.cvds.exceptions.HistorialEquiposException;
 import edu.eci.cvds.persistence.NovedadDAO;
 import edu.eci.cvds.services.ServicesNovedad;
 
@@ -13,11 +14,11 @@ public class ServicesNovedadImpl implements ServicesNovedad {
     private NovedadDAO novedadDAO;
 
     @Override
-    public List<Novedad> consultarNovedades() {
+    public List<Novedad> consultarNovedades() throws HistorialEquiposException{
         try{
             return novedadDAO.consultarNovedades();
         }catch (Exception e){
-            return null;
+            throw new HistorialEquiposException(e.getMessage());
         }
     }
 

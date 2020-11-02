@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import com.google.inject.Inject;
 
 import edu.eci.cvds.entities.Usuario;
+import edu.eci.cvds.exceptions.HistorialEquiposException;
 import edu.eci.cvds.services.ServicesUsuario;
 
 @SuppressWarnings("deprecation")
@@ -38,7 +39,7 @@ public class LoginBean extends BasePageBean {
     private String password;
     private String canLog = " ";
 
-    public String login() {
+    public String login() throws HistorialEquiposException {
         /*System.out.println(Objects.isNull(servicesUsuario));*/
         Usuario usuario = servicesUsuario.logInUsuario(userName, convertSHA256(password));
         FacesContext context = FacesContext.getCurrentInstance();

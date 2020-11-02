@@ -1,11 +1,12 @@
 package edu.eci.cvds.services;
 
 import edu.eci.cvds.entities.Novedad;
+import edu.eci.cvds.exceptions.HistorialEquiposException;
 
 import java.util.List;
 
 public interface ServicesNovedad {
 
-    List<Novedad> consultarNovedades();
+    List<Novedad> consultarNovedades() throws HistorialEquiposException;
 
 }

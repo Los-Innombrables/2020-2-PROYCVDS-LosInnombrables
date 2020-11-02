@@ -2,6 +2,7 @@ package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Novedad;
+import edu.eci.cvds.exceptions.HistorialEquiposException;
 import edu.eci.cvds.services.ServicesNovedad;
 
 import javax.faces.bean.ManagedBean;
@@ -19,6 +20,8 @@ public class NovedadBean extends BasePageBean{
     @Inject
     private ServicesNovedad servicesNovedad;
 
-    public List<Novedad> consultarNovedades(){ return servicesNovedad.consultarNovedades();}
+    public List<Novedad> consultarNovedades() throws HistorialEquiposException {
+        return servicesNovedad.consultarNovedades();
+    }
 
 }

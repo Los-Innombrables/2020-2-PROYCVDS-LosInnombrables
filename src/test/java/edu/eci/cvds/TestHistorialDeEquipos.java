@@ -75,7 +75,7 @@ public class TestHistorialDeEquipos {
         }
     }
 
-    @Test
+    /*@Test
     public void adicionarEquipoTest() {
         try {
             Equipo equipo = new Equipo(1, 0, "EquipoPrueba", true);
@@ -84,7 +84,7 @@ public class TestHistorialDeEquipos {
         } catch (Exception e) {
             Assert.assertTrue(false);
         }
-    }
+    }*/
 
     @Test
     public void consultarEquiposTest() {
@@ -157,5 +157,16 @@ public class TestHistorialDeEquipos {
             Assert.assertTrue(false);
         }
     }
+
+    /*@Test
+    public void asociarElementoEquipo() {
+        try {
+            Equipo equipo = new Equipo(12,0,"TESTTEST", true);
+            servicesElemento.actualizarEquipoAsociado(6, 12);
+            Assert.assertTrue(true);
+        } catch (Exception e) {
+            Assert.assertTrue(false);
+        }
+    }*/
 
 }

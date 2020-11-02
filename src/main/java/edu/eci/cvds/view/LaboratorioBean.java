@@ -2,6 +2,7 @@ package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Laboratorio;
+import edu.eci.cvds.exceptions.HistorialEquiposException;
 import edu.eci.cvds.services.ServicesLaboratorio;
 
 import javax.faces.bean.ManagedBean;
@@ -26,12 +27,12 @@ public class LaboratorioBean extends BasePageBean{
     @Inject
     private ServicesLaboratorio servicesLaboratorio;
 
-    public List<Laboratorio> consultarLaboratorios(){
+    public List<Laboratorio> consultarLaboratorios() throws HistorialEquiposException {
         laboratorios = servicesLaboratorio.consultarLaboratorios();
         return laboratorios;
     }
 
-    public Map<String, Integer> consultarNombreLaboratorios(){
+    public Map<String, Integer> consultarNombreLaboratorios() throws HistorialEquiposException {
         consultarLaboratorios();
         laboratorioMap = new LinkedHashMap<String,Integer>();
         for(Laboratorio l : laboratorios){
@@ -40,7 +41,7 @@ public class LaboratorioBean extends BasePageBean{
         return laboratorioMap;
     }
 
-    public Laboratorio consultarLaboratorioNombre(String nombre){
+    public Laboratorio consultarLaboratorioNombre(String nombre) throws HistorialEquiposException {
         return servicesLaboratorio.consultarLaboratorioNombre(nombre);
     }
 

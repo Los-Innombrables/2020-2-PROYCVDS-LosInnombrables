@@ -2,6 +2,7 @@ package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Equipo;
+import edu.eci.cvds.exceptions.HistorialEquiposException;
 import edu.eci.cvds.services.ServicesElemento;
 import edu.eci.cvds.services.ServicesEquipo;
 import edu.eci.cvds.services.ServicesHistorialDeEquipoFactory;
@@ -23,12 +24,12 @@ public class EquipoBean extends BasePageBean{
     @Inject
     private ServicesEquipo servicesEquipo;
 
-    public List<Equipo> consultarEquipos(){
+    public List<Equipo> consultarEquipos() throws HistorialEquiposException {
         equipos = servicesEquipo.consultarEquipos();
         return equipos;
     }
 
-    public void registrarEquipo(String nombre, String activoS, int laboratorio, int torre, int pantalla, int mouse, int teclado){
+    public void registrarEquipo(String nombre, String activoS, int laboratorio, int torre, int pantalla, int mouse, int teclado) throws HistorialEquiposException {
         int id = this.consultarNextId() + 1;
         Equipo equipo;
         boolean activo = false;
@@ -36,7 +37,6 @@ public class EquipoBean extends BasePageBean{
             activo = true;
         }
         equipo = new Equipo(id, laboratorio, nombre, activo);
-        servicesEquipo.addEquipo(equipo);
         /*Para asociar Elementos*/
         ServicesElemento servicesElemento = ServicesHistorialDeEquipoFactory.getInstance().getServicesElemento();
         servicesElemento.actualizarEquipoAsociado(torre, id);
@@ -53,7 +53,7 @@ public class EquipoBean extends BasePageBean{
         this.tipoEstado = tipoEstado;
     }
 
-    private int consultarNextId(){
+    private int consultarNextId() throws HistorialEquiposException {
         this.consultarEquipos();
         int maxInt = 0;
         for (Equipo equipo : equipos){
