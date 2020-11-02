@@ -22,4 +22,13 @@ public class ServicesNovedadImpl implements ServicesNovedad {
         }
     }
 
+    @Override
+    public void registrarNovedad(Novedad novedad) throws HistorialEquiposException {
+        try{
+            novedadDAO.registrarNovedad(novedad);
+        }catch (Exception e){
+            throw new HistorialEquiposException(e.getMessage());
+        }
+    }
+
 }

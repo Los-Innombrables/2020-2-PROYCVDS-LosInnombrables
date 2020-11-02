@@ -27,6 +27,7 @@ public class MyBatisElementoDAO implements ElementoDAO {
         try{
             elementoMapper.actualizarEquipoAsociado(id, equipo);
         }catch (Exception e){
+            e.printStackTrace();
             throw new HistorialEquiposException("Error al Actualizar equipo");
         }
     }

@@ -325,7 +325,7 @@
                         <div class="modal-footer">
                             <!-- Convertir en commnad button -->
                             <p:commandButton styleClass="ui-priority-primary" update="Form_formulario"
-                                             actionListener="#{equipoBean.registrarEquipo(nombre.value, estado.value, laboratorio.value, torre.value, pantalla.value, mouse.value, teclado.value)}"
+                                             actionListener="#{equipoBean.registrarEquipo(nombre.value, estado.value, laboratorio.value, torre.value, pantalla.value, mouse.value, teclado.value, loginBean.usuarioCarnet)}"
                                              href="registrarEquipo.xhtml" value="Registrar"/>
                         </div>
                     </h:form>

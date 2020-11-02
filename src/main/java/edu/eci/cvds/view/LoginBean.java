@@ -38,21 +38,27 @@ public class LoginBean extends BasePageBean {
     private String userName;
     private String password;
     private String canLog = " ";
+    private int usuarioCarnet;
 
-    public String login() throws HistorialEquiposException {
+    public String login() {
         /*System.out.println(Objects.isNull(servicesUsuario));*/
-        Usuario usuario = servicesUsuario.logInUsuario(userName, convertSHA256(password));
-        FacesContext context = FacesContext.getCurrentInstance();
-
-        if (usuario == null) {
-            context.addMessage(null, new FacesMessage("Unknown login, try again"));
+        try{
+            Usuario usuario = servicesUsuario.logInUsuario(userName, convertSHA256(password));
+            FacesContext context = FacesContext.getCurrentInstance();
+            if (usuario == null) {
+                context.addMessage(null, new FacesMessage("Unknown login, try again"));
+                this.setCanLog("Contraseña o Usuario Incorrectos");
+                return null;
+            } else {
+                context.getExternalContext().getSessionMap().put("user", usuario);
+                String webpage = redirectPage(usuario.getRol());
+                usuarioCarnet = usuario.getCarnet();
+                this.setCanLog(" ");
+                return webpage + "?faces-redirect=true";
+            }
+        }catch (Exception e){
             this.setCanLog("Contraseña o Usuario Incorrectos");
             return null;
-        } else {
-            context.getExternalContext().getSessionMap().put("user", usuario);
-            String webpage = redirectPage(usuario.getRol());
-            this.setCanLog(" ");
-            return webpage + "?faces-redirect=true";
         }
     }
 
@@ -118,5 +124,13 @@ public class LoginBean extends BasePageBean {
 
     public void setCanLog(String canLog) {
         this.canLog = canLog;
+    }
+
+    public int getUsuarioCarnet() {
+        return usuarioCarnet;
+    }
+
+    public void setUsuarioCarnet(int usuarioCarnet) {
+        this.usuarioCarnet = usuarioCarnet;
     }
 }

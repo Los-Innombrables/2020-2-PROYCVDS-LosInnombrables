@@ -27,6 +27,7 @@ public class ServicesElementoImpl implements ServicesElemento {
         try{
             elementoDAO.actualizarEquipoAsociado(id, equipo);
         }catch (Exception e){
+            e.printStackTrace();
             throw new HistorialEquiposException(e.getMessage());
         }
     }

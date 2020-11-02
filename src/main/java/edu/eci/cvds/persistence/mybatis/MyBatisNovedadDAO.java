@@ -22,4 +22,13 @@ public class MyBatisNovedadDAO implements NovedadDAO {
         }
     }
 
+    @Override
+    public void registrarNovedad(Novedad novedad) throws HistorialEquiposException {
+        try{
+            novedadMapper.registrarNovedad(novedad);
+        }catch (Exception e){
+            throw new HistorialEquiposException("Error Al Agregar Novedad");
+        }
+    }
+
 }
