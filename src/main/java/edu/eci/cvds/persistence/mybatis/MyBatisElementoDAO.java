@@ -18,7 +18,16 @@ public class MyBatisElementoDAO implements ElementoDAO {
         try{
             return elementoMapper.consultarElementos();
         }catch (Exception e){
-            throw new HistorialEquiposException("Usuario o Contraseña Incorrectos");
+            throw new HistorialEquiposException("Error al consultar Elementos");
+        }
+    }
+
+    @Override
+    public void actualizarEquipoAsociado(int id, int equipo) throws HistorialEquiposException {
+        try{
+            elementoMapper.actualizarEquipoAsociado(id, equipo);
+        }catch (Exception e){
+            throw new HistorialEquiposException("Error al Actualizar equipo");
         }
     }
 }

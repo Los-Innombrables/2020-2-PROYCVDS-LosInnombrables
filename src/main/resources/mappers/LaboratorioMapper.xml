@@ -11,6 +11,13 @@
         FROM Laboratorio
     </select>
 
+    <!-- Consultar Dependiendo Nombre -->
+    <select id="consultarLaboratorioNombre" resultMap="LaboratorioResult">
+        SELECT *
+        FROM Laboratorio
+        WHERE nombre = #{nombre}
+    </select>
+
     <!-- Resultado Usuario -->
     <resultMap type="Laboratorio" id="LaboratorioResult">
         <result property="id" column="id"/>

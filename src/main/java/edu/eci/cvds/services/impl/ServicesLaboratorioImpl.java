@@ -21,4 +21,13 @@ public class ServicesLaboratorioImpl implements ServicesLaboratorio {
         }
     }
 
+    @Override
+    public Laboratorio consultarLaboratorioNombre(String nombre) {
+        try{
+            return laboratorioDAO.consultarLaboratorioNombre(nombre);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
 }

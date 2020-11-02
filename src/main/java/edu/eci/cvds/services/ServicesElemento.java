@@ -8,4 +8,6 @@ public interface ServicesElemento {
 
     List<Elemento> consultarElementos();
 
+    void actualizarEquipoAsociado(int id, int equipo);
+
 }

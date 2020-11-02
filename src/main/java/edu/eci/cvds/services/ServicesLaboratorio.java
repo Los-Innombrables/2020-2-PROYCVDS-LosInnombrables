@@ -8,4 +8,6 @@ public interface ServicesLaboratorio {
 
     List<Laboratorio> consultarLaboratorios();
 
+    Laboratorio consultarLaboratorioNombre(String nombre);
+
 }

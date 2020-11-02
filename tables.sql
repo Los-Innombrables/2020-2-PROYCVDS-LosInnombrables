@@ -1,6 +1,6 @@
 create table if not exists Laboratorio (
 	id serial primary key,
-	nombre varchar(50) not null,
+	nombre varchar(50) unique not null,
 	fechaDeCreacion date not null,
 	fechaDeCierre date null,
 	activo boolean not null

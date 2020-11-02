@@ -268,20 +268,21 @@
                             <h6 class="m-0 font-weight-bold text-primary">Equipo:</h6>
                         </div>
                         <div class="card-body">
-                            <h:panelGrid columns="6" cellpadding="5" class="h3 mb-2 text-gray-800">
+                            <h:panelGrid columns="4" cellpadding="20" class="h3 mb-2 text-gray-800">
 
                                 <p:outputLabel for="nombre" value="Nombre:" class="form-control bg-light border-0 small"></p:outputLabel>
                                 <p:inputText id="nombre" name="nombre" class="form-control bg-light border-0 small"
                                              type="text" required="true" placeholder="Nombre equipo" binding="#{nombre}"/>
 
-                                <p:outputLabel for="laboratorio" value="Laboratorio:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText name="laboratorio" class="form-control bg-light border-0 small" id="laboratorio"
-                                             type="number" required="true" placeholder="id del laboratorio" binding="#{laboratorio}"/>
+                                <p:outputLabel value="Laboratorio: " class="form-control bg-light border-0 small"/>
+                                <h:selectOneMenu name="Laboratorio" id="laboratorio" value="#{laboratorioBean.selectedLab}"
+                                                 required="true" binding="#{laboratorio}" type="number" class="form-control"  >
+                                    <f:selectItems value="#{laboratorioBean.consultarNombreLaboratorios()}" />
+                                </h:selectOneMenu>
 
                                 <p:outputLabel value="Estado:" class="form-control bg-light border-0 small"></p:outputLabel>
                                 <h:selectOneMenu name="Estado" id="estado" value="#{equipoBean.tipoEstado}" required="true" binding="#{estado}"
                                                  type="text"  class="form-control" >
-                                    <f:selectItem itemLabel="----------" itemValue="" />
                                     <f:selectItem itemLabel="Activo" itemValue="Activo" />
                                     <f:selectItem itemLabel="Inactivo" itemValue="Inactivo" />
                                 </h:selectOneMenu>
@@ -295,23 +296,36 @@
                         </div>
                         <div class="card-body">
                             <h:panelGrid columns="8" cellpadding="5" class="h3 mb-2 text-gray-800">
-                                <p:outputLabel value="Torre:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText name="torre" class="form-control bg-light border-0 small" id="torre" type="number" required="true" placeholder="Id Torre" />
+                                <p:outputLabel value="Torre: " class="form-control bg-light border-0 small"/>
+                                <h:selectOneMenu name="torre" id="torre" value="#{elementoBean.selectedElementoTorre}"
+                                                 required="true" binding="#{torre}" type="number" class="form-control"  >
+                                    <f:selectItems value="#{elementoBean.getElementoMapTorre()}" />
+                                </h:selectOneMenu>
 
-                                <p:outputLabel value="Pantalla:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText name="pantalla" class="form-control bg-light border-0 small" id="pantalla" type="number" required="true" placeholder="Id Pantalla" />
+                                <p:outputLabel value="Pantalla: " class="form-control bg-light border-0 small"/>
+                                <h:selectOneMenu name="pantalla" id="pantalla" value="#{elementoBean.selectedElementoPantalla}"
+                                                 required="true" binding="#{pantalla}" type="number" class="form-control"  >
+                                    <f:selectItems value="#{elementoBean.getElementoMapPantalla()}" />
+                                </h:selectOneMenu>
 
-                                <p:outputLabel value="Mouse:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText name="mouse" class="form-control bg-light border-0 small" id="mouse" type="number" required="true" placeholder="Id Mouse" />
+                                <p:outputLabel value="Mouse: " class="form-control bg-light border-0 small"/>
+                                <h:selectOneMenu name="mouse" id="mouse" value="#{elementoBean.selectedElementoMouse}"
+                                                 required="true" binding="#{mouse}" type="number" class="form-control"  >
+                                    <f:selectItems value="#{elementoBean.getElementoMapMouse()}" />
+                                </h:selectOneMenu>
 
-                                <p:outputLabel value="Teclado:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText name="teclado" class="form-control bg-light border-0 small" id="teclado" type="number" required="true" placeholder="Id Teclado" />
+                                <p:outputLabel value="Teclado: " class="form-control bg-light border-0 small"/>
+                                <h:selectOneMenu name="teclado" id="teclado" value="#{elementoBean.selectedElementoTeclado}"
+                                                 required="true" binding="#{teclado}" type="number" class="form-control"  >
+                                    <f:selectItems value="#{elementoBean.getElementoMapTeclado()}" />
+                                </h:selectOneMenu>
+
                             </h:panelGrid>
                         </div>
                         <div class="modal-footer">
                             <!-- Convertir en commnad button -->
                             <p:commandButton styleClass="ui-priority-primary" update="Form_formulario"
-                                             actionListener="#{equipoBean.registrarEquipo(nombre.value, estado.value, laboratorio.value)}"
+                                             actionListener="#{equipoBean.registrarEquipo(nombre.value, estado.value, laboratorio.value, torre.value, pantalla.value, mouse.value, teclado.value)}"
                                              href="registrarEquipo.xhtml" value="Registrar"/>
                         </div>
                     </h:form>

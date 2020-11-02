@@ -117,6 +117,18 @@ public class TestHistorialDeEquipos {
     }
 
     @Test
+    public void consultarLaboratorioNombreTest() {
+        try {
+            Laboratorio laboratorio = servicesLaboratorio.consultarLaboratorioNombre("Multimedia y Moviles");
+            System.out.println(laboratorio.getId());
+            Assert.assertTrue(true);
+        } catch (Exception e) {
+            Assert.assertTrue(false);
+        }
+    }
+
+
+    @Test
     public void consultarElementosTest() {
         try {
             ArrayList<Elemento> elementos = (ArrayList<Elemento>) servicesElemento.consultarElementos();

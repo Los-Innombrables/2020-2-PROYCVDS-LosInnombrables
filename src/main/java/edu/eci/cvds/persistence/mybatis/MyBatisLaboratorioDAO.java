@@ -22,4 +22,13 @@ public class MyBatisLaboratorioDAO implements LaboratorioDAO {
         }
     }
 
+    @Override
+    public Laboratorio consultarLaboratorioNombre(String nombre) throws HistorialEquiposException {
+        try{
+            return laboratorioMapper.consultarLaboratorioNombre(nombre);
+        }catch (Exception e){
+            throw  new HistorialEquiposException("Laboratorio con nombre " + nombre + " no existe");
+        }
+    }
+
 }

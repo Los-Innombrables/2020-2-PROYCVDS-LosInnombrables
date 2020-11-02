@@ -20,4 +20,12 @@ public class ServicesElementoImpl implements ServicesElemento {
             return null;
         }
     }
+
+    @Override
+    public void actualizarEquipoAsociado(int id, int equipo) {
+        try{
+            elementoDAO.actualizarEquipoAsociado(id, equipo);
+        }catch (Exception e){
+        }
+    }
 }

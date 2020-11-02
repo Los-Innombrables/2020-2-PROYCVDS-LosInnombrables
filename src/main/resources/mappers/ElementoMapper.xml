@@ -11,6 +11,13 @@
         FROM Elemento
     </select>
 
+    <!-- Registrar a Un Equipo -->
+    <update id="actualizarEquipoAsociado" parameterType="map">
+        UPDATE Equipo
+        SET equipo = #{equipo}
+        WHERE id = #{id}
+    </update>
+
     <!-- Resultado Usuario -->
     <resultMap type="Elemento" id="ElementoResult">
         <result property="id" column="id"/>

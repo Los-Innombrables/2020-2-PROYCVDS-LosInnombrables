@@ -7,8 +7,8 @@
 
     <!-- Agregar Equipo -->
     <insert id="addEquipo" parameterType="map">
-        INSERT INTO equipo (nombre, laboratorio, activo)
-        VALUES (#{equipo.nombre}, #{equipo.laboratorio}, #{equipo.activo})
+        INSERT INTO equipo (id, nombre, laboratorio, activo)
+        VALUES (#{equipo.id},#{equipo.nombre}, #{equipo.laboratorio}, #{equipo.activo})
     </insert>
 
     <!-- Seleccionar Equipos -->

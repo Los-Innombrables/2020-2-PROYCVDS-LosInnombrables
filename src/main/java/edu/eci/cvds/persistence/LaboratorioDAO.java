@@ -9,4 +9,6 @@ public interface LaboratorioDAO {
 
     List<Laboratorio> consultarLaboratorios() throws HistorialEquiposException;
 
+    Laboratorio consultarLaboratorioNombre(String nombre) throws HistorialEquiposException;
+
 }
