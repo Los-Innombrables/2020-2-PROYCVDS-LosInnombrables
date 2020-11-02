@@ -11,4 +11,6 @@ public interface ElementoDAO {
 
     void actualizarEquipoAsociado(int id, int equipo) throws HistorialEquiposException;
 
+    void addElemento(Elemento elemento) throws HistorialEquiposException;
+
 }

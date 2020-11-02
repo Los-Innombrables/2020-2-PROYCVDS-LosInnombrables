@@ -8,6 +8,8 @@ import edu.eci.cvds.services.ServicesElemento;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -33,6 +35,8 @@ public class ElementoBean extends BasePageBean{
 
     private Map<String, Integer> elementoMapTeclado;
     private String selectedElementoTeclado;
+
+    private String tipoEstado;
 
     @Inject
     private ServicesElemento servicesElemento;
@@ -66,6 +70,16 @@ public class ElementoBean extends BasePageBean{
 
     public void actualizarEquipoAsociado(int id, int equipo) throws HistorialEquiposException {
         servicesElemento.actualizarEquipoAsociado(id , equipo);
+    }
+
+    public void addElemento(String tipo, int equipo, String marca, String referencia, String activoS) throws ParseException, HistorialEquiposException {
+        Elemento elemento;
+        boolean activo = false;
+        if (activoS.equalsIgnoreCase("Activo")){
+            activo = true;
+        }
+        elemento = new Elemento(0, tipo, equipo, marca, referencia, new SimpleDateFormat("YYYY/MM/DD").parse("2020/09/28"), activo);
+        servicesElemento.addElemento(elemento);
     }
 
     /*-------------Getter-Setter-------------*/
@@ -142,4 +156,11 @@ public class ElementoBean extends BasePageBean{
         this.servicesElemento = servicesElemento;
     }
 
+    public String getTipoEstado() {
+        return tipoEstado;
+    }
+
+    public void setTipoEstado(String tipoEstado) {
+        this.tipoEstado = tipoEstado;
+    }
 }

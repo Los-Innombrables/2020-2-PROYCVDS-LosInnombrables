@@ -12,4 +12,6 @@ public interface ElementoMapper {
 
     void actualizarEquipoAsociado(@Param("id") int id, @Param("equipo") int equipo);
 
+    void addElemento(@Param("elemento") Elemento elemento);
+
 }

@@ -27,8 +27,17 @@ public class ServicesElementoImpl implements ServicesElemento {
         try{
             elementoDAO.actualizarEquipoAsociado(id, equipo);
         }catch (Exception e){
-            e.printStackTrace();
             throw new HistorialEquiposException(e.getMessage());
         }
     }
+
+    @Override
+    public void addElemento(Elemento elemento) throws HistorialEquiposException {
+        try{
+            elementoDAO.addElemento(elemento);
+        }catch (Exception e){
+            throw new HistorialEquiposException(e.getMessage());
+        }
+    }
+
 }

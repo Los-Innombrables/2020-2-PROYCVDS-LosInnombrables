@@ -260,23 +260,27 @@
                     </div>
 
                 </div>-->
-                <!-- Registrar equipos -->
+                <!-- Registrar Elementos -->
                 <div class="card shadow mb-4">
                     <h:form id="Form_formulario">
-                        <!--Parte del equipo-->
+                        <!--Parte del Elemento-->
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Elemento:</h6>
                         </div>
                         <div class="card-body">
                             <h:panelGrid columns="6" cellpadding="5" class="h3 mb-2 text-gray-800">
 
-                                <p:outputLabel for="Tipo" value="Tipo:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText id="Tipo" name="Tipo" class="form-control bg-light border-0 small"
-                                             type="text" required="true" placeholder="Tipo" binding="#{tipo}"/>
+                                <p:outputLabel value="Tipo:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                <h:selectOneMenu name="Tipo" id="Tipo" value="#{tipoElementoBean.selectedTipoElemento}"
+                                                 required="true" binding="#{tipo}" type="text" class="form-control"  >
+                                    <f:selectItems value="#{tipoElementoBean.getTipoElementoMap()}" />
+                                </h:selectOneMenu>
 
-                                <p:outputLabel for="Equipo" value="Equipo:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText name="Equipo" class="form-control bg-light border-0 small" id="Equipo"
-                                             type="text" required="true" placeholder="Equipo" binding="#{equipo}"/>
+                                <p:outputLabel value="Equipo:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                <h:selectOneMenu name="Equipo" id="Equipo" value="#{equipoBean.selectedEquipo}"
+                                                 required="true" binding="#{equipo}" type="number" class="form-control"  >
+                                    <f:selectItems value="#{equipoBean.getEquipoMap()}" />
+                                </h:selectOneMenu>
 
                                 <p:outputLabel for="Marca" value="Marca:" class="form-control bg-light border-0 small"></p:outputLabel>
                                 <p:inputText name="Marca" class="form-control bg-light border-0 small" id="Marca"
@@ -286,15 +290,19 @@
                                 <p:inputText name="Referencia" class="form-control bg-light border-0 small" id="Referencia"
                                              type="text" required="true" placeholder="Referencia" binding="#{referencia}"/>
 
-                                <p:outputLabel for="Activo" value="Referencia:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                <p:inputText name="Activo" class="form-control bg-light border-0 small" id="Activo"
-                                             type="text" required="true" placeholder="Activo" binding="#{activo}"/>
+                                <p:outputLabel value="Estado:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                <h:selectOneMenu name="Estado" id="estado" value="#{elementoBean.tipoEstado}" required="true" binding="#{estado}"
+                                                 type="text"  class="form-control" >
+                                    <f:selectItem itemLabel="Activo" itemValue="Activo" />
+                                    <f:selectItem itemLabel="Inactivo" itemValue="Inactivo" />
+                                </h:selectOneMenu>
 
                             </h:panelGrid>
                         </div>
                         <div class="modal-footer">
                             <!-- Convertir en commnad button -->
                             <p:commandButton styleClass="ui-priority-primary" update="Form_formulario"
+                                             actionListener="#{elementoBean.addElemento(tipo.value, equipo.value, marca.value, referencia.value, activoS.value)}"
                                              href="registrarElemento.xhtml" value="Registrar"/>
                         </div>
                     </h:form>

@@ -27,7 +27,7 @@ VALUES(2144828, 'Andres', 'Calderon', 'andres.calderon-o@mail.escuelaing.edu.co'
 
 -- Laboratorios: --
 INSERT INTO laboratorio(id, nombre, fechadecreacion, fechadecierre, activo)
-VALUES(0, 'Prueba', '2020-10-31', '2020-10-31', true);
+VALUES(0, '--------------------------------', '2020-10-31', '2020-10-31', true);
 
 INSERT INTO laboratorio(id, nombre, fechadecreacion, fechadecierre, activo)
 VALUES(1, 'Plataformas Computacionales', '2012-09-12', null, true);
@@ -49,6 +49,9 @@ INSERT INTO tipoelemento(nombre, descripcion)
 VALUES('Teclado', 'Dispositivo que presenta el conjunto de las teclas de diversos aparatos, máquinas e instrumentos.');
 
 -- Equipos:
+INSERT INTO equipo(id, nombre, laboratorio, activo)
+VALUES(0, '----------------', 0, true);
+
 INSERT INTO equipo(id, nombre, laboratorio, activo)
 VALUES(1,'PC_Lab1', 1, true);
 

@@ -18,6 +18,12 @@
         WHERE id = #{id}
     </update>
 
+    <!-- Agregar Equipo -->
+    <insert id="addElemento" parameterType="map">
+        INSERT INTO elemento (tipo, equipo, marca, referencia, fechaDeRegistro, activo)
+        VALUES (#{elemento.tipo},#{elemento.equipo}, #{elemento.marca}, #{elemento.referencia}, current_timestamp, #{elemento.activo})
+    </insert>
+
     <!-- Resultado Usuario -->
     <resultMap type="Elemento" id="ElementoResult">
         <result property="id" column="id"/>

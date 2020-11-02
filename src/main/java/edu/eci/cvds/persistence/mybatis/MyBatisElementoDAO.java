@@ -27,8 +27,17 @@ public class MyBatisElementoDAO implements ElementoDAO {
         try{
             elementoMapper.actualizarEquipoAsociado(id, equipo);
         }catch (Exception e){
-            e.printStackTrace();
             throw new HistorialEquiposException("Error al Actualizar equipo");
         }
     }
+
+    @Override
+    public void addElemento(Elemento elemento) throws HistorialEquiposException {
+        try{
+            elementoMapper.addElemento(elemento);
+        }catch (Exception e){
+            throw new HistorialEquiposException("Error Al Adicionar Elemento");
+        }
+    }
+
 }

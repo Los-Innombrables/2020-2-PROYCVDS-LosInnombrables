@@ -28,6 +28,10 @@ public class EquipoBean extends BasePageBean{
     @Inject
     private ServicesEquipo servicesEquipo;
 
+    private Map<String, Integer> equipoMap;
+    private String selectedEquipo;
+
+
     public List<Equipo> consultarEquipos() throws HistorialEquiposException {
         equipos = servicesEquipo.consultarEquipos();
         return equipos;
@@ -88,4 +92,24 @@ public class EquipoBean extends BasePageBean{
         return maxInt;
     }
 
+    public Map<String, Integer> getEquipoMap() throws HistorialEquiposException {
+        consultarEquipos();
+        equipoMap = new LinkedHashMap<String,Integer>();
+        for(Equipo equipo : equipos){
+            equipoMap.put(equipo.getNombre(), equipo.getId());
+        }
+        return equipoMap;
+    }
+
+    public void setEquipoMap(Map<String, Integer> equipoMap) {
+        this.equipoMap = equipoMap;
+    }
+
+    public String getSelectedEquipo() {
+        return selectedEquipo;
+    }
+
+    public void setSelectedEquipo(String selectedEquipo) {
+        this.selectedEquipo = selectedEquipo;
+    }
 }
