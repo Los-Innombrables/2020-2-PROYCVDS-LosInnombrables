@@ -3,8 +3,11 @@ package edu.eci.cvds.view;
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Laboratorio;
+import edu.eci.cvds.entities.Novedad;
 import edu.eci.cvds.exceptions.HistorialEquiposException;
 import edu.eci.cvds.services.ServicesElemento;
+import edu.eci.cvds.services.ServicesHistorialDeEquipoFactory;
+import edu.eci.cvds.services.ServicesNovedad;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -92,7 +95,7 @@ public class ElementoBean extends BasePageBean{
         }
     }
 
-    public void asociarElemento(int equipo, int elemento) throws HistorialEquiposException{
+    public void asociarElemento(int equipo, int elemento, int responsable) throws HistorialEquiposException, ParseException {
         ArrayList<Elemento> elementos = (ArrayList<Elemento>) servicesElemento.consultarElementosEquipo(equipo);
         Elemento elementoS = servicesElemento.consultarElementoId(elemento);
         String tipo = elementoS.getTipo();
@@ -102,6 +105,9 @@ public class ElementoBean extends BasePageBean{
             }
         }
         servicesElemento.actualizarEquipoAsociado(elemento, equipo);
+        ServicesNovedad servicesNovedad = ServicesHistorialDeEquipoFactory.getInstance().getServicesNovedad();
+        servicesNovedad.registrarNovedad(new Novedad(1, responsable, equipo, elemento,
+                new SimpleDateFormat("YYYY/MM/DD").parse("2020/09/28"), "Cambio de elementos", "Se realizo el cmabio del elemento " + elementoS.getNombre()));
     }
 
     /*-------------Getter-Setter-------------*/

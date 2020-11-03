@@ -329,13 +329,34 @@
                                     </h:selectOneMenu>
                                 </h:panelGrid>
                             </div>
+                            <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#confirmacionAs">
+                                <i class="fas fa-check-circle"></i>
+                                Asociar
+                            </a>
                         </div>
+
                         <div class="modal-footer">
-                            <!-- Cambiar respecto a la funcion necesaria-->
-                            <p:commandButton styleClass="ui-priority-primary" update="Form_formulario"
-                                             actionListener="#{elementoBean.asociarElemento(equipoA.value, elementoA.value)}"
-                                             href="registrarElemento.xhtml" value="Asociar"/>
+                            <div class="modal fade" id="confirmacionAs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabeAs">Seguro deseas realizar este cambio ?</h5>
+                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">Selecciona Confirmar si deseas realizar el cambio.</div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                            <h:commandButton styleClass="btn btn-primary" update="Form_formulario"
+                                                             actionListener="#{elementoBean.asociarElemento(equipoA.value, elementoA.value, loginBean.usuarioCarnet)}"
+                                                             href="registrarElemento.xhtml" value="Confirmar"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                     </h:form>
                 </div>
 
