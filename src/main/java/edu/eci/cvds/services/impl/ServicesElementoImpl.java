@@ -40,4 +40,22 @@ public class ServicesElementoImpl implements ServicesElemento {
         }
     }
 
+    @Override
+    public List<Elemento> consultarElementosEquipo(int equipo) throws HistorialEquiposException {
+        try{
+            return elementoDAO.consultarElementosEquipo(equipo);
+        }catch (Exception e){
+            throw new HistorialEquiposException(e.getMessage());
+        }
+    }
+
+    @Override
+    public Elemento consultarElementoId(int id) throws HistorialEquiposException {
+        try{
+            return elementoDAO.consultarElementoId(id);
+        }catch (Exception e){
+            throw new HistorialEquiposException(e.getMessage());
+        }
+    }
+
 }

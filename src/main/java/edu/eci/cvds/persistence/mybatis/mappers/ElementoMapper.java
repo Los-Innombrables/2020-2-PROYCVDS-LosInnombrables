@@ -14,4 +14,8 @@ public interface ElementoMapper {
 
     void addElemento(@Param("elemento") Elemento elemento);
 
+    List<Elemento> consultarElementosEquipo(@Param("equipo") int equipo);
+
+    Elemento consultarElementoId(@Param("id") int id);
+
 }

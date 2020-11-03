@@ -13,4 +13,8 @@ public interface ServicesElemento {
 
     void addElemento(Elemento elemento) throws HistorialEquiposException;
 
+    List<Elemento> consultarElementosEquipo(int equipo) throws HistorialEquiposException;
+
+    Elemento consultarElementoId(int id) throws HistorialEquiposException;
+
 }
