@@ -301,7 +301,7 @@
                         </div>
                         <div class="modal-footer">
                             <!-- Convertir en commnad button -->
-                            <p:commandButton styleClass="ui-priority-primary" update="Form_formulario"
+                            <h:commandButton styleClass="btn btn-primary" update="Form_formulario"
                                              actionListener="#{elementoBean.addElemento(tipo.value, equipo.value, marca.value, referencia.value, activoS.value)}"
                                              href="registrarElemento.xhtml" value="Registrar"/>
                         </div>
@@ -332,7 +332,6 @@
                         </div>
                         <div class="modal-footer">
                             <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#confirmacionAs">
-                                <i class="fas fa-check-circle"></i>
                                 Asociar
                             </a>
                             <div class="modal fade" id="confirmacionAs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

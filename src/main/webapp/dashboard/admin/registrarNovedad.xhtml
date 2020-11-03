@@ -281,7 +281,7 @@
                             </div>
                             <div class="modal-footer">
                                 <!-- Convertir en commnad button -->
-                                <p:commandButton styleClass="ui-priority-primary" update="Form_formulario"
+                                <h:commandButton styleClass="btn btn-primary" update="Form_formulario"
                                                  actionListener="#{novedadBean.registrarNovedadEquipo(loginBean.usuarioCarnet, equipoA.value, titulo.value, contenido.value)}"
                                                  href="registrarElemento.xhtml" value="Registrar"/>
                             </div>
@@ -313,7 +313,7 @@
                                 </h:panelGrid>
                             </div>
                             <div class="modal-footer">
-                                <p:commandButton styleClass="ui-priority-primary" update="Form_formulario"
+                                <h:commandButton styleClass="btn btn-primary" update="Form_formulario"
                                                  actionListener="#{novedadBean.registrarNovedad(loginBean.usuarioCarnet, elementoBean.getEquipoId(elemento.value), elemento.value, titulo2.value, contenido2.value)}"
                                                  href="registrarElemento.xhtml" value="Confirmar"/>
                             </div>

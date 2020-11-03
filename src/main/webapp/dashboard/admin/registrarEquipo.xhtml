@@ -324,7 +324,7 @@
                         </div>
                         <div class="modal-footer">
                             <!-- Convertir en commnad button -->
-                            <p:commandButton styleClass="ui-priority-primary" update="Form_formulario"
+                            <h:commandButton styleClass="btn btn-primary" update="Form_formulario"
                                              actionListener="#{equipoBean.registrarEquipo(nombre.value, estado.value, laboratorio.value, torre.value, pantalla.value, mouse.value, teclado.value, loginBean.usuarioCarnet)}"
                                              href="registrarEquipo.xhtml" value="Registrar"/>
                         </div>
@@ -340,7 +340,7 @@
                     <br/>
                 </h:form>
                 <div>
-                    <a class="btn btn-primary" href="registrarElemento.xhtml">Registrar Elemento</a>
+                    <a class="btn btn-secondary" href="registrarElemento.xhtml">Registrar Elemento</a>
                 </div>
             </div>
             <!-- /.container-fluid -->
