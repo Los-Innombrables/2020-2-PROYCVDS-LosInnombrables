@@ -307,8 +307,41 @@
                         </div>
                     </h:form>
                 </div>
+
+                <!--Asociar Elementos-->
+                <h1 class="h3 mb-2 text-gray-800">Asociar Elemento</h1>
+                <div class="card shadow mb-4">
+                    <h:form id="Form_AsociarElemento">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Asociar Elemento:</h6>
+                            <div class="card-body">
+                                <h:panelGrid columns="6" cellpadding="5" class="h3 mb-2 text-gray-800">
+                                    <p:outputLabel value="Elemento:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                    <h:selectOneMenu name="elementoA" id="feerib844Aa" value="#{elementoBean.selectedElemento}"
+                                                     required="true" binding="#{elementoA}" type="number" class="form-control"  >
+                                        <f:selectItems value="#{elementoBean.getElementoMap()}" />
+                                    </h:selectOneMenu>
+
+                                    <p:outputLabel value="Equipo:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                    <h:selectOneMenu name="equipoA" id="equipoA" value="#{equipoBean.selectedEquipo}"
+                                                     required="true" binding="#{equipoA}" type="number" class="form-control"  >
+                                        <f:selectItems value="#{equipoBean.getEquipoMap()}" />
+                                    </h:selectOneMenu>
+                                </h:panelGrid>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <!-- Cambiar respecto a la funcion necesaria-->
+                            <p:commandButton styleClass="ui-priority-primary" update="Form_formulario"
+                                             actionListener="#{elementoBean.asociarElemento(equipoA.value, elementoA.value)}"
+                                             href="registrarElemento.xhtml" value="Asociar"/>
+                        </div>
+                    </h:form>
+                </div>
+
             </div>
             <!-- /.container-fluid -->
+
 
         </div>
         <!-- End of Main Content -->

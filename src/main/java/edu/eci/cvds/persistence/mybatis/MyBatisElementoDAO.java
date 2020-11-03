@@ -40,4 +40,22 @@ public class MyBatisElementoDAO implements ElementoDAO {
         }
     }
 
+    @Override
+    public List<Elemento> consultarElementosEquipo(int equipo) throws HistorialEquiposException {
+        try{
+            return elementoMapper.consultarElementosEquipo(equipo);
+        }catch (Exception e){
+            throw  new HistorialEquiposException("Error al consultar Elementos");
+        }
+    }
+
+    @Override
+    public Elemento consultarElementoId(int id) throws HistorialEquiposException {
+        try{
+            return elementoMapper.consultarElementoId(id);
+        }catch (Exception e){
+            throw new HistorialEquiposException("Error al consultar elemento");
+        }
+    }
+
 }

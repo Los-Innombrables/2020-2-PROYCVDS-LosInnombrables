@@ -11,6 +11,20 @@
         FROM Elemento
     </select>
 
+    <!-- Consultar Por ID-->
+    <select id="consultarElementoId" resultMap="ElementoResult">
+        SELECT *
+        FROM Elemento
+        WHERE id = #{id}
+    </select>
+
+    <!-- Consultar Por Equipo -->
+    <select id="consultarElementosEquipo" resultMap="ElementoResult">
+        SELECT *
+        FROM Elemento
+        WHERE  equipo = #{equipo}
+    </select>
+
     <!-- Registrar a Un Equipo -->
     <update id="actualizarEquipoAsociado" parameterType="map">
         UPDATE Elemento

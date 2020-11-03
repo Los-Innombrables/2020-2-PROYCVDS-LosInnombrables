@@ -24,8 +24,6 @@ import java.util.Map;
 public class ElementoBean extends BasePageBean{
     private static final long serialVersionUID = 1L;
 
-    private List<Elemento> elementos = new ArrayList<>();
-
     private Map<String, Integer> elementoMapTorre;
     private String selectedElementoTorre;
 
@@ -38,6 +36,8 @@ public class ElementoBean extends BasePageBean{
     private Map<String, Integer> elementoMapTeclado;
     private String selectedElementoTeclado;
 
+    private String selectedElemento;
+
     private String tipoEstado;
 
     private String message;
@@ -46,13 +46,13 @@ public class ElementoBean extends BasePageBean{
     @Inject
     private ServicesElemento servicesElemento;
 
-    public List<Elemento> consultarElementos() throws HistorialEquiposException {
-        elementos = servicesElemento.consultarElementos();
+    public ArrayList<Elemento> consultarElementos() throws HistorialEquiposException {
+        ArrayList<Elemento> elementos = (ArrayList<Elemento>) servicesElemento.consultarElementos();
         return  elementos;
     }
 
     public void makeElementoMap() throws HistorialEquiposException {
-        consultarElementos();
+        ArrayList<Elemento> elementos = consultarElementos();
         elementoMapTorre = new LinkedHashMap<String,Integer>();
         elementoMapPantalla = new LinkedHashMap<String,Integer>();
         elementoMapMouse = new LinkedHashMap<String,Integer>();
@@ -90,6 +90,18 @@ public class ElementoBean extends BasePageBean{
         }catch (Exception e){
             this.saveMessage("Ingreso de elemento no valido !", "Error");
         }
+    }
+
+    public void asociarElemento(int equipo, int elemento) throws HistorialEquiposException{
+        ArrayList<Elemento> elementos = (ArrayList<Elemento>) servicesElemento.consultarElementosEquipo(equipo);
+        Elemento elementoS = servicesElemento.consultarElementoId(elemento);
+        String tipo = elementoS.getTipo();
+        for (Elemento e : elementos){
+            if (e.getTipo().equalsIgnoreCase(tipo)){
+                servicesElemento.actualizarEquipoAsociado(e.getId(), 0);
+            }
+        }
+        servicesElemento.actualizarEquipoAsociado(elemento, equipo);
     }
 
     /*-------------Getter-Setter-------------*/
@@ -185,6 +197,25 @@ public class ElementoBean extends BasePageBean{
     public void saveMessage(String message, String value) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(value,  message) );
+    }
+
+    public Map<String, Integer> getElementoMap() throws HistorialEquiposException {
+        ArrayList<Elemento> elementos = this.consultarElementos();
+        Map<String, Integer> elementoMap = new LinkedHashMap<String,Integer>();
+        for(Elemento elemento : elementos){
+            if(elemento.getEquipo() == 0){
+                elementoMap.put(elemento.getNombre(), elemento.getId());
+            }
+        }
+        return elementoMap;
+    }
+
+    public String getSelectedElemento() {
+        return selectedElemento;
+    }
+
+    public void setSelectedElemento(String selectedElemento) {
+        this.selectedElemento = selectedElemento;
     }
 
 }
