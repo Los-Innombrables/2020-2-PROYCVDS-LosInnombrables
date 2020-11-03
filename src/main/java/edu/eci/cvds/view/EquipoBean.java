@@ -23,7 +23,6 @@ public class EquipoBean extends BasePageBean{
 
     private static final long serialVersionUID = 1L;
     private String tipoEstado;
-    private List<Equipo> equipos;
 
     @Inject
     private ServicesEquipo servicesEquipo;
@@ -32,8 +31,9 @@ public class EquipoBean extends BasePageBean{
     private String selectedEquipo;
 
 
-    public List<Equipo> consultarEquipos() throws HistorialEquiposException {
-        equipos = servicesEquipo.consultarEquipos();
+    public ArrayList<Equipo> consultarEquipos() throws HistorialEquiposException {
+        ArrayList<Equipo> equipos = (ArrayList<Equipo>) servicesEquipo.consultarEquipos();
+        equipos.sort(Comparator.comparing(Equipo::getId));
         return equipos;
     }
 
@@ -84,7 +84,7 @@ public class EquipoBean extends BasePageBean{
     }
 
     private int consultarNextId() throws HistorialEquiposException {
-        this.consultarEquipos();
+        ArrayList<Equipo> equipos = consultarEquipos();
         int maxInt = 0;
         for (Equipo equipo : equipos){
             if (equipo.getId() > maxInt){ maxInt = equipo.getId();}
@@ -92,8 +92,9 @@ public class EquipoBean extends BasePageBean{
         return maxInt;
     }
 
+    /*Crear Objeto Interno*/
     public Map<String, Integer> getEquipoMap() throws HistorialEquiposException {
-        consultarEquipos();
+        ArrayList<Equipo> equipos = consultarEquipos();
         equipoMap = new LinkedHashMap<String,Integer>();
         for(Equipo equipo : equipos){
             equipoMap.put(equipo.getNombre(), equipo.getId());

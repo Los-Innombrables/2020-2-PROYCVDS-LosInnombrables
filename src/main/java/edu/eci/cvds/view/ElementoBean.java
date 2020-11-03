@@ -6,8 +6,10 @@ import edu.eci.cvds.entities.Laboratorio;
 import edu.eci.cvds.exceptions.HistorialEquiposException;
 import edu.eci.cvds.services.ServicesElemento;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,6 +39,9 @@ public class ElementoBean extends BasePageBean{
     private String selectedElementoTeclado;
 
     private String tipoEstado;
+
+    private String message;
+
 
     @Inject
     private ServicesElemento servicesElemento;
@@ -73,13 +78,18 @@ public class ElementoBean extends BasePageBean{
     }
 
     public void addElemento(String tipo, int equipo, String marca, String referencia, String activoS) throws ParseException, HistorialEquiposException {
-        Elemento elemento;
-        boolean activo = false;
-        if (activoS.equalsIgnoreCase("Activo")){
-            activo = true;
+        try{
+            Elemento elemento;
+            boolean activo = false;
+            if (activoS.equalsIgnoreCase("Activo")){
+                activo = true;
+            }
+            elemento = new Elemento(0, tipo, equipo, marca, referencia, new SimpleDateFormat("YYYY/MM/DD").parse("2020/09/28"), activo);
+            servicesElemento.addElemento(elemento);
+            this.saveMessage("Ingreso de elemento logrado !", "Aceptado");
+        }catch (Exception e){
+            this.saveMessage("Ingreso de elemento no valido !", "Error");
         }
-        elemento = new Elemento(0, tipo, equipo, marca, referencia, new SimpleDateFormat("YYYY/MM/DD").parse("2020/09/28"), activo);
-        servicesElemento.addElemento(elemento);
     }
 
     /*-------------Getter-Setter-------------*/
@@ -163,4 +173,18 @@ public class ElementoBean extends BasePageBean{
     public void setTipoEstado(String tipoEstado) {
         this.tipoEstado = tipoEstado;
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void saveMessage(String message, String value) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(value,  message) );
+    }
+
 }
