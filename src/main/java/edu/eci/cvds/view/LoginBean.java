@@ -20,15 +20,6 @@ import edu.eci.cvds.services.ServicesUsuario;
 @SessionScoped
 
 public class LoginBean extends BasePageBean {
-    // Creo que acá se crea la sesion en el navegador, se puede usar un filter para
-    // restringir ciertas páginas, como por ejemplo las que sean /user/*, para que
-    // haga verificación de que existe una sesión abierta antes de acceder a esas
-    // páginas:
-    // https://stackoverflow.com/questions/8480100/how-implement-a-login-filter-in-jsf
-    // https://codenotfound.com/jsf-login-servlet-filter-example.html
-
-    // TODO: verificar credenciales con la base de datos y crear la sesion con esas
-    // credenciales
 
     private static final long serialVersionUID = 1L;
 
@@ -40,9 +31,25 @@ public class LoginBean extends BasePageBean {
     private String canLog = " ";
     private int usuarioCarnet;
 
+    public static String redirectPage(int rol) {
+        String webPage = "";
+        switch (rol) {
+            case 1:
+                webPage = "/faces/dashboard/admin/main.xhtml";
+                break;
+            case 2:
+                webPage = "/faces/dashboard/monitor/";
+                break;
+            case 3:
+                webPage = "/faces/dashboard/profesor/";
+                break;
+        }
+        return webPage;
+    }
+
     public String login() {
-        /*System.out.println(Objects.isNull(servicesUsuario));*/
-        try{
+        /* System.out.println(Objects.isNull(servicesUsuario)); */
+        try {
             Usuario usuario = servicesUsuario.logInUsuario(userName, convertSHA256(password));
             FacesContext context = FacesContext.getCurrentInstance();
             if (usuario == null) {
@@ -56,7 +63,7 @@ public class LoginBean extends BasePageBean {
                 this.setCanLog(" ");
                 return webpage + "?faces-redirect=true";
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             this.setCanLog("Contraseña o Usuario Incorrectos");
             return null;
         }
@@ -64,7 +71,7 @@ public class LoginBean extends BasePageBean {
 
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "/faces/main.xhtml?faces-redirect=true";
+        return "/faces/login.xhtml?faces-redirect=true";
     }
 
     private String convertSHA256(String password) {
@@ -100,22 +107,6 @@ public class LoginBean extends BasePageBean {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String redirectPage(int rol){
-        String webPage = "";
-        switch (rol){
-            case 1:
-                webPage = "/faces/dashboard/admin/main.xhtml";
-                break;
-            case 2:
-                webPage = "/faces/dashboard/monitor/";
-                break;
-            case 3:
-                webPage = "/faces/dashboard/profesor/";
-                break;
-        }
-        return webPage;
     }
 
     public String getCanLog() {

@@ -13,12 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import edu.eci.cvds.entities.Usuario;
-import edu.eci.cvds.view.LoginBean;
+@WebFilter("/faces/dashboard/*")
+public class DashboardFilter implements Filter {
 
-@WebFilter("/faces/login.xhtml")
-// @WebFilter("/faces/index.xhtml")
-public class LoginFilter implements Filter {
+    public static final String LOGIN_PAGE = "/faces/login.xhtml";
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -27,25 +25,24 @@ public class LoginFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession(false);
+        // boolean ajaxRequest = "partial/ajax".equals(req.getHeader("Faces-Request"));
 
         boolean loggedIn = (session != null) && (session.getAttribute("user") != null);
 
         if (loggedIn) {
-            Usuario user = (Usuario) session.getAttribute("user");
-            String dashboardPage = LoginBean.redirectPage(user.getRol());
-            res.sendRedirect(dashboardPage);
+            chain.doFilter(request, response);
         } else {
             // System.out.println("Filter Working");
-            chain.doFilter(request, response);
+            res.sendRedirect(LOGIN_PAGE);
         }
     }
 
     @Override
     public void destroy() {
+
     }
 
 }
