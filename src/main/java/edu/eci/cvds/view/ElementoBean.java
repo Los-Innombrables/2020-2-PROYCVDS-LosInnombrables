@@ -41,6 +41,8 @@ public class ElementoBean extends BasePageBean{
 
     private String selectedElemento;
 
+    private String selectedElementoFull;
+
     private String tipoEstado;
 
     private String message;
@@ -108,6 +110,11 @@ public class ElementoBean extends BasePageBean{
         ServicesNovedad servicesNovedad = ServicesHistorialDeEquipoFactory.getInstance().getServicesNovedad();
         servicesNovedad.registrarNovedad(new Novedad(1, responsable, equipo, elemento,
                 new SimpleDateFormat("YYYY/MM/DD").parse("2020/09/28"), "Cambio de elementos", "Se realizo el cmabio del elemento " + elementoS.getNombre()));
+    }
+
+    public int getEquipoId(int id) throws HistorialEquiposException {
+        Elemento elemento = servicesElemento.consultarElementoId(id);
+        return elemento.getEquipo();
     }
 
     /*-------------Getter-Setter-------------*/
@@ -216,6 +223,15 @@ public class ElementoBean extends BasePageBean{
         return elementoMap;
     }
 
+    public Map<String, Integer> getElementoMapFull() throws HistorialEquiposException {
+        ArrayList<Elemento> elementos = this.consultarElementos();
+        Map<String, Integer> elementoMap = new LinkedHashMap<String,Integer>();
+        for(Elemento elemento : elementos){
+                elementoMap.put(elemento.getNombre(), elemento.getId());
+        }
+        return elementoMap;
+    }
+
     public String getSelectedElemento() {
         return selectedElemento;
     }
@@ -224,4 +240,11 @@ public class ElementoBean extends BasePageBean{
         this.selectedElemento = selectedElemento;
     }
 
+    public String getSelectedElementoFull() {
+        return selectedElementoFull;
+    }
+
+    public void setSelectedElementoFull(String selectedElementoFull) {
+        this.selectedElementoFull = selectedElementoFull;
+    }
 }

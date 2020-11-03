@@ -71,7 +71,7 @@
                     <a class="collapse-item" href="">Laboratorios</a>
                     <a class="collapse-item" href="registrarEquipo.xhtml">Equipos</a>
                     <a class="collapse-item" href="registrarElemento.xhtml">Elementos</a>
-                    <a class="collapse-item" href="">Novedades</a>
+                    <a class="collapse-item" href="registrarNovedad.xhtml">Novedades</a>
                 </div>
             </div>
         </li>
@@ -314,28 +314,27 @@
                     <h:form id="Form_AsociarElemento">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Asociar Elemento:</h6>
-                            <div class="card-body">
-                                <h:panelGrid columns="6" cellpadding="5" class="h3 mb-2 text-gray-800">
-                                    <p:outputLabel value="Elemento:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                    <h:selectOneMenu name="elementoA" id="feerib844Aa" value="#{elementoBean.selectedElemento}"
-                                                     required="true" binding="#{elementoA}" type="number" class="form-control"  >
-                                        <f:selectItems value="#{elementoBean.getElementoMap()}" />
-                                    </h:selectOneMenu>
+                        </div>
+                        <div class="card-body">
+                            <h:panelGrid columns="6" cellpadding="5" class="h3 mb-2 text-gray-800">
+                                <p:outputLabel value="Elemento:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                <h:selectOneMenu name="elementoA" id="feerib844Aa" value="#{elementoBean.selectedElemento}"
+                                                 required="true" binding="#{elementoA}" type="number" class="form-control"  >
+                                    <f:selectItems value="#{elementoBean.getElementoMap()}" />
+                                </h:selectOneMenu>
 
-                                    <p:outputLabel value="Equipo:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                    <h:selectOneMenu name="equipoA" id="equipoA" value="#{equipoBean.selectedEquipo}"
-                                                     required="true" binding="#{equipoA}" type="number" class="form-control"  >
-                                        <f:selectItems value="#{equipoBean.getEquipoMap()}" />
-                                    </h:selectOneMenu>
-                                </h:panelGrid>
-                            </div>
+                                <p:outputLabel value="Equipo:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                <h:selectOneMenu name="equipoA" id="equipoA" value="#{equipoBean.selectedEquipo}"
+                                                 required="true" binding="#{equipoA}" type="number" class="form-control"  >
+                                    <f:selectItems value="#{equipoBean.getEquipoMap()}" />
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                        </div>
+                        <div class="modal-footer">
                             <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#confirmacionAs">
                                 <i class="fas fa-check-circle"></i>
                                 Asociar
                             </a>
-                        </div>
-
-                        <div class="modal-footer">
                             <div class="modal fade" id="confirmacionAs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
