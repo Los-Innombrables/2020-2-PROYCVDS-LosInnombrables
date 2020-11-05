@@ -17,21 +17,23 @@
 ## Modelo E-R
 >
 ## Diagrama de clases
->
+![](/resources/DiagramaClases.png)
 ## Capas
 >
-## Tecnologías utilizadas 
- >- Primefaces
- >- Google Guice
- >- Java
- >- PostgreSQL
- >- XHTML
- >- CSS
- >- JS
+## Tecnologías utilizadas
+| Tecnologias |
+| :--: |
+|Primefaces|
+|Google Guice|
+|Java|
+|PostgreSQL|
+|XHTML|
+|CSS|
+|JS|
 ## HerokuApp
->[![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://historial-de-equipos.herokuapp.com/)
+[![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://historial-de-equipos.herokuapp.com/)
 ## CircleCI
->[![CircleCI](https://circleci.com/gh/Los-Innombrables/2020-2-PROYCVDS-LosInnombrables.svg?style=svg)](https://app.circleci.com/pipelines/github/Los-Innombrables/2020-2-PROYCVDS-LosInnombrables)
+[![CircleCI](https://circleci.com/gh/Los-Innombrables/2020-2-PROYCVDS-LosInnombrables.svg?style=svg)](https://app.circleci.com/pipelines/github/Los-Innombrables/2020-2-PROYCVDS-LosInnombrables)
 # Descripción del proceso
 ## Integrantes:
  >- Daniel Felipe Rincon Muñoz
@@ -40,11 +42,11 @@
 ## Metodología:
 >
 ## Taiga:
->[Enlace a Taiga](https://tree.taiga.io/project/candres1019-historial-de-equipos-labinfo/)
+[![Taiga Backlog](https://images.assets-landingi.com/jvS0A3Tm24feIBqs/logo_horizontal.png)](https://tree.taiga.io/project/candres1019-historial-de-equipos-labinfo/)
 ## Release-Burndown Chart:
 >
 ## Sprint1:
->
+![](/resources/Sprint1.PNG)
 ## Sprint2:
 >
 ## Sprint3:
@@ -52,4 +54,4 @@
 ## Reporte De Pruebas:
 >
 ## Codacy
->[![Codacy Badge](https://app.codacy.com/project/badge/Grade/6ae092aed25d47a897b7ee6d26ff857f)](https://www.codacy.com/gh/Los-Innombrables/2020-2-PROYCVDS-LosInnombrables/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Los-Innombrables/2020-2-PROYCVDS-LosInnombrables&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/6ae092aed25d47a897b7ee6d26ff857f)](https://www.codacy.com/gh/Los-Innombrables/2020-2-PROYCVDS-LosInnombrables/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Los-Innombrables/2020-2-PROYCVDS-LosInnombrables&amp;utm_campaign=Badge_Grade)
