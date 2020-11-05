@@ -40,13 +40,13 @@ INSERT INTO tipoelemento(nombre, descripcion)
 VALUES('Torre', 'Caja donde se montan y conectan todos los dispositivos que componen la unidad central de la computadora personal.');
 
 INSERT INTO tipoelemento(nombre, descripcion)
-VALUES('Pantalla', 'Dispositivo que permite la visualización de datos');
+VALUES('Pantalla', 'Dispositivo que permite la visualizaciï¿½n de datos');
 
 INSERT INTO tipoelemento(nombre, descripcion)
-VALUES('Mouse', 'Dispositivo apuntador utilizado para facilitar el manejo de un entorno gráfico en una computadora.');
+VALUES('Mouse', 'Dispositivo apuntador utilizado para facilitar el manejo de un entorno grï¿½fico en una computadora.');
 
 INSERT INTO tipoelemento(nombre, descripcion)
-VALUES('Teclado', 'Dispositivo que presenta el conjunto de las teclas de diversos aparatos, máquinas e instrumentos.');
+VALUES('Teclado', 'Dispositivo que presenta el conjunto de las teclas de diversos aparatos, mï¿½quinas e instrumentos.');
 
 -- Equipos:
 INSERT INTO equipo(id, nombre, laboratorio, activo)
@@ -63,6 +63,8 @@ VALUES(3,'PC_Lab3', 2, true);
 
 
 -- Elemento: --
+INSERT INTO elemento(id, tipo, equipo, marca, referencia, fechaderegistro, activo)
+VALUES(0, 'Torre', 1, 'Null', 'Null', '11-01-2020', false);
 -- Torres
 INSERT INTO elemento(tipo, equipo, marca, referencia, fechaderegistro, activo)
 VALUES('Torre', 1, 'Asus', '13121', '11-01-2020', true);

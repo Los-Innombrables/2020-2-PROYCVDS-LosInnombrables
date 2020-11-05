@@ -79,32 +79,19 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-          <a
-            class="nav-link collapsed"
-            href="#"
-            data-toggle="collapse"
-            data-target="#collapseTwo"
-            aria-expanded="true"
-            aria-controls="collapseTwo"
-          >
-            <i class="fas fa-edit"></i>
-            <span>Registrar</span>
-          </a>
-          <div
-            id="collapseTwo"
-            class="collapse"
-            aria-labelledby="headingTwo"
-            data-parent="#accordionSidebar"
-          >
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Opciones:</h6>
-              <a class="collapse-item" href="">Usuarios</a>
-              <a class="collapse-item" href="">Laboratorios</a>
-              <a class="collapse-item" href="registrarEquipo.xhtml">Equipos</a>
-              <a class="collapse-item" href="registrarElemento.xhtml"
-                >Elementos</a
-              >
-              <a class="collapse-item" href="">Novedades</a>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-edit"></i>
+                <span>Registrar</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Opciones:</h6>
+                    <a class="collapse-item" href="">Usuarios</a>
+                    <a class="collapse-item" href="">Laboratorios</a>
+                    <a class="collapse-item" href="registrarEquipo.xhtml">Equipos</a>
+                    <a class="collapse-item" href="registrarElemento.xhtml">Elementos</a>
+                    <a class="collapse-item" href="registrarNovedad.xhtml">Novedades</a>
+                </div>
             </div>
           </div>
         </li>
@@ -386,74 +373,87 @@
                     </div>
 
                 </div>-->
-            <!-- Registrar equipos -->
-            <div class="card shadow mb-4">
-              <h:form id="Form_formulario">
-                <!--Parte del equipo-->
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Equipo:</h6>
-                </div>
-                <div class="card-body">
-                  <h:panelGrid
-                    columns="4"
-                    cellpadding="20"
-                    class="h3 mb-2 text-gray-800"
-                  >
-                    <p:outputLabel
-                      for="nombre"
-                      value="Nombre:"
-                      class="form-control bg-light border-0 small"
-                    ></p:outputLabel>
-                    <p:inputText
-                      id="nombre"
-                      name="nombre"
-                      class="form-control bg-light border-0 small"
-                      type="text"
-                      required="true"
-                      placeholder="Nombre equipo"
-                      binding="#{nombre}"
-                    />
+                <!-- Registrar equipos -->
+                <div class="card shadow mb-4">
+                    <h:form id="Form_formulario">
+                        <!--Parte del equipo-->
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Equipo:</h6>
+                        </div>
+                        <div class="card-body">
+                            <h:panelGrid columns="4" cellpadding="20" class="h3 mb-2 text-gray-800">
 
-                    <p:outputLabel
-                      value="Laboratorio: "
-                      class="form-control bg-light border-0 small"
-                    />
-                    <h:selectOneMenu
-                      name="Laboratorio"
-                      id="laboratorio"
-                      value="#{laboratorioBean.selectedLab}"
-                      required="true"
-                      binding="#{laboratorio}"
-                      type="number"
-                      class="form-control"
-                    >
-                      <f:selectItems
-                        value="#{laboratorioBean.consultarNombreLaboratorios()}"
-                      />
-                    </h:selectOneMenu>
+                                <p:outputLabel for="nombre" value="Nombre:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                <p:inputText id="nombre" name="nombre" class="form-control bg-light border-0 small"
+                                             type="text" required="true" placeholder="Nombre equipo" binding="#{nombre}"/>
 
-                    <p:outputLabel
-                      value="Estado:"
-                      class="form-control bg-light border-0 small"
-                    ></p:outputLabel>
-                    <h:selectOneMenu
-                      name="Estado"
-                      id="estado"
-                      value="#{equipoBean.tipoEstado}"
-                      required="true"
-                      binding="#{estado}"
-                      type="text"
-                      class="form-control"
-                    >
-                      <f:selectItem itemLabel="Activo" itemValue="Activo" />
-                      <f:selectItem itemLabel="Inactivo" itemValue="Inactivo" />
-                    </h:selectOneMenu>
-                  </h:panelGrid>
+                                <p:outputLabel value="Laboratorio: " class="form-control bg-light border-0 small"/>
+                                <h:selectOneMenu name="Laboratorio" id="laboratorio" value="#{laboratorioBean.selectedLab}"
+                                                 required="true" binding="#{laboratorio}" type="number" class="form-control"  >
+                                    <f:selectItems value="#{laboratorioBean.consultarNombreLaboratorios()}" />
+                                </h:selectOneMenu>
+
+                                <p:outputLabel value="Estado:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                <h:selectOneMenu name="Estado" id="estado" value="#{equipoBean.tipoEstado}" required="true" binding="#{estado}"
+                                                 type="text"  class="form-control" >
+                                    <f:selectItem itemLabel="Activo" itemValue="Activo" />
+                                    <f:selectItem itemLabel="Inactivo" itemValue="Inactivo" />
+                                </h:selectOneMenu>
+
+                            </h:panelGrid>
+                        </div>
+                        <hr class="sidebar-divider"/>
+                        <!--Parte de elementos asociados-->
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Elementos:</h6>
+                        </div>
+                        <div class="card-body">
+                            <h:panelGrid columns="8" cellpadding="5" class="h3 mb-2 text-gray-800">
+                                <p:outputLabel value="Torre: " class="form-control bg-light border-0 small"/>
+                                <h:selectOneMenu name="torre" id="torre" value="#{elementoBean.selectedElementoTorre}"
+                                                 required="true" binding="#{torre}" type="number" class="form-control"  >
+                                    <f:selectItems value="#{elementoBean.getElementoMapTorre()}" />
+                                </h:selectOneMenu>
+
+                                <p:outputLabel value="Pantalla: " class="form-control bg-light border-0 small"/>
+                                <h:selectOneMenu name="pantalla" id="pantalla" value="#{elementoBean.selectedElementoPantalla}"
+                                                 required="true" binding="#{pantalla}" type="number" class="form-control"  >
+                                    <f:selectItems value="#{elementoBean.getElementoMapPantalla()}" />
+                                </h:selectOneMenu>
+
+                                <p:outputLabel value="Mouse: " class="form-control bg-light border-0 small"/>
+                                <h:selectOneMenu name="mouse" id="mouse" value="#{elementoBean.selectedElementoMouse}"
+                                                 required="true" binding="#{mouse}" type="number" class="form-control"  >
+                                    <f:selectItems value="#{elementoBean.getElementoMapMouse()}" />
+                                </h:selectOneMenu>
+
+                                <p:outputLabel value="Teclado: " class="form-control bg-light border-0 small"/>
+                                <h:selectOneMenu name="teclado" id="teclado" value="#{elementoBean.selectedElementoTeclado}"
+                                                 required="true" binding="#{teclado}" type="number" class="form-control"  >
+                                    <f:selectItems value="#{elementoBean.getElementoMapTeclado()}" />
+                                </h:selectOneMenu>
+
+                            </h:panelGrid>
+                        </div>
+                        <div class="modal-footer">
+                            <!-- Convertir en commnad button -->
+                            <h:commandButton styleClass="btn btn-primary" update="Form_formulario"
+                                             actionListener="#{equipoBean.registrarEquipo(nombre.value, estado.value, laboratorio.value, torre.value, pantalla.value, mouse.value, teclado.value, loginBean.usuarioCarnet)}"
+                                             href="registrarEquipo.xhtml" value="Registrar"/>
+                        </div>
+                    </h:form>
                 </div>
-                <hr class="sidebar-divider" />
-                <!--Parte de elementos asociados-->
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Elementos:</h6>
+
+                <h:form id="form_Registar">
+                    <hr class="sidebar-divider"/>
+                    <p:outputLabel class="form-control bg-light border-0 small">
+                        Recuerde que para registrar un Equipo debe asociarlo a todos sus elementos,
+                        Si desea agregar mas elementos utilice el siguiente boton:
+                    </p:outputLabel>
+                    <br/>
+                </h:form>
+                <div>
+                    <a class="btn btn-secondary" href="registrarElemento.xhtml">Registrar Elemento</a>
                 </div>
                 <div class="card-body">
                   <h:panelGrid

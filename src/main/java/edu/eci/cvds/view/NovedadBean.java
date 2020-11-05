@@ -31,4 +31,8 @@ public class NovedadBean extends BasePageBean{
         servicesNovedad.registrarNovedad(new Novedad(1, responsable, equipo, elemento, new SimpleDateFormat("YYYY/MM/DD").parse("2020/09/28"), titulo, novedad));
     }
 
+    public void registrarNovedadEquipo(int responsable, int equipo, String titulo, String novedad) throws HistorialEquiposException, ParseException {
+        servicesNovedad.registrarNovedad(new Novedad(1, responsable, equipo, 0, new SimpleDateFormat("YYYY/MM/DD").parse("2020/09/28"), titulo, novedad));
+    }
+
 }

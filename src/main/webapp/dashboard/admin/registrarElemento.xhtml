@@ -71,7 +71,7 @@
                     <a class="collapse-item" href="">Laboratorios</a>
                     <a class="collapse-item" href="registrarEquipo.xhtml">Equipos</a>
                     <a class="collapse-item" href="registrarElemento.xhtml">Elementos</a>
-                    <a class="collapse-item" href="">Novedades</a>
+                    <a class="collapse-item" href="registrarNovedad.xhtml">Novedades</a>
                 </div>
             </div>
         </li>
@@ -301,8 +301,8 @@
                         </div>
                         <div class="modal-footer">
                             <!-- Convertir en commnad button -->
-                            <p:commandButton styleClass="ui-priority-primary" update="Form_formulario"
-                                             actionListener="#{elementoBean.addElemento(tipo.value, equipo.value, marca.value, referencia.value, activoS.value)}"
+                            <h:commandButton styleClass="btn btn-primary" update="Form_formulario"
+                                             actionListener="#{elementoBean.addElemento(tipo.value, equipo.value, marca.value, referencia.value, estado.value)}"
                                              href="registrarElemento.xhtml" value="Registrar"/>
                         </div>
                     </h:form>
@@ -314,28 +314,91 @@
                     <h:form id="Form_AsociarElemento">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Asociar Elemento:</h6>
-                            <div class="card-body">
-                                <h:panelGrid columns="6" cellpadding="5" class="h3 mb-2 text-gray-800">
-                                    <p:outputLabel value="Elemento:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                    <h:selectOneMenu name="elementoA" id="feerib844Aa" value="#{elementoBean.selectedElemento}"
-                                                     required="true" binding="#{elementoA}" type="number" class="form-control"  >
-                                        <f:selectItems value="#{elementoBean.getElementoMap()}" />
-                                    </h:selectOneMenu>
+                        </div>
+                        <div class="card-body">
+                            <h:panelGrid columns="6" cellpadding="5" class="h3 mb-2 text-gray-800">
+                                <p:outputLabel value="Elemento:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                <h:selectOneMenu name="elementoA" id="feerib844Aa" value="#{elementoBean.selectedElemento}"
+                                                 required="true" binding="#{elementoA}" type="number" class="form-control"  >
+                                    <f:selectItems value="#{elementoBean.getElementoMap()}" />
+                                </h:selectOneMenu>
 
-                                    <p:outputLabel value="Equipo:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                    <h:selectOneMenu name="equipoA" id="equipoA" value="#{equipoBean.selectedEquipo}"
-                                                     required="true" binding="#{equipoA}" type="number" class="form-control"  >
-                                        <f:selectItems value="#{equipoBean.getEquipoMap()}" />
-                                    </h:selectOneMenu>
-                                </h:panelGrid>
-                            </div>
+                                <p:outputLabel value="Equipo:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                <h:selectOneMenu name="equipoA" id="equipoA" value="#{equipoBean.selectedEquipo}"
+                                                 required="true" binding="#{equipoA}" type="number" class="form-control"  >
+                                    <f:selectItems value="#{equipoBean.getEquipoMap()}" />
+                                </h:selectOneMenu>
+                            </h:panelGrid>
                         </div>
                         <div class="modal-footer">
-                            <!-- Cambiar respecto a la funcion necesaria-->
-                            <p:commandButton styleClass="ui-priority-primary" update="Form_formulario"
-                                             actionListener="#{elementoBean.asociarElemento(equipoA.value, elementoA.value)}"
-                                             href="registrarElemento.xhtml" value="Asociar"/>
+                            <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#confirmacionAs">
+                                Asociar
+                            </a>
+                            <div class="modal fade" id="confirmacionAs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabeAs">Seguro deseas realizar este cambio ?</h5>
+                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">Selecciona Confirmar si deseas realizar el cambio.</div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                            <h:commandButton styleClass="btn btn-primary" update="Form_formulario"
+                                                             actionListener="#{elementoBean.asociarElemento(equipoA.value, elementoA.value, loginBean.usuarioCarnet)}"
+                                                             href="registrarElemento.xhtml" value="Confirmar"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+                    </h:form>
+                </div>
+
+                <!-- Dar de baja Elemento-->
+                <h1 class="h3 mb-2 text-gray-800">Bajar Elemento</h1>
+                <div class="card shadow mb-4">
+                    <h:form id="Form_DarDeBaja">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Bajar Elemento:</h6>
+                        </div>
+                        <div class="card-body">
+                            <h:panelGrid columns="6" cellpadding="5" class="h3 mb-2 text-gray-800">
+                                <p:outputLabel value="Elemento:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                <h:selectOneMenu name="elementoB" id="feerib844Ab" value="#{elementoBean.selectedElemento}"
+                                                 required="true" binding="#{elementoB}" type="number" class="form-control"  >
+                                    <f:selectItems value="#{elementoBean.getElementoMap()}" />
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#confirmacionAs2">
+                                Dar De Baja
+                            </a>
+                            <div class="modal fade" id="confirmacionAs2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabeAs2">Seguro deseas realizar este cambio ?</h5>
+                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">Selecciona Confirmar si deseas realizar el cambio.</div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                            <h:commandButton styleClass="btn btn-primary" update="Form_DarDeBaja"
+                                                             actionListener="#{elementoBean.darDeBajaElemento(elementoA.value, loginBean.usuarioCarnet)}"
+                                                             href="registrarElemento.xhtml" value="Confirmar"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </h:form>
                 </div>
 

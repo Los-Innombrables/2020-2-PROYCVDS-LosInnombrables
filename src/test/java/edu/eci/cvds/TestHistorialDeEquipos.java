@@ -9,7 +9,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TestHistorialDeEquipos {
 
@@ -50,15 +53,6 @@ public class TestHistorialDeEquipos {
             Usuario usuario;
             usuario = servicesUsuario.logInUsuario("homie.simpson",
                     "a4e5c1418bdae16978bb91c2cffac2dd972ec15bb99f501e8788dde940cb0235");
-            /*
-             * System.out.println(usuario.getCarnet());
-             * System.out.println(usuario.getNombre());
-             * System.out.println(usuario.getApellido());
-             * System.out.println(usuario.getCorreo());
-             * System.out.println(usuario.getUserName());
-             * System.out.println(usuario.getPasswd());
-             * System.out.println(usuario.isActivo()); System.out.println(usuario.getRol());
-             */
             Assert.assertTrue(true);
         } catch (HistorialEquiposException e) {
             Assert.assertTrue(false);
@@ -157,7 +151,7 @@ public class TestHistorialDeEquipos {
     /*@Test
     public void asociarElementoEquipo() {
         try {
-            Equipo equipo = new Equipo(12,0,"TESTTEST", true);
+            Equipo equipo = new Equipo(12,0,"EquipoTest", true);
             servicesElemento.actualizarEquipoAsociado(6, 12);
             Assert.assertTrue(true);
         } catch (HistorialEquiposException e) {

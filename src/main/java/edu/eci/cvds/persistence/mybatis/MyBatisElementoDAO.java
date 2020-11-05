@@ -58,4 +58,13 @@ public class MyBatisElementoDAO implements ElementoDAO {
         }
     }
 
+    @Override
+    public void actualizarEstado(int id, boolean activo) throws HistorialEquiposException {
+        try{
+            elementoMapper.actualizarEstado(id ,activo);
+        }catch (Exception e){
+            throw new HistorialEquiposException("Error al actualizar elemento");
+        }
+    }
+
 }
