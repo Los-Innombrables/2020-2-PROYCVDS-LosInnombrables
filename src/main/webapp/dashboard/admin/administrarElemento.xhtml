@@ -71,16 +71,8 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Registrar Elementos</h1>
-
-                    <!-- DataTales Example -->
-                    <!--div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Registrar Equipos - LabInfo</h6>
-                    </div>
-
-                </div>-->
                     <!-- Registrar Elementos -->
+                    <h1 class="h3 mb-2 text-gray-800">Registrar Elementos</h1>
                     <div class="card shadow mb-4">
                         <h:form id="Form_formulario">
                             <!--Parte del Elemento-->
@@ -205,9 +197,9 @@
                                     <p:outputLabel value="Elemento:" class="form-control bg-light border-0 small">
                                     </p:outputLabel>
                                     <h:selectOneMenu name="elementoB" id="feerib844Ab"
-                                        value="#{elementoBean.selectedElemento}" required="true" binding="#{elementoB}"
+                                        value="#{elementoBean.selectedElementoAct}" required="true" binding="#{elementoB}"
                                         type="number" class="form-control">
-                                        <f:selectItems value="#{elementoBean.getElementoMap()}" />
+                                        <f:selectItems value="#{elementoBean.getElementoMapAct()}" />
                                     </h:selectOneMenu>
                                 </h:panelGrid>
                             </div>
@@ -233,7 +225,7 @@
                                                 <button class="btn btn-secondary" type="button"
                                                     data-dismiss="modal">Cancelar</button>
                                                 <h:commandButton styleClass="btn btn-primary" update="Form_DarDeBaja"
-                                                    actionListener="#{elementoBean.darDeBajaElemento(elementoA.value, loginBean.usuarioCarnet)}"
+                                                    actionListener="#{elementoBean.darDeBajaElemento(elementoB.value, loginBean.usuarioCarnet)}"
                                                     href="registrarElemento.xhtml" value="Confirmar" />
                                             </div>
                                         </div>

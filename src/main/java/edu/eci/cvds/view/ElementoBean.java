@@ -41,6 +41,8 @@ public class ElementoBean extends BasePageBean{
 
     private String selectedElemento;
 
+    private String selectedElementoAct;
+
     private String selectedElementoFull;
 
     private String tipoEstado;
@@ -239,6 +241,17 @@ public class ElementoBean extends BasePageBean{
         return elementoMap;
     }
 
+    public Map<String, Integer> getElementoMapAct() throws HistorialEquiposException {
+        ArrayList<Elemento> elementos = this.consultarElementos();
+        Map<String, Integer> elementoMap = new LinkedHashMap<String,Integer>();
+        for(Elemento elemento : elementos){
+            if(elemento.getEquipo() == 0 && elemento.isActivo()){
+                elementoMap.put(elemento.getNombre(), elemento.getId());
+            }
+        }
+        return elementoMap;
+    }
+
     public String getSelectedElemento() {
         return selectedElemento;
     }
@@ -253,5 +266,13 @@ public class ElementoBean extends BasePageBean{
 
     public void setSelectedElementoFull(String selectedElementoFull) {
         this.selectedElementoFull = selectedElementoFull;
+    }
+
+    public String getSelectedElementoAct() {
+        return selectedElementoAct;
+    }
+
+    public void setSelectedElementoAct(String selectedElementoAct) {
+        this.selectedElementoAct = selectedElementoAct;
     }
 }
