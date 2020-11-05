@@ -18,4 +18,6 @@ public interface ElementoMapper {
 
     Elemento consultarElementoId(@Param("id") int id);
 
+    void actualizarEstado(@Param("id") int id, @Param("activo") boolean activo);
+
 }

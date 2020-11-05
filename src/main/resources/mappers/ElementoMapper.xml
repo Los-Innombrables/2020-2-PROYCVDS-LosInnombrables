@@ -32,6 +32,13 @@
         WHERE id = #{id}
     </update>
 
+    <!-- Dar de baja Elemento -->
+    <update id="actualizarEstado" parameterType="map">
+        UPDATE Elemento
+        SET activo = #{activo}
+        WHERE id = #{id}
+    </update>
+
     <!-- Agregar Equipo -->
     <insert id="addElemento" parameterType="map">
         INSERT INTO elemento (tipo, equipo, marca, referencia, fechaDeRegistro, activo)

@@ -109,12 +109,19 @@ public class ElementoBean extends BasePageBean{
         servicesElemento.actualizarEquipoAsociado(elemento, equipo);
         ServicesNovedad servicesNovedad = ServicesHistorialDeEquipoFactory.getInstance().getServicesNovedad();
         servicesNovedad.registrarNovedad(new Novedad(1, responsable, equipo, elemento,
-                new SimpleDateFormat("YYYY/MM/DD").parse("2020/09/28"), "Cambio de elementos", "Se realizo el cmabio del elemento " + elementoS.getNombre()));
+                new SimpleDateFormat("YYYY/MM/DD").parse("2020/09/28"), "Cambio de elementos", "Se realizo el cambio del elemento " + elementoS.getNombre()));
     }
 
     public int getEquipoId(int id) throws HistorialEquiposException {
         Elemento elemento = servicesElemento.consultarElementoId(id);
         return elemento.getEquipo();
+    }
+
+    public void darDeBajaElemento(int id, int responsable) throws HistorialEquiposException, ParseException {
+        servicesElemento.actualizarEstado(id, false);
+        ServicesNovedad servicesNovedad = ServicesHistorialDeEquipoFactory.getInstance().getServicesNovedad();
+        servicesNovedad.registrarNovedad(new Novedad(1, responsable, 0, id,
+                new SimpleDateFormat("YYYY/MM/DD").parse("2020/09/28"), "Elemento Dado de baja", "Se dio de baja al elemento con identificador " + id));
     }
 
     /*-------------Getter-Setter-------------*/

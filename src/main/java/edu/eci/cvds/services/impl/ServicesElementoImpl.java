@@ -58,4 +58,13 @@ public class ServicesElementoImpl implements ServicesElemento {
         }
     }
 
+    @Override
+    public void actualizarEstado(int id, boolean activo) throws HistorialEquiposException {
+        try{
+            elementoDAO.actualizarEstado(id, activo);
+        }catch (Exception e){
+            throw new HistorialEquiposException(e.getMessage());
+        }
+    }
+
 }

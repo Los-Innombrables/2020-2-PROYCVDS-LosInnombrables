@@ -17,4 +17,6 @@ public interface ElementoDAO {
 
     Elemento consultarElementoId(int id) throws HistorialEquiposException;
 
+    void actualizarEstado(int id, boolean activo) throws HistorialEquiposException;
+
 }
