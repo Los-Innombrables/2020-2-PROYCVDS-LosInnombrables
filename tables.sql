@@ -54,7 +54,7 @@ create table if not exists Novedad (
 	responsable int not null,
 	equipo int null,
 	elemento int null,
-	fecha date not null,
+	fecha TIMESTAMP not null,
 	titulo varchar(50) not null,
 	novedad varchar(500) not null,
 	constraint fk_Novedad_Usuario foreign key(responsable) references Usuario(carnet),

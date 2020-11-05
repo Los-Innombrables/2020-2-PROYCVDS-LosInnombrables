@@ -2,7 +2,6 @@ package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Elemento;
-import edu.eci.cvds.entities.Laboratorio;
 import edu.eci.cvds.entities.Novedad;
 import edu.eci.cvds.exceptions.HistorialEquiposException;
 import edu.eci.cvds.services.ServicesElemento;
@@ -13,11 +12,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("deprecation")
@@ -84,14 +80,14 @@ public class ElementoBean extends BasePageBean{
         servicesElemento.actualizarEquipoAsociado(id , equipo);
     }
 
-    public void addElemento(String tipo, int equipo, String marca, String referencia, String activoS) throws ParseException, HistorialEquiposException {
+    public void addElemento(String tipo, int equipo, String marca, String referencia, String activoS) throws HistorialEquiposException {
         try{
             Elemento elemento;
             boolean activo = false;
             if (activoS.equalsIgnoreCase("Activo")){
                 activo = true;
             }
-            elemento = new Elemento(0, tipo, equipo, marca, referencia, new SimpleDateFormat("YYYY/MM/DD").parse("2020/09/28"), activo);
+            elemento = new Elemento(0, tipo, equipo, marca, referencia, null, activo);
             servicesElemento.addElemento(elemento);
             this.saveMessage("Ingreso de elemento logrado !", "Aceptado");
         }catch (Exception e){
@@ -99,7 +95,7 @@ public class ElementoBean extends BasePageBean{
         }
     }
 
-    public void asociarElemento(int equipo, int elemento, int responsable) throws HistorialEquiposException, ParseException {
+    public void asociarElemento(int equipo, int elemento, int responsable) throws HistorialEquiposException {
         ArrayList<Elemento> elementos = (ArrayList<Elemento>) servicesElemento.consultarElementosEquipo(equipo);
         Elemento elementoS = servicesElemento.consultarElementoId(elemento);
         String tipo = elementoS.getTipo();
@@ -110,8 +106,8 @@ public class ElementoBean extends BasePageBean{
         }
         servicesElemento.actualizarEquipoAsociado(elemento, equipo);
         ServicesNovedad servicesNovedad = ServicesHistorialDeEquipoFactory.getInstance().getServicesNovedad();
-        servicesNovedad.registrarNovedad(new Novedad(1, responsable, equipo, elemento,
-                new SimpleDateFormat("YYYY/MM/DD").parse("2020/09/28"), "Cambio de elementos", "Se realizo el cambio del elemento " + elementoS.getNombre()));
+        servicesNovedad.registrarNovedad(new Novedad(1, responsable, equipo, elemento, null,
+                "Cambio de elementos", "Se realizo el cambio del elemento " + elementoS.getNombre()));
     }
 
     public int getEquipoId(int id) throws HistorialEquiposException {
@@ -119,11 +115,11 @@ public class ElementoBean extends BasePageBean{
         return elemento.getEquipo();
     }
 
-    public void darDeBajaElemento(int id, int responsable) throws HistorialEquiposException, ParseException {
+    public void darDeBajaElemento(int id, int responsable) throws HistorialEquiposException {
         servicesElemento.actualizarEstado(id, false);
         ServicesNovedad servicesNovedad = ServicesHistorialDeEquipoFactory.getInstance().getServicesNovedad();
-        servicesNovedad.registrarNovedad(new Novedad(1, responsable, 0, id,
-                new SimpleDateFormat("YYYY/MM/DD").parse("2020/09/28"), "Elemento Dado de baja", "Se dio de baja al elemento con identificador " + id));
+        servicesNovedad.registrarNovedad(new Novedad(1, responsable, 0, id, null,
+                "Elemento Dado de baja", "Se dio de baja al elemento con identificador " + id));
     }
 
     /*-------------Getter-Setter-------------*/

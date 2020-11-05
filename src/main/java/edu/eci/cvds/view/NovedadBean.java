@@ -27,12 +27,12 @@ public class NovedadBean extends BasePageBean{
         return servicesNovedad.consultarNovedades();
     }
 
-    public void registrarNovedad(int responsable, int equipo, int elemento, String titulo, String novedad) throws HistorialEquiposException, ParseException {
-        servicesNovedad.registrarNovedad(new Novedad(1, responsable, equipo, elemento, new SimpleDateFormat("YYYY/MM/DD").parse("2020/09/28"), titulo, novedad));
+    public void registrarNovedad(int responsable, int equipo, int elemento, String titulo, String novedad) throws HistorialEquiposException {
+        servicesNovedad.registrarNovedad(new Novedad(1, responsable, equipo, elemento, null, titulo, novedad));
     }
 
-    public void registrarNovedadEquipo(int responsable, int equipo, String titulo, String novedad) throws HistorialEquiposException, ParseException {
-        servicesNovedad.registrarNovedad(new Novedad(1, responsable, equipo, 0, new SimpleDateFormat("YYYY/MM/DD").parse("2020/09/28"), titulo, novedad));
+    public void registrarNovedadEquipo(int responsable, int equipo, String titulo, String novedad) throws HistorialEquiposException {
+        servicesNovedad.registrarNovedad(new Novedad(1, responsable, equipo, 0, null, titulo, novedad));
     }
 
 }

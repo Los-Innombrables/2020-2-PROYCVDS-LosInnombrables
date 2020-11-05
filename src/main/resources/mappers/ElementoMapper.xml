@@ -42,7 +42,7 @@
     <!-- Agregar Equipo -->
     <insert id="addElemento" parameterType="map">
         INSERT INTO elemento (tipo, equipo, marca, referencia, fechaDeRegistro, activo)
-        VALUES (#{elemento.tipo},#{elemento.equipo}, #{elemento.marca}, #{elemento.referencia}, current_timestamp, #{elemento.activo})
+        VALUES (#{elemento.tipo},#{elemento.equipo}, #{elemento.marca}, #{elemento.referencia}, LOCALTIMESTAMP, #{elemento.activo})
     </insert>
 
     <!-- Resultado Usuario -->

@@ -1,7 +1,6 @@
 package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
-import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.entities.Laboratorio;
 import edu.eci.cvds.exceptions.HistorialEquiposException;
 import edu.eci.cvds.services.ServicesLaboratorio;

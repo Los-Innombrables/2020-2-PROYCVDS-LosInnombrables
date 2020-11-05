@@ -11,8 +11,6 @@ import edu.eci.cvds.services.ServicesNovedad;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @SuppressWarnings("deprecation")
@@ -37,7 +35,7 @@ public class EquipoBean extends BasePageBean{
         return equipos;
     }
 
-    public void registrarEquipo(String nombre, String activoS, int laboratorio, int torre, int pantalla, int mouse, int teclado, int responsable) throws HistorialEquiposException, ParseException {
+    public void registrarEquipo(String nombre, String activoS, int laboratorio, int torre, int pantalla, int mouse, int teclado, int responsable) throws HistorialEquiposException {
         int id = this.consultarNextId() + 1;
         Equipo equipo;
         boolean activo = false;
@@ -62,17 +60,17 @@ public class EquipoBean extends BasePageBean{
         servicesElemento.actualizarEquipoAsociado(teclado, id);
     }
 
-    private void generarNovedad(int id, int torre, int pantalla, int mouse, int teclado, int responsable, Equipo equipo) throws HistorialEquiposException, ParseException {
+    private void generarNovedad(int id, int torre, int pantalla, int mouse, int teclado, int responsable, Equipo equipo) throws HistorialEquiposException {
         /*Para Registrar Novedades*/
         ServicesNovedad servicesNovedad = ServicesHistorialDeEquipoFactory.getInstance().getServicesNovedad();
-        servicesNovedad.registrarNovedad(new Novedad(1, responsable, id, torre,
-                new SimpleDateFormat("YYYY/MM/DD").parse("2020/09/28"), "Elemento Nuevo Registrado", "Se registro un nuevo elemento de tipo torre al equipo " + equipo.getNombre()));
-        servicesNovedad.registrarNovedad(new Novedad(1, responsable, id, pantalla,
-                new SimpleDateFormat("YYYY/MM/DD").parse("2020/09/28"), "Elemento Nuevo Registrado", "Se registro un nuevo elemento de tipo pantalla al equipo " + equipo.getNombre()));
-        servicesNovedad.registrarNovedad(new Novedad(1, responsable, id, mouse,
-                new SimpleDateFormat("YYYY/MM/DD").parse("2020/09/28"), "Elemento Nuevo Registrado", "Se registro un nuevo elemento de tipo mouse al equipo " + equipo.getNombre()));
-        servicesNovedad.registrarNovedad(new Novedad(1, responsable, id, teclado,
-                new SimpleDateFormat("YYYY/MM/DD").parse("2020/09/28"), "Elemento Nuevo Registrado", "Se registro un nuevo elemento de tipo teclado al equipo " + equipo.getNombre()));
+        servicesNovedad.registrarNovedad(new Novedad(1, responsable, id, torre, null,
+                "Elemento Nuevo Registrado", "Se registro un nuevo elemento de tipo torre al equipo " + equipo.getNombre()));
+        servicesNovedad.registrarNovedad(new Novedad(1, responsable, id, pantalla, null,
+                "Elemento Nuevo Registrado", "Se registro un nuevo elemento de tipo pantalla al equipo " + equipo.getNombre()));
+        servicesNovedad.registrarNovedad(new Novedad(1, responsable, id, mouse, null,
+                "Elemento Nuevo Registrado", "Se registro un nuevo elemento de tipo mouse al equipo " + equipo.getNombre()));
+        servicesNovedad.registrarNovedad(new Novedad(1, responsable, id, teclado, null,
+                "Elemento Nuevo Registrado", "Se registro un nuevo elemento de tipo teclado al equipo " + equipo.getNombre()));
     }
 
     public String getTipoEstado() {

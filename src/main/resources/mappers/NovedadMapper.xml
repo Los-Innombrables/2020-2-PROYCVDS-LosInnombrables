@@ -14,7 +14,7 @@
     <!-- Adicionar Novedad Equipo y Elemento -->
     <insert id="registrarNovedad" parameterType="map">
         INSERT INTO Novedad (responsable, equipo, elemento, fecha, titulo, novedad)
-        VALUES (#{novedad.responsable},#{novedad.equipo}, #{novedad.elemento}, current_timestamp,#{novedad.titulo}, #{novedad.novedad})
+        VALUES (#{novedad.responsable},#{novedad.equipo}, #{novedad.elemento}, LOCALTIMESTAMP,#{novedad.titulo}, #{novedad.novedad})
     </insert>
 
     <!-- Resultado Usuario -->
