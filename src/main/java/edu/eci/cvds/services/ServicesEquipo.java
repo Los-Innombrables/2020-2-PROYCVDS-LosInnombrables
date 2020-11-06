@@ -10,4 +10,6 @@ public interface ServicesEquipo {
     void addEquipo(Equipo equipo) throws HistorialEquiposException;
 
     List<Equipo> consultarEquipos() throws HistorialEquiposException;
+
+    void darDeBajaEquipo(int id, boolean activo) throws HistorialEquiposException;
 }

@@ -11,4 +11,6 @@ public interface EquipoMapper {
 
     List<Equipo> consultarEquipos();
 
+    void darDeBajaEquipo(@Param("id") int id, @Param("activo") boolean activo);
+
 }

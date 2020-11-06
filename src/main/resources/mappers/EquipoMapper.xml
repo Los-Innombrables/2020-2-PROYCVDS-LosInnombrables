@@ -17,6 +17,13 @@
         FROM equipo
     </select>
 
+    <!-- Dar De Baja Equipo -->
+    <update id="darDeBajaEquipo" parameterType="map">
+        UPDATE Equipo
+        SET activo = #{activo}
+        WHERE id = #{id}
+    </update>
+
     <!-- Resultado Equipo -->
     <resultMap id="EquipoResult" type="Equipo">
         <result property='id' column='id'/>

@@ -2,10 +2,14 @@ package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Elemento;
+import edu.eci.cvds.entities.Novedad;
 import edu.eci.cvds.exceptions.HistorialEquiposException;
 import edu.eci.cvds.persistence.ElementoDAO;
 import edu.eci.cvds.services.ServicesElemento;
+import edu.eci.cvds.services.ServicesHistorialDeEquipoFactory;
+import edu.eci.cvds.services.ServicesNovedad;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServicesElementoImpl implements ServicesElemento {
@@ -64,6 +68,23 @@ public class ServicesElementoImpl implements ServicesElemento {
             elementoDAO.actualizarEstado(id, activo);
         }catch (Exception e){
             throw new HistorialEquiposException(e.getMessage());
+        }
+    }
+
+    public void eliminarElementos(int equipo, String torre, String mouse, String pantalla, String teclado, int responsable) throws HistorialEquiposException {
+        ArrayList<Elemento> elementos = (ArrayList<Elemento>) this.consultarElementosEquipo(equipo);
+        ServicesNovedad servicesNovedad = ServicesHistorialDeEquipoFactory.getInstance().getServicesNovedad();
+        for(Elemento elemento : elementos){
+            String tipo = elemento.getTipo();
+            this.actualizarEquipoAsociado(elemento.getId(), 0);
+            if (torre.equalsIgnoreCase(tipo) || mouse.equalsIgnoreCase(tipo) || pantalla.equalsIgnoreCase(tipo) || teclado.equalsIgnoreCase(tipo)){
+                this.actualizarEstado(elemento.getId(), false);
+                Novedad novedad = new Novedad(1, responsable, 0, elemento.getId(), null, "Elemento Dado De Baja", "Elemento dado de baja debido junto con su equipo");
+                servicesNovedad.registrarNovedad(novedad);
+            }else{
+                Novedad novedad = new Novedad(1, responsable, 0, elemento.getId(), null, "Elemento Libre", "Elemento libre debido a equipo principal dado de baja");
+                servicesNovedad.registrarNovedad(novedad);
+            }
         }
     }
 

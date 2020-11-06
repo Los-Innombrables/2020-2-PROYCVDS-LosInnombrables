@@ -19,4 +19,6 @@ public interface ServicesElemento {
 
     void actualizarEstado(int id, boolean activo) throws HistorialEquiposException;
 
+    void eliminarElementos(int equipo, String torre, String mouse, String pantalla, String teclado, int responsable) throws HistorialEquiposException;
+
 }

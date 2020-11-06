@@ -31,4 +31,13 @@ public class ServicesEquipoImpl implements ServicesEquipo {
         }
     }
 
+    @Override
+    public void darDeBajaEquipo(int id, boolean activo) throws HistorialEquiposException {
+        try{
+            equipoDAO.darDeBajaEquipo(id, activo);
+        }catch (Exception e){
+            throw new HistorialEquiposException(e.getMessage());
+        }
+    }
+
 }

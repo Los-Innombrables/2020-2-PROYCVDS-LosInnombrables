@@ -25,8 +25,14 @@ public class EquipoBean extends BasePageBean{
     @Inject
     private ServicesEquipo servicesEquipo;
 
-    private Map<String, Integer> equipoMap;
     private String selectedEquipo;
+    private String selectedEquipoAct;
+
+    /*Dar de baja*/
+    private String torreE;
+    private String mouseE;
+    private String tecladoE;
+    private String pantallaE;
 
 
     public ArrayList<Equipo> consultarEquipos() throws HistorialEquiposException {
@@ -73,6 +79,17 @@ public class EquipoBean extends BasePageBean{
                 "Elemento Nuevo Registrado", "Se registro un nuevo elemento de tipo teclado al equipo " + equipo.getNombre()));
     }
 
+    public void darDeBajaEquipo(int id, String torreE, String mouseE, String pantallaE, String tecladoE, int responsable) throws HistorialEquiposException {
+        servicesEquipo.darDeBajaEquipo(id, false);
+
+        ServicesElemento servicesElemento = ServicesHistorialDeEquipoFactory.getInstance().getServicesElemento();
+        servicesElemento.eliminarElementos(id, torreE, mouseE, pantallaE, tecladoE, responsable);
+
+        ServicesNovedad servicesNovedad = ServicesHistorialDeEquipoFactory.getInstance().getServicesNovedad();
+        Novedad novedad = new Novedad(1, responsable, id, 0, null, "Equipo Dado de baja", "El equipo fue dado de baja.");
+        servicesNovedad.registrarNovedad(novedad);
+    }
+
     public String getTipoEstado() {
         return tipoEstado;
     }
@@ -93,15 +110,22 @@ public class EquipoBean extends BasePageBean{
     /*Crear Objeto Interno*/
     public Map<String, Integer> getEquipoMap() throws HistorialEquiposException {
         ArrayList<Equipo> equipos = consultarEquipos();
-        equipoMap = new LinkedHashMap<String,Integer>();
+        Map<String, Integer> equipoMap = new LinkedHashMap<String,Integer>();
         for(Equipo equipo : equipos){
             equipoMap.put(equipo.getNombre(), equipo.getId());
         }
         return equipoMap;
     }
 
-    public void setEquipoMap(Map<String, Integer> equipoMap) {
-        this.equipoMap = equipoMap;
+    public Map<String, Integer> getEquipoMapActivo() throws HistorialEquiposException {
+        ArrayList<Equipo> equipos = consultarEquipos();
+        Map<String, Integer> equipoMap = new LinkedHashMap<String,Integer>();
+        for(Equipo equipo : equipos){
+            if(equipo.getActivo()){
+                equipoMap.put(equipo.getNombre(), equipo.getId());
+            }
+        }
+        return equipoMap;
     }
 
     public String getSelectedEquipo() {
@@ -110,5 +134,45 @@ public class EquipoBean extends BasePageBean{
 
     public void setSelectedEquipo(String selectedEquipo) {
         this.selectedEquipo = selectedEquipo;
+    }
+
+    public String getSelectedEquipoAct() {
+        return selectedEquipoAct;
+    }
+
+    public void setSelectedEquipoAct(String selectedEquipoAct) {
+        this.selectedEquipoAct = selectedEquipoAct;
+    }
+
+    public String getTorreE() {
+        return torreE;
+    }
+
+    public void setTorreE(String torreE) {
+        this.torreE = torreE;
+    }
+
+    public String getMouseE() {
+        return mouseE;
+    }
+
+    public void setMouseE(String mouseE) {
+        this.mouseE = mouseE;
+    }
+
+    public String getTecladoE() {
+        return tecladoE;
+    }
+
+    public void setTecladoE(String tecladoE) {
+        this.tecladoE = tecladoE;
+    }
+
+    public String getPantallaE() {
+        return pantallaE;
+    }
+
+    public void setPantallaE(String pantallaE) {
+        this.pantallaE = pantallaE;
     }
 }

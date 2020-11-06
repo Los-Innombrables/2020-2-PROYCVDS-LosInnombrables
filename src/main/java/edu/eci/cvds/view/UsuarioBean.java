@@ -24,5 +24,4 @@ public class UsuarioBean extends BasePageBean{
         return servicesUsuario.consultarUsuarios();
     }
 
-
 }

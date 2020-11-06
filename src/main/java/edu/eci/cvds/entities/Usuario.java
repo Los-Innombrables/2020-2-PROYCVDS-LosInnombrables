@@ -11,6 +11,7 @@ public class Usuario {
     private boolean activo;
 
     private int rol;
+    private String rolS;
 
     public Usuario(){}
 
@@ -88,4 +89,8 @@ public class Usuario {
     public void setRol(int rol) {
         this.rol = rol;
     }
+
+    public String getRolS() { return rolS; }
+
+    public void setRolS(String rolS) { this.rolS = rolS; }
 }

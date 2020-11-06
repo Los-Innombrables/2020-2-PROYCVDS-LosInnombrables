@@ -6,6 +6,7 @@ import edu.eci.cvds.persistence.UsuarioDAO;
 import edu.eci.cvds.persistence.mybatis.mappers.UsuarioMapper;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyBatisUserDAO implements UsuarioDAO {
@@ -46,9 +47,25 @@ public class MyBatisUserDAO implements UsuarioDAO {
     @Override
     public List<Usuario> consultarUsuarios() throws HistorialEquiposException {
         try{
-            return usuarioMapper.consultarUsuarios();
+            ArrayList<Usuario> usuarios = (ArrayList<Usuario>) usuarioMapper.consultarUsuarios();
+            for(Usuario usuario : usuarios){
+                String rolS = "";
+                switch (usuario.getRol()) {
+                    case 1:
+                        rolS = "Administrador";
+                        break;
+                    case 2:
+                        rolS = "Profesor";
+                        break;
+                    case 3:
+                        rolS = "Estudiante";
+                        break;
+                }
+                usuario.setRolS(rolS);
+            }
+            return usuarios;
         }catch (Exception e){
-            throw new HistorialEquiposException("Usuario o Contraseña Incorrectos");
+            throw new HistorialEquiposException("Error Al consultar Usuarios");
         }
     }
 
