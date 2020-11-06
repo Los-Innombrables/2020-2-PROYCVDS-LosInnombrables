@@ -13,4 +13,6 @@ public interface EquipoMapper {
 
     void darDeBajaEquipo(@Param("id") int id, @Param("activo") boolean activo);
 
+    Equipo consultarEquipoId(@Param("id") int id);
+
 }

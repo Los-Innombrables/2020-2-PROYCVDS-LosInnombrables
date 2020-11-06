@@ -14,4 +14,6 @@ public interface EquipoDAO {
 
     void darDeBajaEquipo(int id, boolean activo) throws HistorialEquiposException;
 
+    Equipo consultarEquipoId(int id) throws HistorialEquiposException;
+
 }

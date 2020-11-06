@@ -96,7 +96,7 @@
                                         <h:outputText value="#{novedad.getResponsable()}" />
                                     </p:column>
                                     <p:column headerText="Equipo">
-                                        <h:outputText value="#{novedad.getEquipo()}" />
+                                        <h:outputText value="#{equipoBean.consultarNombreEquipo(novedad.getEquipo())}" />
                                     </p:column>
                                     <p:column headerText="Elemento">
                                         <h:outputText value="#{novedad.getElemento()}" />

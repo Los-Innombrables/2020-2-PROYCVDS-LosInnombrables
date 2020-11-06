@@ -90,6 +90,11 @@ public class EquipoBean extends BasePageBean{
         servicesNovedad.registrarNovedad(novedad);
     }
 
+    public String consultarNombreEquipo(int id) throws HistorialEquiposException {
+        Equipo equipo = servicesEquipo.consultarEquipoId(id);
+        return equipo.getNombre();
+    }
+
     public String getTipoEstado() {
         return tipoEstado;
     }

@@ -17,6 +17,13 @@
         FROM equipo
     </select>
 
+    <!-- Consultar Equipo por id -->
+    <select id="consultarEquipoId" resultMap="EquipoResult">
+        SELECT *
+        FROM equipo
+        WHERE id = #{id}
+    </select>
+
     <!-- Dar De Baja Equipo -->
     <update id="darDeBajaEquipo" parameterType="map">
         UPDATE Equipo

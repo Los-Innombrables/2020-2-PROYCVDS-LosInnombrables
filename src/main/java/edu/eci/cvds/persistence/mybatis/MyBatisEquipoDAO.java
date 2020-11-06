@@ -42,4 +42,13 @@ public class MyBatisEquipoDAO implements EquipoDAO {
             throw new HistorialEquiposException("Error al dar de baja");
         }
     }
+
+    @Override
+    public Equipo consultarEquipoId(int id) throws HistorialEquiposException {
+        try{
+            return equipoMapper.consultarEquipoId(id);
+        }catch (Exception e){
+            throw new HistorialEquiposException("Error al consultar equipo");
+        }
+    }
 }

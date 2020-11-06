@@ -40,4 +40,13 @@ public class ServicesEquipoImpl implements ServicesEquipo {
         }
     }
 
+    @Override
+    public Equipo consultarEquipoId(int id) throws HistorialEquiposException {
+        try{
+            return equipoDAO.consultarEquipoId(id);
+        }catch (Exception e){
+            throw new HistorialEquiposException(e.getMessage());
+        }
+    }
+
 }
