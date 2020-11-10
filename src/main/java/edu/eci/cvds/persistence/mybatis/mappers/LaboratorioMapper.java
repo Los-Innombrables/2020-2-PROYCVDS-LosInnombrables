@@ -10,4 +10,6 @@ public interface LaboratorioMapper {
     List<Laboratorio> consultarLaboratorios();
 
     Laboratorio consultarLaboratorioNombre(@Param("nombre") String nombre);
+
+    void addLaboratorio(@Param("laboratorio") Laboratorio laboratorio);
 }

@@ -29,11 +29,11 @@ VALUES(2144828, 'Andres', 'Calderon', 'andres.calderon-o@mail.escuelaing.edu.co'
 INSERT INTO laboratorio(id, nombre, fechadecreacion, fechadecierre, activo)
 VALUES(0, '--------------------------------', '2020-10-31', '2020-10-31', true);
 
-INSERT INTO laboratorio(id, nombre, fechadecreacion, fechadecierre, activo)
-VALUES(1, 'Plataformas Computacionales', '2012-09-12', null, true);
+INSERT INTO laboratorio(nombre, fechadecreacion, fechadecierre, activo)
+VALUES('Plataformas Computacionales', '2012-09-12', null, true);
 
-INSERT INTO laboratorio(id, nombre, fechadecreacion, fechadecierre, activo)
-VALUES(2, 'Multimedia y Moviles', '2014-06-29', null, true);
+INSERT INTO laboratorio(nombre, fechadecreacion, fechadecierre, activo)
+VALUES('Multimedia y Moviles', '2014-06-29', null, true);
 
 -- TipoElemento: --
 INSERT INTO tipoelemento(nombre, descripcion)
@@ -52,14 +52,14 @@ VALUES('Teclado', 'Dispositivo que presenta el conjunto de las teclas de diverso
 INSERT INTO equipo(id, nombre, laboratorio, activo)
 VALUES(0, '----------------', 0, true);
 
-INSERT INTO equipo(id, nombre, laboratorio, activo)
-VALUES(1,'PC_Lab1', 1, true);
+INSERT INTO equipo(nombre, laboratorio, activo)
+VALUES('PC_Lab1', 1, true);
 
-INSERT INTO equipo(id, nombre, laboratorio, activo)
-VALUES(2,'PC_Lab2', 2, true);
+INSERT INTO equipo(nombre, laboratorio, activo)
+VALUES('PC_Lab2', 2, true);
 
-INSERT INTO equipo(id, nombre, laboratorio, activo)
-VALUES(3,'PC_Lab3', 2, true);
+INSERT INTO equipo(nombre, laboratorio, activo)
+VALUES('PC_Lab3', 2, true);
 
 
 -- Elemento: --

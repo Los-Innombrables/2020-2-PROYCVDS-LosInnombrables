@@ -49,4 +49,13 @@ public class ServicesEquipoImpl implements ServicesEquipo {
         }
     }
 
+    @Override
+    public void asociarLaboratorio(int laboratorio, int id) throws HistorialEquiposException {
+        try{
+            equipoDAO.asociarLaboratorio(laboratorio, id);
+        }catch (Exception e){
+            throw new HistorialEquiposException(e.getMessage());
+        }
+    }
+
 }

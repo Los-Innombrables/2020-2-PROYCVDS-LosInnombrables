@@ -42,6 +42,15 @@ public class LaboratorioBean extends BasePageBean{
         return servicesLaboratorio.consultarLaboratorioNombre(nombre);
     }
 
+    public void addLaboratorio(String nombre, String estado) throws HistorialEquiposException {
+        boolean activo = false;
+        if (estado.equalsIgnoreCase("Activo")){
+            activo = true;
+        }
+        Laboratorio laboratorio = new Laboratorio(0, nombre, null, activo, null);
+        servicesLaboratorio.addLaboratorio(laboratorio);
+    }
+
     public Map<String, Integer> getLaboratorioMap() {
         return laboratorioMap;
     }

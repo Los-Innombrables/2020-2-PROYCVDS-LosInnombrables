@@ -31,4 +31,13 @@ public class ServicesLaboratorioImpl implements ServicesLaboratorio {
         }
     }
 
+    @Override
+    public void addLaboratorio(Laboratorio laboratorio) throws HistorialEquiposException {
+        try{
+            laboratorioDAO.addLaboratorio(laboratorio);
+        }catch (Exception e){
+            throw new HistorialEquiposException(e.getMessage());
+        }
+    }
+
 }

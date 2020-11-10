@@ -11,4 +11,6 @@ public interface ServicesLaboratorio {
 
     Laboratorio consultarLaboratorioNombre(String nombre) throws HistorialEquiposException;
 
+    void addLaboratorio(Laboratorio laboratorio) throws HistorialEquiposException;
+
 }

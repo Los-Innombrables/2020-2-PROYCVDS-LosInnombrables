@@ -16,4 +16,6 @@ public interface EquipoDAO {
 
     Equipo consultarEquipoId(int id) throws HistorialEquiposException;
 
+    void asociarLaboratorio(int laboratorio, int id) throws HistorialEquiposException;
+
 }

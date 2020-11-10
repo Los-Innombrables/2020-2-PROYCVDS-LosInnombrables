@@ -18,6 +18,12 @@
         WHERE nombre = #{nombre}
     </select>
 
+    <!-- Agregar Laboratorio -->
+    <insert id="addLaboratorio" parameterType="map">
+        INSERT INTO laboratorio (nombre, fechaDeCreacion, fechaDeCierre, activo)
+        VALUES (#{laboratorio.nombre}, LOCALTIMESTAMP, null, #{laboratorio.activo})
+    </insert>
+
     <!-- Resultado Usuario -->
     <resultMap type="Laboratorio" id="LaboratorioResult">
         <result property="id" column="id"/>

@@ -31,6 +31,13 @@
         WHERE id = #{id}
     </update>
 
+    <!-- Asociar Laboratorio -->
+    <update id="asociarLaboratorio" parameterType="map">
+        UPDATE Equipo
+        SET laboratorio = #{laboratorio}
+        WHERE id = #{id}
+    </update>
+
     <!-- Resultado Equipo -->
     <resultMap id="EquipoResult" type="Equipo">
         <result property='id' column='id'/>

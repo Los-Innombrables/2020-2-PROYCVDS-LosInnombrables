@@ -95,6 +95,21 @@ public class EquipoBean extends BasePageBean{
         return equipo.getNombre();
     }
 
+    public void asociarLaboratorio(int laboratorio, int equipoInt, int responsable) throws HistorialEquiposException {
+        ServicesNovedad servicesNovedad = ServicesHistorialDeEquipoFactory.getInstance().getServicesNovedad();
+        Equipo equipo = servicesEquipo.consultarEquipoId(equipoInt);
+        if(equipo.getLaboratorio() != 0){
+            /*Generar Novedad de cambio*/
+            Novedad novedad = new Novedad(1, responsable, equipoInt, 0, null, "Equipo cambiado de laboratorio", "El equipo fue cambiado de laboratorio a uno nuevo.");
+            servicesNovedad.registrarNovedad(novedad);
+        }
+        servicesEquipo.asociarLaboratorio(laboratorio, equipoInt);
+        Novedad novedad = new Novedad(1, responsable, equipoInt, 0, null, "Equipo agregado a nuevo Laboratorio", "El equipo fue agregado a un nuevo laboratorio.");
+        servicesNovedad.registrarNovedad(novedad);
+
+    }
+
+    /* Getter and Setter*/
     public String getTipoEstado() {
         return tipoEstado;
     }
