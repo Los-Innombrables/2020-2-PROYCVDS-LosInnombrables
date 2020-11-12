@@ -15,9 +15,9 @@
 # Arquitectura y Diseño detallado
 >
 ## Modelo E-R
->
-## Diagrama de clases
 ![](/resources/DiagramaClases.png)
+## Diagrama de clases
+>
 ## Capas
 >
 ## Tecnologías utilizadas
@@ -48,7 +48,7 @@
 ## Sprint1:
 ![](/resources/Sprint1.PNG)
 ## Sprint2:
->
+![](/resources/Sprint2.PNG)
 ## Sprint3:
 >
 ## Reporte De Pruebas:
