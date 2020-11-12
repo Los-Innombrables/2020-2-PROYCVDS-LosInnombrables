@@ -32,19 +32,7 @@ public class LoginBean extends BasePageBean {
     private int usuarioCarnet;
 
     public static String redirectPage(int rol) {
-        String webPage = "";
-        switch (rol) {
-            case 1:
-                webPage = "/faces/dashboard/admin/main.xhtml";
-                break;
-            case 2:
-                webPage = "/faces/dashboard/monitor/";
-                break;
-            case 3:
-                webPage = "/faces/dashboard/profesor/";
-                break;
-        }
-        return webPage;
+        return "/faces/dashboard/main.xhtml";
     }
 
     public String login() {
