@@ -14,10 +14,11 @@ public class ServicesNovedadImpl implements ServicesNovedad {
     private NovedadDAO novedadDAO;
 
     @Override
-    public List<Novedad> consultarNovedades() throws HistorialEquiposException{
+    public List<Novedad> consultarNovedadesObj() throws HistorialEquiposException {
         try{
-            return novedadDAO.consultarNovedades();
+            return novedadDAO.consultarNovedadesObj();
         }catch (Exception e){
+            e.printStackTrace();
             throw new HistorialEquiposException(e.getMessage());
         }
     }

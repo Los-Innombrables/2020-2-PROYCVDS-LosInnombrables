@@ -11,17 +11,78 @@
         FROM Elemento
     </select>
 
+    <!-- ConsultarOBJ -->
+    <select id="consultarElementosObj" resultMap="ElementoResultObj">
+        SELECT
+            e.id as e_id,
+            e.marca as e_marca,
+            e.referencia as e_referencia,
+            e.fechaDeRegistro as e_fechaDeRegistro,
+            e.activo as e_activo,
+            eq.id as eq_id,
+            eq.nombre as eq_nombre,
+            eq.activo as eq_activo,
+            lb.id as lb_id,
+            lb.nombre as lb_nombre,
+            lb.fechaDeCreacion as lb_fechadeCreacion,
+            lb.fechaDeCierre as lb_fechadeCierre,
+            lb.activo as lb_activo,
+            te.nombre as te_nombre,
+            te.descripcion as te_descripcion
+        FROM elemento as e
+            JOIN equipo as eq ON e.equipo = eq.id
+            JOIN tipoelemento as te ON e.tipo = te.nombre
+            JOIN laboratorio as lb ON eq.laboratorio = lb.id
+        ORDER BY e.id
+    </select>
+
     <!-- Consultar Por ID-->
-    <select id="consultarElementoId" resultMap="ElementoResult">
-        SELECT *
-        FROM Elemento
-        WHERE id = #{id}
+    <select id="consultarElementoId" resultMap="ElementoResultObj">
+        SELECT
+            e.id as e_id,
+            e.marca as e_marca,
+            e.referencia as e_referencia,
+            e.fechaDeRegistro as e_fechaDeRegistro,
+            e.activo as e_activo,
+            eq.id as eq_id,
+            eq.nombre as eq_nombre,
+            eq.activo as eq_activo,
+            lb.id as lb_id,
+            lb.nombre as lb_nombre,
+            lb.fechaDeCreacion as lb_fechadeCreacion,
+            lb.fechaDeCierre as lb_fechadeCierre,
+            lb.activo as lb_activo,
+            te.nombre as te_nombre,
+            te.descripcion as te_descripcion
+        FROM elemento as e
+            JOIN equipo as eq ON e.equipo = eq.id
+            JOIN tipoelemento as te ON e.tipo = te.nombre
+            JOIN laboratorio as lb ON eq.laboratorio = lb.id
+        WHERE e.id = #{id}
     </select>
 
     <!-- Consultar Por Equipo -->
-    <select id="consultarElementosEquipo" resultMap="ElementoResult">
-        SELECT *
-        FROM Elemento
+    <select id="consultarElementosEquipo" resultMap="ElementoResultObj">
+        SELECT
+            e.id as e_id,
+            e.marca as e_marca,
+            e.referencia as e_referencia,
+            e.fechaDeRegistro as e_fechaDeRegistro,
+            e.activo as e_activo,
+            eq.id as eq_id,
+            eq.nombre as eq_nombre,
+            eq.activo as eq_activo,
+            lb.id as lb_id,
+            lb.nombre as lb_nombre,
+            lb.fechaDeCreacion as lb_fechadeCreacion,
+            lb.fechaDeCierre as lb_fechadeCierre,
+            lb.activo as lb_activo,
+            te.nombre as te_nombre,
+            te.descripcion as te_descripcion
+        FROM elemento as e
+            JOIN equipo as eq ON e.equipo = eq.id
+            JOIN tipoelemento as te ON e.tipo = te.nombre
+            JOIN laboratorio as lb ON eq.laboratorio = lb.id
         WHERE  equipo = #{equipo}
     </select>
 
@@ -45,7 +106,7 @@
         VALUES (#{elemento.tipo},#{elemento.equipo}, #{elemento.marca}, #{elemento.referencia}, LOCALTIMESTAMP, #{elemento.activo})
     </insert>
 
-    <!-- Resultado Usuario -->
+    <!-- Resultado Elemento -->
     <resultMap type="Elemento" id="ElementoResult">
         <result property="id" column="id"/>
         <result property="tipo" column="tipo"/>
@@ -54,6 +115,17 @@
         <result property="referencia" column="referencia"/>
         <result property="fechaDeRegistro" column="fechaDeRegistro"/>
         <result property="activo" column="activo"/>
+    </resultMap>
+
+    <!-- Resultado Elemento Obj -->
+    <resultMap type="Elemento" id="ElementoResultObj">
+        <result property="id" column="e_id"/>
+        <result property="marca" column="e_marca"/>
+        <result property="referencia" column="e_referencia"/>
+        <result property="fechaDeRegistro" column="e_fechaDeRegistro"/>
+        <result property="activo" column="e_activo"/>
+        <association property="tipoElemento" resultMap="edu.eci.cvds.persistence.mybatis.mappers.TipoElementoMapper.TipoElementoResult"/>
+        <association property="equipoOb" resultMap="edu.eci.cvds.persistence.mybatis.mappers.EquipoMapper.EquipoResultObj"/>
     </resultMap>
 
 </mapper>

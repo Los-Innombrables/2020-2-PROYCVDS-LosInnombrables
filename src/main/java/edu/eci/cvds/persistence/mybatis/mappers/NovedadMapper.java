@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface NovedadMapper {
 
-    List<Novedad> consultarNovedades();
+    List<Novedad> consultarNovedadesObj();
 
     void registrarNovedad(@Param("novedad") Novedad novedad);
 

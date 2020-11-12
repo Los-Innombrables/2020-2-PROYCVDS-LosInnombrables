@@ -3,6 +3,7 @@ package edu.eci.cvds.view;
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Novedad;
+import edu.eci.cvds.entities.TipoElemento;
 import edu.eci.cvds.exceptions.HistorialEquiposException;
 import edu.eci.cvds.services.ServicesElemento;
 import edu.eci.cvds.services.ServicesHistorialDeEquipoFactory;
@@ -49,25 +50,25 @@ public class ElementoBean extends BasePageBean{
     @Inject
     private ServicesElemento servicesElemento;
 
-    public ArrayList<Elemento> consultarElementos() throws HistorialEquiposException {
-        ArrayList<Elemento> elementos = (ArrayList<Elemento>) servicesElemento.consultarElementos();
+    public ArrayList<Elemento> consultarElementosObj() throws HistorialEquiposException {
+        ArrayList<Elemento> elementos = (ArrayList<Elemento>) servicesElemento.consultarElementosObj();
         return  elementos;
     }
 
     public void makeElementoMap() throws HistorialEquiposException {
-        ArrayList<Elemento> elementos = consultarElementos();
+        ArrayList<Elemento> elementos = consultarElementosObj();
         elementoMapTorre = new LinkedHashMap<String,Integer>();
         elementoMapPantalla = new LinkedHashMap<String,Integer>();
         elementoMapMouse = new LinkedHashMap<String,Integer>();
         elementoMapTeclado = new LinkedHashMap<String,Integer>();
         for(Elemento elemento : elementos){
-            String tipoElemento = elemento.getTipo();
-            if (elemento.getEquipo() == 0) {
-                if (tipoElemento.equalsIgnoreCase("Torre")) {
+            TipoElemento tipoElemento = elemento.getTipoElemento();
+            if (elemento.getEquipoOb().getId() == 0 && elemento.isActivo()) {
+                if (tipoElemento.getNombre().equalsIgnoreCase("Torre")) {
                     elementoMapTorre.put(elemento.getNombre(), elemento.getId());
-                } else if (tipoElemento.equalsIgnoreCase("Pantalla")) {
+                } else if (tipoElemento.getNombre().equalsIgnoreCase("Pantalla")) {
                     elementoMapPantalla.put(elemento.getNombre(), elemento.getId());
-                } else if (tipoElemento.equalsIgnoreCase("Mouse")) {
+                } else if (tipoElemento.getNombre().equalsIgnoreCase("Mouse")) {
                     elementoMapMouse.put(elemento.getNombre(), elemento.getId());
                 } else {
                     elementoMapTeclado.put(elemento.getNombre(), elemento.getId());
@@ -81,26 +82,21 @@ public class ElementoBean extends BasePageBean{
     }
 
     public void addElemento(String tipo, int equipo, String marca, String referencia, String activoS) throws HistorialEquiposException {
-        try{
-            Elemento elemento;
-            boolean activo = false;
-            if (activoS.equalsIgnoreCase("Activo")){
-                activo = true;
-            }
-            elemento = new Elemento(0, tipo, equipo, marca, referencia, null, activo);
-            servicesElemento.addElemento(elemento);
-            this.saveMessage("Ingreso de elemento logrado !", "Aceptado");
-        }catch (Exception e){
-            this.saveMessage("Ingreso de elemento no valido !", "Error");
+        Elemento elemento;
+        boolean activo = false;
+        if (activoS.equalsIgnoreCase("Activo")){
+            activo = true;
         }
+        elemento = new Elemento(0, tipo, equipo, marca, referencia, null, activo);
+        servicesElemento.addElemento(elemento);
     }
 
     public void asociarElemento(int equipo, int elemento, int responsable) throws HistorialEquiposException {
         ArrayList<Elemento> elementos = (ArrayList<Elemento>) servicesElemento.consultarElementosEquipo(equipo);
         Elemento elementoS = servicesElemento.consultarElementoId(elemento);
-        String tipo = elementoS.getTipo();
+        String tipo = elementoS.getTipoElemento().getNombre();
         for (Elemento e : elementos){
-            if (e.getTipo().equalsIgnoreCase(tipo)){
+            if (e.getTipoElemento().getNombre().equalsIgnoreCase(tipo)){
                 servicesElemento.actualizarEquipoAsociado(e.getId(), 0);
             }
         }
@@ -218,10 +214,10 @@ public class ElementoBean extends BasePageBean{
     }
 
     public Map<String, Integer> getElementoMap() throws HistorialEquiposException {
-        ArrayList<Elemento> elementos = this.consultarElementos();
+        ArrayList<Elemento> elementos = this.consultarElementosObj();
         Map<String, Integer> elementoMap = new LinkedHashMap<String,Integer>();
         for(Elemento elemento : elementos){
-            if(elemento.getEquipo() == 0){
+            if(elemento.getEquipoOb().getId() == 0){
                 elementoMap.put(elemento.getNombre(), elemento.getId());
             }
         }
@@ -229,7 +225,7 @@ public class ElementoBean extends BasePageBean{
     }
 
     public Map<String, Integer> getElementoMapFull() throws HistorialEquiposException {
-        ArrayList<Elemento> elementos = this.consultarElementos();
+        ArrayList<Elemento> elementos = this.consultarElementosObj();
         Map<String, Integer> elementoMap = new LinkedHashMap<String,Integer>();
         for(Elemento elemento : elementos){
                 elementoMap.put(elemento.getNombre(), elemento.getId());
@@ -238,10 +234,10 @@ public class ElementoBean extends BasePageBean{
     }
 
     public Map<String, Integer> getElementoMapAct() throws HistorialEquiposException {
-        ArrayList<Elemento> elementos = this.consultarElementos();
+        ArrayList<Elemento> elementos = this.consultarElementosObj();
         Map<String, Integer> elementoMap = new LinkedHashMap<String,Integer>();
         for(Elemento elemento : elementos){
-            if(elemento.getEquipo() == 0 && elemento.isActivo()){
+            if(elemento.getEquipoOb().getId() == 0 && elemento.isActivo()){
                 elementoMap.put(elemento.getNombre(), elemento.getId());
             }
         }

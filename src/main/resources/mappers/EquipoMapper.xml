@@ -12,16 +12,41 @@
     </insert>
 
     <!-- Seleccionar Equipos -->
+    <select id="consultarEquiposObj" resultMap="EquipoResultObj">
+        SELECT
+            eq.id as eq_id,
+            eq.nombre as eq_nombre,
+            eq.activo as eq_activo,
+            lb.id as lb_id,
+            lb.nombre as lb_nombre,
+            lb.fechaDeCreacion as lb_fechadeCreacion,
+            lb.fechaDeCierre as lb_fechadeCierre,
+            lb.activo as lb_activo
+        FROM equipo as eq
+            JOIN laboratorio as lb ON eq.laboratorio = lb.id
+        ORDER BY eq.id
+    </select>
+
+    <!-- Seleccionar Equipos -->
     <select id="consultarEquipos" resultMap="EquipoResult">
         SELECT *
         FROM equipo
     </select>
 
     <!-- Consultar Equipo por id -->
-    <select id="consultarEquipoId" resultMap="EquipoResult">
-        SELECT *
-        FROM equipo
-        WHERE id = #{id}
+    <select id="consultarEquipoId" resultMap="EquipoResultObj">
+        SELECT
+            eq.id as eq_id,
+            eq.nombre as eq_nombre,
+            eq.activo as eq_activo,
+            lb.id as lb_id,
+            lb.nombre as lb_nombre,
+            lb.fechaDeCreacion as lb_fechadeCreacion,
+            lb.fechaDeCierre as lb_fechadeCierre,
+            lb.activo as lb_activo
+        FROM equipo as eq
+            JOIN laboratorio as lb ON eq.laboratorio = lb.id
+        WHERE eq.id = #{id}
     </select>
 
     <!-- Dar De Baja Equipo -->
@@ -44,6 +69,14 @@
         <result property='nombre' column='nombre'/>
         <result property='laboratorio' column='laboratorio'/>
         <result property='activo' column='activo'/>
+    </resultMap>
+
+    <!-- Resultado EquipoOBJ -->
+    <resultMap id="EquipoResultObj" type="Equipo">
+        <result property='id' column='eq_id'/>
+        <result property='nombre' column='eq_nombre'/>
+        <result property='activo' column='eq_activo'/>
+        <association property="laboratorioObj" resultMap="edu.eci.cvds.persistence.mybatis.mappers.LaboratorioMapper.LaboratorioResult" columnPrefix="lb_"/>
     </resultMap>
 
 </mapper>

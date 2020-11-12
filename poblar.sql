@@ -64,7 +64,7 @@ VALUES('PC_Lab3', 2, true);
 
 -- Elemento: --
 INSERT INTO elemento(id, tipo, equipo, marca, referencia, fechaderegistro, activo)
-VALUES(0, 'Torre', 1, 'Null', 'Null', '11-01-2020', false);
+VALUES(0, 'Torre', 1, '-----', '-----', '11-01-2020', false);
 -- Torres
 INSERT INTO elemento(tipo, equipo, marca, referencia, fechaderegistro, activo)
 VALUES('Torre', 1, 'Asus', '13121', '11-01-2020', true);

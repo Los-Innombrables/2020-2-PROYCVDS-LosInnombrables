@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface NovedadDAO {
 
-    List<Novedad> consultarNovedades() throws HistorialEquiposException;
+    List<Novedad> consultarNovedadesObj() throws HistorialEquiposException;
 
     void registrarNovedad(Novedad novedad) throws HistorialEquiposException;
 

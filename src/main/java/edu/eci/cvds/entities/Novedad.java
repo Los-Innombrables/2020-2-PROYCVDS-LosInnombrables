@@ -6,8 +6,11 @@ public class Novedad {
 
     private int id;
     private int responsable;
+    private Usuario usuario;
     private int equipo;
+    private Equipo equipoObj;
     private int elemento;
+    private Elemento elementoObj;
     private Date fecha;
     private String titulo;
     private String novedad;
@@ -19,6 +22,16 @@ public class Novedad {
         this.responsable = responsable;
         this.equipo = equipo;
         this.elemento = elemento;
+        this.fecha = fecha;
+        this.titulo = titulo;
+        this.novedad = novedad;
+    }
+
+    public Novedad(int id, Usuario usuario, Equipo equipoObj, Elemento elementoObj, Date fecha, String titulo, String novedad){
+        this.id = id;
+        this.usuario = usuario;
+        this.equipoObj = equipoObj;
+        this.elementoObj = elementoObj;
         this.fecha = fecha;
         this.titulo = titulo;
         this.novedad = novedad;
@@ -79,4 +92,16 @@ public class Novedad {
     public void setNovedad(String novedad) {
         this.novedad = novedad;
     }
+
+    public Usuario getUsuario() { return usuario; }
+
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+
+    public Equipo getEquipoObj() { return equipoObj; }
+
+    public void setEquipoObj(Equipo equipoObj) { this.equipoObj = equipoObj; }
+
+    public Elemento getElementoObj() { return elementoObj; }
+
+    public void setElementoObj(Elemento elementoObj) { this.elementoObj = elementoObj; }
 }

@@ -9,6 +9,7 @@
     <select id="consultarLaboratorios" resultMap="LaboratorioResult">
         SELECT *
         FROM Laboratorio
+        ORDER BY id
     </select>
 
     <!-- Consultar Dependiendo Nombre -->

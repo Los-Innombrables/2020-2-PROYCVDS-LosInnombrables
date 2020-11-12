@@ -1,10 +1,11 @@
 package edu.eci.cvds.entities;
 
 public class Equipo {
-    int id;
-    int laboratorio;
-    String nombre;
-    Boolean activo;
+    private int id;
+    private int laboratorio;
+    private Laboratorio laboratorioObj;
+    private String nombre;
+    private Boolean activo;
 
     public Equipo() {
     }
@@ -16,6 +17,13 @@ public class Equipo {
         this.activo = activo;
     }
 
+    public Equipo(int id, Laboratorio laboratorioObj, String nombre, Boolean activo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.laboratorioObj = laboratorioObj;
+        this.activo = activo;
+    }
+
     public int getId() {
         return id;
     }
@@ -24,13 +32,9 @@ public class Equipo {
         this.id = id;
     }
 
-    public int getLaboratorio() {
-        return laboratorio;
-    }
+    public int getLaboratorio() { return laboratorio; }
 
-    public void setLaboratorio(int laboratorio) {
-        this.laboratorio = laboratorio;
-    }
+    public void setLaboratorio(int laboratorio) { this.laboratorio = laboratorio; }
 
     public String getNombre() {
         return nombre;
@@ -47,5 +51,9 @@ public class Equipo {
     public void setActivo(Boolean activo) {
         this.activo = activo;
     }
+
+    public Laboratorio getLaboratorioObj() { return laboratorioObj; }
+
+    public void setLaboratorioObj(Laboratorio laboratorioObj) { this.laboratorioObj = laboratorioObj; }
 
 }

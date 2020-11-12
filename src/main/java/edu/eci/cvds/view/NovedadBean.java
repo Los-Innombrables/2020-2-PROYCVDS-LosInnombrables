@@ -23,8 +23,8 @@ public class NovedadBean extends BasePageBean{
     @Inject
     private ServicesNovedad servicesNovedad;
 
-    public List<Novedad> consultarNovedades() throws HistorialEquiposException {
-        return servicesNovedad.consultarNovedades();
+    public List<Novedad> consultarNovedadesObj() throws HistorialEquiposException {
+        return servicesNovedad.consultarNovedadesObj();
     }
 
     public void registrarNovedad(int responsable, int equipo, int elemento, String titulo, String novedad) throws HistorialEquiposException {

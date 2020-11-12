@@ -18,10 +18,11 @@ public class ServicesElementoImpl implements ServicesElemento {
     private ElementoDAO elementoDAO;
 
     @Override
-    public List<Elemento> consultarElementos() throws HistorialEquiposException {
+    public List<Elemento> consultarElementosObj() throws HistorialEquiposException {
         try{
-            return elementoDAO.consultarElementos();
+            return elementoDAO.consultarElementosObj();
         }catch (Exception e){
+            e.printStackTrace();
             throw new HistorialEquiposException(e.getMessage());
         }
     }

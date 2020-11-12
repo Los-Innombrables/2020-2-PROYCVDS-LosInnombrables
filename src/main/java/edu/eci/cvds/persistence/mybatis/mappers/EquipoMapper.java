@@ -9,7 +9,7 @@ public interface EquipoMapper {
 
     void addEquipo(@Param("equipo") Equipo equipo);
 
-    List<Equipo> consultarEquipos();
+    List<Equipo> consultarEquiposObj();
 
     void darDeBajaEquipo(@Param("id") int id, @Param("activo") boolean activo);
 

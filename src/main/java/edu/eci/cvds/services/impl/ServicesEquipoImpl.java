@@ -22,11 +22,13 @@ public class ServicesEquipoImpl implements ServicesEquipo {
         }
     }
 
+
     @Override
-    public List<Equipo> consultarEquipos() throws HistorialEquiposException {
-        try {
-            return equipoDAO.consultarEquipos();
-        } catch (Exception e) {
+    public List<Equipo> consultarEquiposObj() throws HistorialEquiposException {
+        try{
+            return equipoDAO.consultarEquiposObj();
+        }catch (Exception e){
+            e.printStackTrace();
             throw new HistorialEquiposException(e.getMessage());
         }
     }
@@ -45,6 +47,7 @@ public class ServicesEquipoImpl implements ServicesEquipo {
         try {
             return equipoDAO.consultarEquipoId(id);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new HistorialEquiposException(e.getMessage());
         }
     }

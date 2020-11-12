@@ -82,7 +82,7 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <p:dataTable class="table table-bordered" var="novedad"
-                                    value="#{novedadBean.consultarNovedades()}" style="width:100%" width="100%"
+                                    value="#{novedadBean.consultarNovedadesObj()}" style="width:100%" width="100%"
                                     cellspacing="0" paginator="true"
                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                     tableStyleClass="table table-striped table-bordered p-3 mb-2 bg-primary text-white">
@@ -93,13 +93,13 @@
                                         <h:outputText value="#{novedad.getTitulo()}" />
                                     </p:column>
                                     <p:column headerText="Responsable">
-                                        <h:outputText value="#{novedad.getResponsable()}" />
+                                        <h:outputText value="#{novedad.getUsuario().getCarnet()}" />
                                     </p:column>
                                     <p:column headerText="Equipo">
-                                        <h:outputText value="#{equipoBean.consultarNombreEquipo(novedad.getEquipo())}" />
+                                        <h:outputText value="#{novedad.getEquipoObj().getNombre()}" />
                                     </p:column>
                                     <p:column headerText="Elemento">
-                                        <h:outputText value="#{novedad.getElemento()}" />
+                                        <h:outputText value="#{novedad.getElementoObj().getNombre()}" />
                                     </p:column>
                                     <p:column headerText="Fecha">
                                         <h:outputText value="#{novedad.getFecha()}" />

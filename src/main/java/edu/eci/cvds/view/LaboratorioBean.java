@@ -24,9 +24,7 @@ public class LaboratorioBean extends BasePageBean{
     private ServicesLaboratorio servicesLaboratorio;
 
     public ArrayList<Laboratorio> consultarLaboratorios() throws HistorialEquiposException {
-        ArrayList<Laboratorio> laboratorios = (ArrayList<Laboratorio>) servicesLaboratorio.consultarLaboratorios();
-        laboratorios.sort(Comparator.comparing(Laboratorio::getId));
-        return laboratorios;
+        return (ArrayList<Laboratorio>) servicesLaboratorio.consultarLaboratorios();
     }
 
     public Map<String, Integer> consultarNombreLaboratorios() throws HistorialEquiposException {

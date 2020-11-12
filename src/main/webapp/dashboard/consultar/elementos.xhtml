@@ -77,7 +77,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <p:dataTable var="Elemento" value="#{elementoBean.consultarElementos()}"
+                                <p:dataTable var="Elemento" value="#{elementoBean.consultarElementosObj()}"
                                     class="table table-bordered" style="width: 100%" width="100%" cellspacing="0"
                                     paginator="true"
                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -85,17 +85,17 @@
                                     <p:column headerText="Identificador">
                                         <h:outputText value="#{Elemento.getId()}" />
                                     </p:column>
+                                    <p:column headerText="Nombre">
+                                        <h:outputText value="#{Elemento.getNombre()}" />
+                                    </p:column>
                                     <p:column headerText="Tipo">
-                                        <h:outputText value="#{Elemento.getTipo()}" />
+                                        <h:outputText value="#{Elemento.getTipoElemento().getNombre()}" />
                                     </p:column>
                                     <p:column headerText="Equipo">
-                                        <h:outputText value="#{Elemento.getEquipo()}" />
+                                        <h:outputText value="#{Elemento.getEquipoOb().getNombre()}" />
                                     </p:column>
                                     <p:column headerText="Fecha De Registro">
                                         <h:outputText value="#{Elemento.getFechaDeRegistro()}" />
-                                    </p:column>
-                                    <p:column headerText="Nombre">
-                                        <h:outputText value="#{Elemento.getNombre()}" />
                                     </p:column>
                                     <p:column headerText="Estado">
                                         <h:outputText value="#{Elemento.isActivo()}" />

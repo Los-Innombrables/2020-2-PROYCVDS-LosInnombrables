@@ -16,6 +16,7 @@
     <select id="consultarUsuarios" resultMap="UsuarioResult">
         SELECT *
         FROM Usuario
+        ORDER BY carnet
     </select>
 
     <!-- Resultado Usuario -->

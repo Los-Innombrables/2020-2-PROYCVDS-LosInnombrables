@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ElementoMapper {
 
-    List<Elemento> consultarElementos();
+    List<Elemento> consultarElementosObj();
 
     void actualizarEquipoAsociado(@Param("id") int id, @Param("equipo") int equipo);
 

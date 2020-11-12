@@ -35,10 +35,8 @@ public class EquipoBean extends BasePageBean{
     private String pantallaE;
 
 
-    public ArrayList<Equipo> consultarEquipos() throws HistorialEquiposException {
-        ArrayList<Equipo> equipos = (ArrayList<Equipo>) servicesEquipo.consultarEquipos();
-        equipos.sort(Comparator.comparing(Equipo::getId));
-        return equipos;
+    public ArrayList<Equipo> consultarEquiposObj() throws HistorialEquiposException {
+        return (ArrayList<Equipo>) servicesEquipo.consultarEquiposObj();
     }
 
     public void registrarEquipo(String nombre, String activoS, int laboratorio, int torre, int pantalla, int mouse, int teclado, int responsable) throws HistorialEquiposException {
@@ -98,7 +96,7 @@ public class EquipoBean extends BasePageBean{
     public void asociarLaboratorio(int laboratorio, int equipoInt, int responsable) throws HistorialEquiposException {
         ServicesNovedad servicesNovedad = ServicesHistorialDeEquipoFactory.getInstance().getServicesNovedad();
         Equipo equipo = servicesEquipo.consultarEquipoId(equipoInt);
-        if(equipo.getLaboratorio() != 0){
+        if(equipo.getLaboratorioObj().getId() != 0){
             /*Generar Novedad de cambio*/
             Novedad novedad = new Novedad(1, responsable, equipoInt, 0, null, "Equipo cambiado de laboratorio", "El equipo fue cambiado de laboratorio a uno nuevo.");
             servicesNovedad.registrarNovedad(novedad);
@@ -119,7 +117,7 @@ public class EquipoBean extends BasePageBean{
     }
 
     private int consultarNextId() throws HistorialEquiposException {
-        ArrayList<Equipo> equipos = consultarEquipos();
+        ArrayList<Equipo> equipos = consultarEquiposObj();
         int maxInt = 0;
         for (Equipo equipo : equipos){
             if (equipo.getId() > maxInt){ maxInt = equipo.getId();}
@@ -129,7 +127,7 @@ public class EquipoBean extends BasePageBean{
 
     /*Crear Objeto Interno*/
     public Map<String, Integer> getEquipoMap() throws HistorialEquiposException {
-        ArrayList<Equipo> equipos = consultarEquipos();
+        ArrayList<Equipo> equipos = consultarEquiposObj();
         Map<String, Integer> equipoMap = new LinkedHashMap<String,Integer>();
         for(Equipo equipo : equipos){
             equipoMap.put(equipo.getNombre(), equipo.getId());
@@ -138,7 +136,7 @@ public class EquipoBean extends BasePageBean{
     }
 
     public Map<String, Integer> getEquipoMapActivo() throws HistorialEquiposException {
-        ArrayList<Equipo> equipos = consultarEquipos();
+        ArrayList<Equipo> equipos = consultarEquiposObj();
         Map<String, Integer> equipoMap = new LinkedHashMap<String,Integer>();
         for(Equipo equipo : equipos){
             if(equipo.getActivo()){

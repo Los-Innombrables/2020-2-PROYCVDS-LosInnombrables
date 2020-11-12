@@ -25,13 +25,13 @@ public class MyBatisEquipoDAO implements EquipoDAO {
     }
 
     @Override
-    public List<Equipo> consultarEquipos() throws HistorialEquiposException {
+    public List<Equipo> consultarEquiposObj() throws HistorialEquiposException {
         try{
-            return equipoMapper.consultarEquipos();
+            return equipoMapper.consultarEquiposObj();
         }catch (Exception e){
-            throw new HistorialEquiposException("Error Al Consultar Equipos");
+            e.printStackTrace();
+            throw new HistorialEquiposException("Error al consultar Equipo");
         }
-
     }
 
     @Override
@@ -48,6 +48,7 @@ public class MyBatisEquipoDAO implements EquipoDAO {
         try{
             return equipoMapper.consultarEquipoId(id);
         }catch (Exception e){
+            e.printStackTrace();
             throw new HistorialEquiposException("Error al consultar equipo");
         }
     }

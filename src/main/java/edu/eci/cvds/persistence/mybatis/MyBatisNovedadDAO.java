@@ -14,11 +14,12 @@ public class MyBatisNovedadDAO implements NovedadDAO {
     private NovedadMapper novedadMapper;
 
     @Override
-    public List<Novedad> consultarNovedades() throws HistorialEquiposException {
+    public List<Novedad> consultarNovedadesObj() throws HistorialEquiposException {
         try{
-            return novedadMapper.consultarNovedades();
+            return novedadMapper.consultarNovedadesObj();
         }catch (Exception e){
-            throw new HistorialEquiposException("Error Al Consultar Novedades");
+            e.printStackTrace();
+            throw new HistorialEquiposException("Error al consultar novedades");
         }
     }
 

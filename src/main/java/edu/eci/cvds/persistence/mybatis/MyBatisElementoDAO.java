@@ -14,10 +14,11 @@ public class MyBatisElementoDAO implements ElementoDAO {
     private ElementoMapper elementoMapper;
 
     @Override
-    public List<Elemento> consultarElementos() throws HistorialEquiposException {
+    public List<Elemento> consultarElementosObj() throws HistorialEquiposException {
         try{
-            return elementoMapper.consultarElementos();
+            return elementoMapper.consultarElementosObj();
         }catch (Exception e){
+            e.printStackTrace();
             throw new HistorialEquiposException("Error al consultar Elementos");
         }
     }

@@ -10,7 +10,7 @@ public interface EquipoDAO {
 
     void addEquipo(Equipo equipo) throws HistorialEquiposException;
 
-    List<Equipo> consultarEquipos() throws HistorialEquiposException;
+    List<Equipo> consultarEquiposObj() throws HistorialEquiposException;
 
     void darDeBajaEquipo(int id, boolean activo) throws HistorialEquiposException;
 

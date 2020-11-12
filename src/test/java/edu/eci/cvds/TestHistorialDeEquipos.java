@@ -80,7 +80,7 @@ public class TestHistorialDeEquipos {
     @Test
     public void consultarEquiposTest() {
         try {
-            ArrayList<Equipo> equipos = (ArrayList<Equipo>) servicesEquipo.consultarEquipos();
+            ArrayList<Equipo> equipos = (ArrayList<Equipo>) servicesEquipo.consultarEquiposObj();
             Assert.assertTrue(true);
         } catch (HistorialEquiposException e) {
             Assert.assertTrue(false);
@@ -121,7 +121,7 @@ public class TestHistorialDeEquipos {
     @Test
     public void consultarElementosTest() {
         try {
-            ArrayList<Elemento> elementos = (ArrayList<Elemento>) servicesElemento.consultarElementos();
+            ArrayList<Elemento> elementos = (ArrayList<Elemento>) servicesElemento.consultarElementosObj();
             Assert.assertTrue(true);
         } catch (HistorialEquiposException e) {
             Assert.assertTrue(false);
@@ -131,7 +131,7 @@ public class TestHistorialDeEquipos {
     @Test
     public void consultarNovedadesTest() {
         try {
-            ArrayList<Novedad> novedades = (ArrayList<Novedad>) servicesNovedad.consultarNovedades();
+            ArrayList<Novedad> novedades = (ArrayList<Novedad>) servicesNovedad.consultarNovedadesObj();
             Assert.assertTrue(true);
         } catch (HistorialEquiposException e) {
             Assert.assertTrue(false);
@@ -158,5 +158,16 @@ public class TestHistorialDeEquipos {
             Assert.assertTrue(false);
         }
     }*/
+
+    @Test
+    public void consultarEquipoId() {
+        try {
+            Equipo equipo = servicesEquipo.consultarEquipoId(2);
+            equipo.getNombre();
+            Assert.assertTrue(true);
+        } catch (HistorialEquiposException e) {
+            Assert.assertTrue(false);
+        }
+    }
 
 }

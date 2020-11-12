@@ -7,14 +7,16 @@
 
     <!-- Consultar -->
     <select id="consultarTipoElemento" resultMap="TipoElementoResult">
-        SELECT *
-        FROM TipoElemento
+        SELECT
+            te.nombre as te_nombre,
+            te.descripcion as te_descripcion
+        FROM TipoElemento as te
     </select>
 
     <!-- Resultado Usuario -->
     <resultMap type="TipoElemento" id="TipoElementoResult">
-        <result property="nombre" column="nombre"/>
-        <result property="descripcion" column="descripcion"/>
+        <result property="nombre" column="te_nombre"/>
+        <result property="descripcion" column="te_descripcion"/>
     </resultMap>
 
 </mapper>
