@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
     <link rel="icon" type="image/x-icon" href="../../assets/img/favicon.ico" />
@@ -16,8 +16,8 @@
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
     <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet" />
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet" />
 
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.css" rel="stylesheet" />
@@ -81,13 +81,15 @@
                             </div>
                             <div class="card-body">
                                 <h:panelGrid columns="6" cellpadding="5" class="h3 mb-2 text-gray-800">
-                                    <p:outputLabel for="Nombre" value="Nombre:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                    <p:outputLabel for="Nombre" value="Nombre:"
+                                        class="form-control bg-light border-0 small"></p:outputLabel>
                                     <p:inputText name="Nombre" class="form-control bg-light border-0 small" id="Nombre"
-                                                 type="text" required="true" placeholder="Nombre" binding="#{nombre}" />
+                                        type="text" required="true" placeholder="Nombre" binding="#{nombre}" />
 
-                                    <p:outputLabel value="Estado:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                    <p:outputLabel value="Estado:" class="form-control bg-light border-0 small">
+                                    </p:outputLabel>
                                     <h:selectOneMenu name="Estado" id="estado" value="#{elementoBean.tipoEstado}"
-                                                     required="true" binding="#{estado}" type="text" class="form-control">
+                                        required="true" binding="#{estado}" type="text" class="form-control">
                                         <f:selectItem itemLabel="Activo" itemValue="Activo" />
                                         <f:selectItem itemLabel="Inactivo" itemValue="Inactivo" />
                                     </h:selectOneMenu>
@@ -96,8 +98,8 @@
                             </div>
                             <div class="modal-footer">
                                 <h:commandButton styleClass="btn btn-primary" update="Form_formulario"
-                                                 actionListener="#{laboratorioBean.addLaboratorio(nombre.value, estado.value)}"
-                                                 href="administrarLaboratorio.xhtml" value="Registrar" />
+                                    actionListener="#{laboratorioBean.addLaboratorio(nombre.value, estado.value)}"
+                                    href="administrarLaboratorio.xhtml" value="Registrar" />
                             </div>
 
                         </h:form>
@@ -108,23 +110,26 @@
                             </div>
                             <div class="card-body">
                                 <h:panelGrid columns="6" cellpadding="5" class="h3 mb-2 text-gray-800">
-                                    <p:outputLabel value="Laboratorio:" class="form-control bg-light border-0 small"></p:outputLabel>
-                                    <h:selectOneMenu name="Laboratorio" id="Laboratorio" value="#{laboratorioBean.selectedLab}"
-                                                     required="true" binding="#{laboratorio}" type="number" class="form-control">
+                                    <p:outputLabel value="Laboratorio:" class="form-control bg-light border-0 small">
+                                    </p:outputLabel>
+                                    <h:selectOneMenu name="Laboratorio" id="Laboratorio"
+                                        value="#{laboratorioBean.selectedLab}" required="true" binding="#{laboratorio}"
+                                        type="number" class="form-control">
                                         <f:selectItems value="#{laboratorioBean.consultarNombreLaboratorios()}" />
                                     </h:selectOneMenu>
 
-                                    <p:outputLabel value="Equipo:" class="form-control bg-light border-0 small"></p:outputLabel>
+                                    <p:outputLabel value="Equipo:" class="form-control bg-light border-0 small">
+                                    </p:outputLabel>
                                     <h:selectOneMenu name="Equipo" id="Equipo" value="#{equipoBean.selectedEquipoAct}"
-                                                     required="true" binding="#{equipo}" type="number" class="form-control">
+                                        required="true" binding="#{equipo}" type="number" class="form-control">
                                         <f:selectItems value="#{equipoBean.getEquipoMapActivo()}" />
                                     </h:selectOneMenu>
                                 </h:panelGrid>
                             </div>
                             <div class="modal-footer">
                                 <h:commandButton styleClass="btn btn-primary" update="Form_asociar"
-                                                 actionListener="#{equipoBean.asociarLaboratorio(laboratorio.value, equipo.value, loginBean.usuarioCarnet)}"
-                                                 href="administrarLaboratorio.xhtml" value="Asociar" />
+                                    actionListener="#{equipoBean.asociarLaboratorio(laboratorio.value, equipo.value, loginBean.usuarioCarnet)}"
+                                    href="administrarLaboratorio.xhtml" value="Asociar" />
                             </div>
                         </h:form>
                     </div>
@@ -137,7 +142,8 @@
                         <br />
                     </h:form>
                     <div>
-                        <a class="btn btn-secondary" href="administrarEquipo.xhtml"> Desasociar Equipo</a>
+                        <a class="btn btn-secondary" href="administrarEquipo.xhtml#desasociarEquipo"> Desasociar
+                            Equipo</a>
                     </div>
 
                 </div>

@@ -15,45 +15,45 @@ public class ServicesEquipoImpl implements ServicesEquipo {
 
     @Override
     public void addEquipo(Equipo equipo) throws HistorialEquiposException {
-        try{
+        try {
             equipoDAO.addEquipo(equipo);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new HistorialEquiposException(e.getMessage());
         }
     }
 
     @Override
-    public List<Equipo> consultarEquipos() throws HistorialEquiposException{
-        try{
+    public List<Equipo> consultarEquipos() throws HistorialEquiposException {
+        try {
             return equipoDAO.consultarEquipos();
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new HistorialEquiposException(e.getMessage());
         }
     }
 
     @Override
     public void darDeBajaEquipo(int id, boolean activo) throws HistorialEquiposException {
-        try{
+        try {
             equipoDAO.darDeBajaEquipo(id, activo);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new HistorialEquiposException(e.getMessage());
         }
     }
 
     @Override
     public Equipo consultarEquipoId(int id) throws HistorialEquiposException {
-        try{
+        try {
             return equipoDAO.consultarEquipoId(id);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new HistorialEquiposException(e.getMessage());
         }
     }
 
     @Override
     public void asociarLaboratorio(int laboratorio, int id) throws HistorialEquiposException {
-        try{
+        try {
             equipoDAO.asociarLaboratorio(laboratorio, id);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new HistorialEquiposException(e.getMessage());
         }
     }

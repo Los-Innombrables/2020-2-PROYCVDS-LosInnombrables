@@ -243,14 +243,59 @@
                         </h:form>
                     </div>
                     <hr />
-                    <div id="desasociarEquipo">
 
+                    <!-- Asociar equipo -->
+                    <h1 class="h3 mb-2 text-gray-800">Desasociar Equipo</h1>
+                    <div id="desasociarEquipo" class="card shadow mb-4">
+                        <h:form id="Form_Asociar">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Desasociar Equipo:</h6>
+                            </div>
+                            <div class="card-body">
+                                <h:panelGrid columns="6" cellpadding="5" class="h3 mb-2 text-gray-800">
+
+                                    <p:outputLabel value="Equipo:" class="form-control bg-light border-0 small">
+                                    </p:outputLabel>
+                                    <h:selectOneMenu name="equipoA" id="equipoA" value="#{equipoBean.selectedEquipoAct}"
+                                        required="true" binding="#{equipoAsc}" type="number" class="form-control">
+                                        <f:selectItems value="#{equipoBean.getEquipoMapActivo()}" />
+                                    </h:selectOneMenu>
+
+                                </h:panelGrid>
+                            </div>
+                            <div class="modal-footer">
+                                <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#confirmacionAs4">
+                                    Desasociar
+                                </a>
+                                <div class="modal fade" id="confirmacionAs4" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabeAs4">¿Seguro deseas asociar
+                                                    el equipo al laboratorio?</h5>
+                                                <button class="close" type="button" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">Selecciona Confirmar si deseas realizar el cambio.
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" type="button"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <h:commandButton styleClass="btn btn-primary" update="Form_Asociar"
+                                                    actionListener="#{equipoBean.asociarLaboratorio(0, equipoAsc.value, loginBean.usuarioCarnet)}"
+                                                    href="administrarEquipo.xhtml" value="Confirmar" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </h:form>
                     </div>
                 </div>
-
-
-                <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
 
