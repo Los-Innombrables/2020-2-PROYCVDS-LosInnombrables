@@ -49,6 +49,22 @@
         WHERE eq.id = #{id}
     </select>
 
+    <!-- Consultar Equipo por Lab -->
+    <select id="consultarEquiposLab" resultMap="EquipoResultObj">
+        SELECT
+            eq.id as eq_id,
+            eq.nombre as eq_nombre,
+            eq.activo as eq_activo,
+            lb.id as lb_id,
+            lb.nombre as lb_nombre,
+            lb.fechaDeCreacion as lb_fechadeCreacion,
+            lb.fechaDeCierre as lb_fechadeCierre,
+            lb.activo as lb_activo
+        FROM equipo as eq
+            JOIN laboratorio as lb ON eq.laboratorio = lb.id
+        WHERE lb.id = #{id}
+    </select>
+
     <!-- Dar De Baja Equipo -->
     <update id="darDeBajaEquipo" parameterType="map">
         UPDATE Equipo

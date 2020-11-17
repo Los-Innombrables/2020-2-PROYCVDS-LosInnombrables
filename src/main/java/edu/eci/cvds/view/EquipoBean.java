@@ -79,6 +79,7 @@ public class EquipoBean extends BasePageBean{
 
     public void darDeBajaEquipo(int id, String torreE, String mouseE, String pantallaE, String tecladoE, int responsable) throws HistorialEquiposException {
         servicesEquipo.darDeBajaEquipo(id, false);
+        servicesEquipo.asociarLaboratorio(0,id);
 
         ServicesElemento servicesElemento = ServicesHistorialDeEquipoFactory.getInstance().getServicesElemento();
         servicesElemento.eliminarElementos(id, torreE, mouseE, pantallaE, tecladoE, responsable);
@@ -96,15 +97,26 @@ public class EquipoBean extends BasePageBean{
     public void asociarLaboratorio(int laboratorio, int equipoInt, int responsable) throws HistorialEquiposException {
         ServicesNovedad servicesNovedad = ServicesHistorialDeEquipoFactory.getInstance().getServicesNovedad();
         Equipo equipo = servicesEquipo.consultarEquipoId(equipoInt);
-        if(equipo.getLaboratorioObj().getId() != 0){
+        if(equipo.getLaboratorioObj().getId() != 0 && laboratorio != 0){
             /*Generar Novedad de cambio*/
             Novedad novedad = new Novedad(1, responsable, equipoInt, 0, null, "Equipo cambiado de laboratorio", "El equipo fue cambiado de laboratorio a uno nuevo.");
             servicesNovedad.registrarNovedad(novedad);
+        }else if(equipo.getLaboratorioObj().getId() != 0 && laboratorio == 0){
+            Novedad novedad = new Novedad(1, responsable, equipoInt, 0, null, "Equipo desasociado de laboratorio", "El equipo fue desasociado del laboratorio.");
+            servicesNovedad.registrarNovedad(novedad);
+        }else{
+            Novedad novedad = new Novedad(1, responsable, equipoInt, 0, null, "Equipo agregado a nuevo Laboratorio", "El equipo fue agregado a un nuevo laboratorio.");
+            servicesNovedad.registrarNovedad(novedad);
         }
         servicesEquipo.asociarLaboratorio(laboratorio, equipoInt);
-        Novedad novedad = new Novedad(1, responsable, equipoInt, 0, null, "Equipo agregado a nuevo Laboratorio", "El equipo fue agregado a un nuevo laboratorio.");
-        servicesNovedad.registrarNovedad(novedad);
 
+    }
+
+    public void desasociarEquiposLab(int id, int responsable) throws HistorialEquiposException {
+        ArrayList<Equipo> equipos = (ArrayList<Equipo>) servicesEquipo.consultarEquiposLab(id);
+        for(Equipo equipo : equipos){
+            this.asociarLaboratorio(0, equipo.getId(), responsable);
+        }
     }
 
     /* Getter and Setter*/

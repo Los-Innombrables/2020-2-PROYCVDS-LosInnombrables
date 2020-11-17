@@ -61,4 +61,13 @@ public class MyBatisEquipoDAO implements EquipoDAO {
             throw new HistorialEquiposException("No se pudo asociar el equipo");
         }
     }
+
+    @Override
+    public List<Equipo> consultarEquiposLab(int id) throws HistorialEquiposException {
+        try{
+            return equipoMapper.consultarEquiposLab(id);
+        }catch (Exception e){
+            throw new HistorialEquiposException("No se pudo consultar los equipos");
+        }
+    }
 }

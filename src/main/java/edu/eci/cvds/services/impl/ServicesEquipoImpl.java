@@ -22,7 +22,6 @@ public class ServicesEquipoImpl implements ServicesEquipo {
         }
     }
 
-
     @Override
     public List<Equipo> consultarEquiposObj() throws HistorialEquiposException {
         try{
@@ -57,6 +56,15 @@ public class ServicesEquipoImpl implements ServicesEquipo {
         try {
             equipoDAO.asociarLaboratorio(laboratorio, id);
         } catch (Exception e) {
+            throw new HistorialEquiposException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Equipo> consultarEquiposLab(int id) throws HistorialEquiposException {
+        try{
+            return equipoDAO.consultarEquiposLab(id);
+        }catch (Exception e){
             throw new HistorialEquiposException(e.getMessage());
         }
     }

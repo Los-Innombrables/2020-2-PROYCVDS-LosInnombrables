@@ -3,6 +3,8 @@ package edu.eci.cvds.view;
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Laboratorio;
 import edu.eci.cvds.exceptions.HistorialEquiposException;
+import edu.eci.cvds.services.ServicesEquipo;
+import edu.eci.cvds.services.ServicesHistorialDeEquipoFactory;
 import edu.eci.cvds.services.ServicesLaboratorio;
 
 import javax.faces.bean.ManagedBean;
@@ -31,7 +33,9 @@ public class LaboratorioBean extends BasePageBean{
         ArrayList<Laboratorio> laboratorios = consultarLaboratorios();
         laboratorioMap = new LinkedHashMap<String,Integer>();
         for(Laboratorio l : laboratorios){
-            laboratorioMap.put(l.getNombre(), l.getId());
+            if(l.getActivo()){
+                laboratorioMap.put(l.getNombre(), l.getId());
+            }
         }
         return laboratorioMap;
     }
@@ -47,6 +51,10 @@ public class LaboratorioBean extends BasePageBean{
         }
         Laboratorio laboratorio = new Laboratorio(0, nombre, null, activo, null);
         servicesLaboratorio.addLaboratorio(laboratorio);
+    }
+
+    public void cerrarLaboratorio(int id) throws HistorialEquiposException {
+        servicesLaboratorio.cerrarLaboratorio(id);
     }
 
     public Map<String, Integer> getLaboratorioMap() {
