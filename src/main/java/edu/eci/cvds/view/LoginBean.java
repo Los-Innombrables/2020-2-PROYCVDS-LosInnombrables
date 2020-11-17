@@ -29,6 +29,8 @@ public class LoginBean extends BasePageBean {
     private String userName;
     private String password;
     private String canLog = " ";
+    private String rol;
+    private Usuario usuario;
     private int usuarioCarnet;
 
     public static String redirectPage(int rol) {
@@ -38,7 +40,9 @@ public class LoginBean extends BasePageBean {
     public String login() {
         /* System.out.println(Objects.isNull(servicesUsuario)); */
         try {
-            Usuario usuario = servicesUsuario.logInUsuario(userName, convertSHA256(password));
+            this.password = convertSHA256(password);
+            usuario = servicesUsuario.logInUsuario(userName, password);
+            rol = usuario.getRolS();
             FacesContext context = FacesContext.getCurrentInstance();
             if (usuario == null) {
                 context.addMessage(null, new FacesMessage("Unknown login, try again"));
@@ -111,5 +115,17 @@ public class LoginBean extends BasePageBean {
 
     public void setUsuarioCarnet(int usuarioCarnet) {
         this.usuarioCarnet = usuarioCarnet;
+    }
+
+    public String getRol() { return rol; }
+
+    public void setRol(String rol) { this.rol = rol; }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

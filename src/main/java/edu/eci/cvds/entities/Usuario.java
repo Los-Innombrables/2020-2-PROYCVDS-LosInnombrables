@@ -87,6 +87,17 @@ public class Usuario {
     }
 
     public void setRol(int rol) {
+        switch (rol){
+            case 1:
+                this.rolS = "Administrador";
+                break;
+            case 2:
+                this.rolS = "Profesor";
+                break;
+            case 3:
+                this.rolS = "Estudiante";
+                break;
+        }
         this.rol = rol;
     }
 
