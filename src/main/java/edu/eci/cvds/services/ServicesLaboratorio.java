@@ -13,4 +13,6 @@ public interface ServicesLaboratorio {
 
     void addLaboratorio(Laboratorio laboratorio) throws HistorialEquiposException;
 
+    void cerrarLaboratorio(int id) throws HistorialEquiposException;
+
 }

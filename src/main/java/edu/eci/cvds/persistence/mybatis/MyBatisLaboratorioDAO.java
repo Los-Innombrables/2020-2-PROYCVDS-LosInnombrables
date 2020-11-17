@@ -15,29 +15,38 @@ public class MyBatisLaboratorioDAO implements LaboratorioDAO {
 
     @Override
     public List<Laboratorio> consultarLaboratorios() throws HistorialEquiposException {
-        try{
-           return laboratorioMapper.consultarLaboratorios();
-        }catch (Exception e){
+        try {
+            return laboratorioMapper.consultarLaboratorios();
+        } catch (Exception e) {
             throw new HistorialEquiposException("Error Al Consultar Laboratorios");
         }
     }
 
     @Override
     public Laboratorio consultarLaboratorioNombre(String nombre) throws HistorialEquiposException {
-        try{
+        try {
             return laboratorioMapper.consultarLaboratorioNombre(nombre);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new HistorialEquiposException("Laboratorio con nombre " + nombre + " no existe");
         }
     }
 
     @Override
     public void addLaboratorio(Laboratorio laboratorio) throws HistorialEquiposException {
-        try{
+        try {
             laboratorioMapper.addLaboratorio(laboratorio);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new HistorialEquiposException("No se puede registrar el laboratorio");
+        }
+    }
+
+    @Override
+    public void cerrarLaboratorio(int id) throws HistorialEquiposException {
+        try {
+            laboratorioMapper.cerrarLaboratorio(id);
+        } catch (Exception e) {
+            throw new HistorialEquiposException("No se puede cerrar el laboratorio");
         }
     }
 

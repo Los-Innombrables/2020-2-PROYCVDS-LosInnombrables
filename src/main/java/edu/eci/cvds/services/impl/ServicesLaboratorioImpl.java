@@ -14,28 +14,37 @@ public class ServicesLaboratorioImpl implements ServicesLaboratorio {
     private LaboratorioDAO laboratorioDAO;
 
     @Override
-    public List<Laboratorio> consultarLaboratorios() throws HistorialEquiposException{
-        try{
+    public List<Laboratorio> consultarLaboratorios() throws HistorialEquiposException {
+        try {
             return laboratorioDAO.consultarLaboratorios();
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new HistorialEquiposException(e.getMessage());
         }
     }
 
     @Override
-    public Laboratorio consultarLaboratorioNombre(String nombre) throws HistorialEquiposException{
-        try{
+    public Laboratorio consultarLaboratorioNombre(String nombre) throws HistorialEquiposException {
+        try {
             return laboratorioDAO.consultarLaboratorioNombre(nombre);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new HistorialEquiposException(e.getMessage());
         }
     }
 
     @Override
     public void addLaboratorio(Laboratorio laboratorio) throws HistorialEquiposException {
-        try{
+        try {
             laboratorioDAO.addLaboratorio(laboratorio);
-        }catch (Exception e){
+        } catch (Exception e) {
+            throw new HistorialEquiposException(e.getMessage());
+        }
+    }
+
+    @Override
+    public void cerrarLaboratorio(int id) throws HistorialEquiposException {
+        try {
+            laboratorioDAO.cerrarLaboratorio(id);
+        } catch (Exception e) {
             throw new HistorialEquiposException(e.getMessage());
         }
     }

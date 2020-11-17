@@ -15,8 +15,8 @@ import javax.servlet.http.HttpSession;
 
 import edu.eci.cvds.entities.Usuario;
 
-@WebFilter("/faces/dashboard/administrar/*")
-public class AdministrationFilter implements Filter {
+@WebFilter("/faces/dashboard/usuarios/*")
+public class UserFilter implements Filter {
 
     public static final String LOGIN_PAGE = "/faces/login.xhtml";
     private static final String MAIN_PAGE = "/faces/dashboard/main.xhtml";
@@ -37,7 +37,7 @@ public class AdministrationFilter implements Filter {
         boolean loggedIn = (session != null) && (user != null);
 
         if (loggedIn) {
-            if (user.getRol() == 1 || user.getRol() == 2) {
+            if (user.getRol() == 1) {
                 chain.doFilter(request, response);
             } else {
                 // System.out.println("Admin 1 Filter Working");
