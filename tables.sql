@@ -1,8 +1,8 @@
 create table if not exists Laboratorio (
 	id serial primary key,
 	nombre varchar(50) unique not null,
-	fechaDeCreacion date not null,
-	fechaDeCierre date null,
+	fechaDeCreacion TIMESTAMP not null,
+	fechaDeCierre TIMESTAMP null,
 	activo boolean not null
 );
 
@@ -43,7 +43,7 @@ create table if not exists Elemento (
 	equipo int null,
 	marca varchar(50) not null,
 	referencia varchar(50) not null,
-	fechaDeRegistro date not null,
+	fechaDeRegistro TIMESTAMP not null,
 	activo boolean not null,
 	constraint fk_Elemento_TipoElemento foreign key(tipo) references TipoElemento(nombre),
 	constraint fk_Elemento_Equipo foreign key(equipo) references Equipo(id)
