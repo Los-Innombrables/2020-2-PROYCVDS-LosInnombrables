@@ -17,4 +17,6 @@ public interface ServicesEquipo {
     Equipo consultarEquipoId(int id) throws HistorialEquiposException;
 
     void asociarLaboratorio(int laboratorio, int id) throws HistorialEquiposException;
+
+    List<Equipo> consultarEquiposLab(int id) throws HistorialEquiposException;
 }

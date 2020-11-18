@@ -145,6 +145,57 @@
                         <a class="btn btn-secondary" href="administrarEquipo.xhtml#desasociarEquipo"> Desasociar
                             Equipo</a>
                     </div>
+                    <hr/>
+                    <!-- Cerrar Laboratorio -->
+                    <h1 class="h3 mb-2 text-gray-800">Cerrar Laboratorio</h1>
+                    <div class="card shadow mb-4">
+                        <h:form id="Form_Cerrar">
+                        <!--Parte del Lab-->
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Cerrar: </h6>
+                            </div>
+                            <div class="card-body">
+                                <h:panelGrid columns="6" cellpadding="5" class="h3 mb-2 text-gray-800">
+                                    <h:selectOneMenu name="Laboratorio" id="LaboratorioC"
+                                                     value="#{laboratorioBean.selectedLab}" required="true" binding="#{laboratorioC}"
+                                                     type="number" class="form-control">
+                                        <f:selectItems value="#{laboratorioBean.consultarNombreLaboratorios()}" />
+                                    </h:selectOneMenu>
+                                </h:panelGrid>
+                            </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#confirmacionAs">
+                                Cerrar
+                            </a>
+                            <div class="modal fade" id="confirmacionAs" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabeAs">Seguro deseas realizar
+                                                este cambio ?</h5>
+                                            <button class="close" type="button" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">Selecciona Confirmar si deseas realizar el cambio.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" type="button"
+                                                    data-dismiss="modal">Cancelar</button>
+                                            <h:commandButton styleClass="btn btn-primary" update="Form_Cerrar"
+                                                             href="#" value="Confirmar">
+                                                <f:actionListener binding="#{laboratorioBean.cerrarLaboratorio(laboratorioC.value)}"/>
+                                                <f:actionListener binding="#{equipoBean.desasociarEquiposLab(laboratorioC.value, loginBean.usuarioCarnet)}"/>
+                                            </h:commandButton>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </h:form>
+                    </div>
 
                 </div>
                 <!-- /.container-fluid -->

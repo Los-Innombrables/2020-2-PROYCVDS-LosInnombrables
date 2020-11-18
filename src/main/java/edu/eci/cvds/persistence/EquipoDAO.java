@@ -18,4 +18,6 @@ public interface EquipoDAO {
 
     void asociarLaboratorio(int laboratorio, int id) throws HistorialEquiposException;
 
+    List<Equipo> consultarEquiposLab(int id) throws HistorialEquiposException;
+
 }
