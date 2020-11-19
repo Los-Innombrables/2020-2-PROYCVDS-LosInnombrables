@@ -22,6 +22,8 @@ public class EquipoBean extends BasePageBean{
     private static final long serialVersionUID = 1L;
     private String tipoEstado;
 
+    private Equipo equipo;
+
     @Inject
     private ServicesEquipo servicesEquipo;
 
@@ -204,5 +206,13 @@ public class EquipoBean extends BasePageBean{
 
     public void setPantallaE(String pantallaE) {
         this.pantallaE = pantallaE;
+    }
+
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
     }
 }

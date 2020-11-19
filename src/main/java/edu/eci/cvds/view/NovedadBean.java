@@ -19,6 +19,7 @@ import java.util.List;
 public class NovedadBean extends BasePageBean{
 
     private static final long serialVersionUID = 1L;
+    private Novedad novedad;
 
     @Inject
     private ServicesNovedad servicesNovedad;
@@ -35,4 +36,7 @@ public class NovedadBean extends BasePageBean{
         servicesNovedad.registrarNovedad(new Novedad(1, responsable, equipo, 0, null, titulo, novedad));
     }
 
+    public Novedad getNovedad() { return novedad; }
+
+    public void setNovedad(Novedad novedad) { this.novedad = novedad; }
 }
