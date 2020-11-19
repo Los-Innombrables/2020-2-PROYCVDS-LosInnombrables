@@ -32,11 +32,10 @@ public class UserFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession(false);
         // boolean ajaxRequest = "partial/ajax".equals(req.getHeader("Faces-Request"));
-        Usuario user = (Usuario) session.getAttribute("user");
-
-        boolean loggedIn = (session != null) && (user != null);
+        boolean loggedIn = (session != null) && (session.getAttribute("user") != null);
 
         if (loggedIn) {
+            Usuario user = (Usuario) session.getAttribute("user");
             if (user.getRol() == 1) {
                 chain.doFilter(request, response);
             } else {
