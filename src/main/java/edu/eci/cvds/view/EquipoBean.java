@@ -17,7 +17,7 @@ import java.util.*;
 @ManagedBean(name = "equipoBean")
 @SessionScoped
 
-public class EquipoBean extends BasePageBean{
+public class EquipoBean extends BasePageBean {
 
     private static final long serialVersionUID = 1L;
     private String tipoEstado;
@@ -30,35 +30,41 @@ public class EquipoBean extends BasePageBean{
     private String selectedEquipo;
     private String selectedEquipoAct;
 
-    /*Dar de baja*/
+    /* Dar de baja */
     private String torreE;
     private String mouseE;
     private String tecladoE;
     private String pantallaE;
 
+    private ArrayList<Equipo> equipos;
 
     public ArrayList<Equipo> consultarEquiposObj() throws HistorialEquiposException {
-        return (ArrayList<Equipo>) servicesEquipo.consultarEquiposObj();
+        if (equipos == null) {
+            equipos = (ArrayList<Equipo>) servicesEquipo.consultarEquiposObj();
+        }
+        return equipos;
     }
 
-    public void registrarEquipo(String nombre, String activoS, int laboratorio, int torre, int pantalla, int mouse, int teclado, int responsable) throws HistorialEquiposException {
+    public void registrarEquipo(String nombre, String activoS, int laboratorio, int torre, int pantalla, int mouse,
+            int teclado, int responsable) throws HistorialEquiposException {
         int id = this.consultarNextId() + 1;
         Equipo equipo;
         boolean activo = false;
-        if (activoS.equalsIgnoreCase("Activo")){
+        if (activoS.equalsIgnoreCase("Activo")) {
             activo = true;
         }
         equipo = new Equipo(id, laboratorio, nombre, activo);
         servicesEquipo.addEquipo(equipo);
-        /*Para asociar Elementos*/
+        /* Para asociar Elementos */
         asociarElemento(id, torre, pantalla, mouse, teclado);
-        /*Para Registrar Novedades*/
+        /* Para Registrar Novedades */
         generarNovedad(id, torre, pantalla, mouse, teclado, responsable, equipo);
-
+        this.equipos = null;
     }
 
-    private void asociarElemento(int id, int torre, int pantalla, int mouse, int teclado) throws HistorialEquiposException {
-        /*Para asociar Elementos*/
+    private void asociarElemento(int id, int torre, int pantalla, int mouse, int teclado)
+            throws HistorialEquiposException {
+        /* Para asociar Elementos */
         ServicesElemento servicesElemento = ServicesHistorialDeEquipoFactory.getInstance().getServicesElemento();
         servicesElemento.actualizarEquipoAsociado(torre, id);
         servicesElemento.actualizarEquipoAsociado(pantalla, id);
@@ -66,28 +72,31 @@ public class EquipoBean extends BasePageBean{
         servicesElemento.actualizarEquipoAsociado(teclado, id);
     }
 
-    private void generarNovedad(int id, int torre, int pantalla, int mouse, int teclado, int responsable, Equipo equipo) throws HistorialEquiposException {
-        /*Para Registrar Novedades*/
+    private void generarNovedad(int id, int torre, int pantalla, int mouse, int teclado, int responsable, Equipo equipo)
+            throws HistorialEquiposException {
+        /* Para Registrar Novedades */
         ServicesNovedad servicesNovedad = ServicesHistorialDeEquipoFactory.getInstance().getServicesNovedad();
-        servicesNovedad.registrarNovedad(new Novedad(1, responsable, id, torre, null,
-                "Elemento Nuevo Registrado", "Se registro un nuevo elemento de tipo torre al equipo " + equipo.getNombre()));
-        servicesNovedad.registrarNovedad(new Novedad(1, responsable, id, pantalla, null,
-                "Elemento Nuevo Registrado", "Se registro un nuevo elemento de tipo pantalla al equipo " + equipo.getNombre()));
-        servicesNovedad.registrarNovedad(new Novedad(1, responsable, id, mouse, null,
-                "Elemento Nuevo Registrado", "Se registro un nuevo elemento de tipo mouse al equipo " + equipo.getNombre()));
-        servicesNovedad.registrarNovedad(new Novedad(1, responsable, id, teclado, null,
-                "Elemento Nuevo Registrado", "Se registro un nuevo elemento de tipo teclado al equipo " + equipo.getNombre()));
+        servicesNovedad.registrarNovedad(new Novedad(1, responsable, id, torre, null, "Elemento Nuevo Registrado",
+                "Se registro un nuevo elemento de tipo torre al equipo " + equipo.getNombre()));
+        servicesNovedad.registrarNovedad(new Novedad(1, responsable, id, pantalla, null, "Elemento Nuevo Registrado",
+                "Se registro un nuevo elemento de tipo pantalla al equipo " + equipo.getNombre()));
+        servicesNovedad.registrarNovedad(new Novedad(1, responsable, id, mouse, null, "Elemento Nuevo Registrado",
+                "Se registro un nuevo elemento de tipo mouse al equipo " + equipo.getNombre()));
+        servicesNovedad.registrarNovedad(new Novedad(1, responsable, id, teclado, null, "Elemento Nuevo Registrado",
+                "Se registro un nuevo elemento de tipo teclado al equipo " + equipo.getNombre()));
     }
 
-    public void darDeBajaEquipo(int id, String torreE, String mouseE, String pantallaE, String tecladoE, int responsable) throws HistorialEquiposException {
+    public void darDeBajaEquipo(int id, String torreE, String mouseE, String pantallaE, String tecladoE,
+            int responsable) throws HistorialEquiposException {
         servicesEquipo.darDeBajaEquipo(id, false);
-        servicesEquipo.asociarLaboratorio(0,id);
+        servicesEquipo.asociarLaboratorio(0, id);
 
         ServicesElemento servicesElemento = ServicesHistorialDeEquipoFactory.getInstance().getServicesElemento();
         servicesElemento.eliminarElementos(id, torreE, mouseE, pantallaE, tecladoE, responsable);
 
         ServicesNovedad servicesNovedad = ServicesHistorialDeEquipoFactory.getInstance().getServicesNovedad();
-        Novedad novedad = new Novedad(1, responsable, id, 0, null, "Equipo Dado de baja", "El equipo fue dado de baja.");
+        Novedad novedad = new Novedad(1, responsable, id, 0, null, "Equipo Dado de baja",
+                "El equipo fue dado de baja.");
         servicesNovedad.registrarNovedad(novedad);
     }
 
@@ -99,15 +108,18 @@ public class EquipoBean extends BasePageBean{
     public void asociarLaboratorio(int laboratorio, int equipoInt, int responsable) throws HistorialEquiposException {
         ServicesNovedad servicesNovedad = ServicesHistorialDeEquipoFactory.getInstance().getServicesNovedad();
         Equipo equipo = servicesEquipo.consultarEquipoId(equipoInt);
-        if(equipo.getLaboratorioObj().getId() != 0 && laboratorio != 0){
-            /*Generar Novedad de cambio*/
-            Novedad novedad = new Novedad(1, responsable, equipoInt, 0, null, "Equipo cambiado de laboratorio", "El equipo fue cambiado de laboratorio a uno nuevo.");
+        if (equipo.getLaboratorioObj().getId() != 0 && laboratorio != 0) {
+            /* Generar Novedad de cambio */
+            Novedad novedad = new Novedad(1, responsable, equipoInt, 0, null, "Equipo cambiado de laboratorio",
+                    "El equipo fue cambiado de laboratorio a uno nuevo.");
             servicesNovedad.registrarNovedad(novedad);
-        }else if(equipo.getLaboratorioObj().getId() != 0 && laboratorio == 0){
-            Novedad novedad = new Novedad(1, responsable, equipoInt, 0, null, "Equipo desasociado de laboratorio", "El equipo fue desasociado del laboratorio.");
+        } else if (equipo.getLaboratorioObj().getId() != 0 && laboratorio == 0) {
+            Novedad novedad = new Novedad(1, responsable, equipoInt, 0, null, "Equipo desasociado de laboratorio",
+                    "El equipo fue desasociado del laboratorio.");
             servicesNovedad.registrarNovedad(novedad);
-        }else{
-            Novedad novedad = new Novedad(1, responsable, equipoInt, 0, null, "Equipo agregado a nuevo Laboratorio", "El equipo fue agregado a un nuevo laboratorio.");
+        } else {
+            Novedad novedad = new Novedad(1, responsable, equipoInt, 0, null, "Equipo agregado a nuevo Laboratorio",
+                    "El equipo fue agregado a un nuevo laboratorio.");
             servicesNovedad.registrarNovedad(novedad);
         }
         servicesEquipo.asociarLaboratorio(laboratorio, equipoInt);
@@ -116,12 +128,12 @@ public class EquipoBean extends BasePageBean{
 
     public void desasociarEquiposLab(int id, int responsable) throws HistorialEquiposException {
         ArrayList<Equipo> equipos = (ArrayList<Equipo>) servicesEquipo.consultarEquiposLab(id);
-        for(Equipo equipo : equipos){
+        for (Equipo equipo : equipos) {
             this.asociarLaboratorio(0, equipo.getId(), responsable);
         }
     }
 
-    /* Getter and Setter*/
+    /* Getter and Setter */
     public String getTipoEstado() {
         return tipoEstado;
     }
@@ -133,17 +145,19 @@ public class EquipoBean extends BasePageBean{
     private int consultarNextId() throws HistorialEquiposException {
         ArrayList<Equipo> equipos = consultarEquiposObj();
         int maxInt = 0;
-        for (Equipo equipo : equipos){
-            if (equipo.getId() > maxInt){ maxInt = equipo.getId();}
+        for (Equipo equipo : equipos) {
+            if (equipo.getId() > maxInt) {
+                maxInt = equipo.getId();
+            }
         }
         return maxInt;
     }
 
-    /*Crear Objeto Interno*/
+    /* Crear Objeto Interno */
     public Map<String, Integer> getEquipoMap() throws HistorialEquiposException {
         ArrayList<Equipo> equipos = consultarEquiposObj();
-        Map<String, Integer> equipoMap = new LinkedHashMap<String,Integer>();
-        for(Equipo equipo : equipos){
+        Map<String, Integer> equipoMap = new LinkedHashMap<String, Integer>();
+        for (Equipo equipo : equipos) {
             equipoMap.put(equipo.getNombre(), equipo.getId());
         }
         return equipoMap;
@@ -151,9 +165,9 @@ public class EquipoBean extends BasePageBean{
 
     public Map<String, Integer> getEquipoMapActivo() throws HistorialEquiposException {
         ArrayList<Equipo> equipos = consultarEquiposObj();
-        Map<String, Integer> equipoMap = new LinkedHashMap<String,Integer>();
-        for(Equipo equipo : equipos){
-            if(equipo.getActivo()){
+        Map<String, Integer> equipoMap = new LinkedHashMap<String, Integer>();
+        for (Equipo equipo : equipos) {
+            if (equipo.getActivo()) {
                 equipoMap.put(equipo.getNombre(), equipo.getId());
             }
         }

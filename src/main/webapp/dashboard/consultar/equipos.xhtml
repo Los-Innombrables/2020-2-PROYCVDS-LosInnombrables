@@ -80,30 +80,33 @@
                             <h6 class="m-0 font-weight-bold text-primary">Equipos - LabInfo</h6>
                         </div>
                         <h:form id="Form_Equipos">
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <p:dataTable class="table table-bordered" var="Equipo"
-                                    value="#{equipoBean.consultarEquiposObj()}" style="width:100%" width="100%"
-                                    cellspacing="0" paginator="true" selectionMode="single" selection="#{equipoBean.equipo}"
-                                    rowKey="#{Equipo.getId()}" rows="10" paginatorTemplate="{CurrentPageReport} {FirstPageLink}
-                                    {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                    currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-                                    rowsPerPageTemplate="5,10,15,20" tableStyleClass="table table-striped table-bordered p-3 mb-2 bg-primary text-white">
-                                    <p:column headerText="Identificador">
-                                        <h:outputText value="#{Equipo.getId()}" href="main.xhtml" />
-                                    </p:column>
-                                    <p:column headerText="Nombre">
-                                        <h:outputText value="#{Equipo.getNombre()}" />
-                                    </p:column>
-                                    <p:column headerText="Laboratorio">
-                                        <h:outputText value="#{Equipo.getLaboratorioObj().getNombre()}" />
-                                    </p:column>
-                                    <p:column headerText="Estado">
-                                        <h:outputText value="#{Equipo.getActivo()}" />
-                                    </p:column>
-                                </p:dataTable>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <p:dataTable class="table table-bordered" var="Equipo"
+                                        value="#{equipoBean.consultarEquiposObj()}" style="width:100%" width="100%"
+                                        cellspacing="0" paginator="true" selectionMode="multiple"
+                                        selection="#{equipoBean.equipo}" rowKey="#{Equipo.getId()}" rows="10"
+                                        paginatorTemplate="{CurrentPageReport} {FirstPageLink}
+                                        {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                        currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                        rowsPerPageTemplate="5,10,15,20"
+                                        tableStyleClass="table table-striped table-bordered p-3 mb-2 bg-primary text-white">
+                                        <p:column headerText="Identificador" sortBy="#{Equipo.getId()}">
+                                            <h:outputText value="#{Equipo.getId()}" />
+                                        </p:column>
+                                        <p:column headerText="Nombre" sortBy="#{Equipo.getNombre()}">
+                                            <h:outputText value="#{Equipo.getNombre()}" />
+                                        </p:column>
+                                        <p:column headerText="Laboratorio"
+                                            sortBy="#{Equipo.getLaboratorioObj().getNombre()}">
+                                            <h:outputText value="#{Equipo.getLaboratorioObj().getNombre()}" />
+                                        </p:column>
+                                        <p:column headerText="Estado" sortBy="#{Equipo.getActivo()}">
+                                            <h:outputText value="#{Equipo.getActivo()}" />
+                                        </p:column>
+                                    </p:dataTable>
+                                </div>
                             </div>
-                        </div>
                         </h:form>
                     </div>
 
