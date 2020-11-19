@@ -11,4 +11,6 @@ public interface ServicesNovedad {
 
     void registrarNovedad(Novedad novedad) throws HistorialEquiposException;
 
+    List<Novedad> consultarNovedadesEquipo(int id) throws HistorialEquiposException;
+
 }

@@ -11,4 +11,6 @@ public interface NovedadMapper {
 
     void registrarNovedad(@Param("novedad") Novedad novedad);
 
+    List<Novedad> consultarNovedadesEquipo(@Param("id") int id);
+
 }

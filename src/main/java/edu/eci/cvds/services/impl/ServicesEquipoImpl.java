@@ -69,4 +69,22 @@ public class ServicesEquipoImpl implements ServicesEquipo {
         }
     }
 
+    @Override
+    public void cambiarNombre(String nombre, int id) throws HistorialEquiposException {
+        try {
+            equipoDAO.cambiarNombre(nombre, id);
+        }catch (Exception e){
+            throw new HistorialEquiposException(e.getMessage());
+        }
+    }
+
+    @Override
+    public void cambiarEstado(boolean activo, int id) throws HistorialEquiposException {
+        try {
+            equipoDAO.cambiarEstado(activo, id);
+        }catch (Exception e){
+            throw new HistorialEquiposException(e.getMessage());
+        }
+    }
+
 }

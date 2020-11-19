@@ -24,6 +24,7 @@
             lb.activo as lb_activo
         FROM equipo as eq
             JOIN laboratorio as lb ON eq.laboratorio = lb.id
+        WHERE eq.activo = true
         ORDER BY eq.id
     </select>
 
@@ -72,10 +73,24 @@
         WHERE id = #{id}
     </update>
 
+    <!-- Cambiar estado -->
+    <update id="cambiarNombre" parameterType="map">
+        UPDATE Equipo
+        SET nombre = #{nombre}
+        WHERE id = #{id}
+    </update>
+
     <!-- Asociar Laboratorio -->
     <update id="asociarLaboratorio" parameterType="map">
         UPDATE Equipo
         SET laboratorio = #{laboratorio}
+        WHERE id = #{id}
+    </update>
+
+    <!-- Cambiar estado -->
+    <update id="cambiarEstado" parameterType="map">
+        UPDATE Equipo
+        SET activo = #{activo}
         WHERE id = #{id}
     </update>
 

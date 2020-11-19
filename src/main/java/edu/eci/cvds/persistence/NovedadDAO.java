@@ -11,4 +11,6 @@ public interface NovedadDAO {
 
     void registrarNovedad(Novedad novedad) throws HistorialEquiposException;
 
+    List<Novedad> consultarNovedadesEquipo(int id) throws HistorialEquiposException;
+
 }

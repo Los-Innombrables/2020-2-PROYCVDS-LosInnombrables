@@ -28,6 +28,10 @@ public class NovedadBean extends BasePageBean{
         return servicesNovedad.consultarNovedadesObj();
     }
 
+    public List<Novedad> consultarNovedadesEquipo(int id) throws HistorialEquiposException{
+        return servicesNovedad.consultarNovedadesEquipo(id);
+    }
+
     public void registrarNovedad(int responsable, int equipo, int elemento, String titulo, String novedad) throws HistorialEquiposException {
         servicesNovedad.registrarNovedad(new Novedad(1, responsable, equipo, elemento, null, titulo, novedad));
     }

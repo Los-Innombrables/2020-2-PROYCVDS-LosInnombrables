@@ -85,6 +85,8 @@ public class LoginBean extends BasePageBean {
         return sb.toString();
     }
 
+    public boolean canEdit(){ return usuario.getRol() != 3; }
+
     public String getUserName() {
         return userName;
     }

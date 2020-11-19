@@ -23,6 +23,7 @@ public class EquipoBean extends BasePageBean {
     private String tipoEstado;
 
     private Equipo equipo;
+    private ArrayList<Equipo> equiposSeleccionados;
 
     @Inject
     private ServicesEquipo servicesEquipo;
@@ -98,6 +99,7 @@ public class EquipoBean extends BasePageBean {
         Novedad novedad = new Novedad(1, responsable, id, 0, null, "Equipo Dado de baja",
                 "El equipo fue dado de baja.");
         servicesNovedad.registrarNovedad(novedad);
+        this.equipos = null;
     }
 
     public String consultarNombreEquipo(int id) throws HistorialEquiposException {
@@ -123,7 +125,7 @@ public class EquipoBean extends BasePageBean {
             servicesNovedad.registrarNovedad(novedad);
         }
         servicesEquipo.asociarLaboratorio(laboratorio, equipoInt);
-
+        this.equipos = null;
     }
 
     public void desasociarEquiposLab(int id, int responsable) throws HistorialEquiposException {
@@ -131,6 +133,33 @@ public class EquipoBean extends BasePageBean {
         for (Equipo equipo : equipos) {
             this.asociarLaboratorio(0, equipo.getId(), responsable);
         }
+        this.equipos = null;
+    }
+
+    public void actualizarEquipo(Equipo equipo, String nombre, int laboratorio, String estado, int responsable) throws HistorialEquiposException {
+        if (!nombre.equalsIgnoreCase(equipo.getNombre()) && !nombre.isEmpty()){
+            servicesEquipo.cambiarNombre(nombre, equipo.getId());
+        }
+        if (laboratorio != equipo.getLaboratorioObj().getId() && laboratorio != 0){
+            this.asociarLaboratorio(laboratorio, equipo.getId(), responsable);
+        }
+        if (estado.equalsIgnoreCase("Activo") || estado.equalsIgnoreCase("Inactivo")){
+            servicesEquipo.cambiarEstado(estado.equalsIgnoreCase("Activo"), equipo.getId());
+        }
+        Equipo equipoTemp = servicesEquipo.consultarEquipoId(equipo.getId());
+        Equipo equipoTemp2 = this.equiposSeleccionados.get(0);
+        equipoTemp2.setActivo(equipoTemp.getActivo());
+        equipoTemp2.setLaboratorioObj(equipoTemp.getLaboratorioObj());
+        equipoTemp2.setLaboratorio(equipoTemp.getLaboratorio());
+        equipoTemp2.setNombre(equipoTemp.getNombre());
+        this.equipos = null;
+    }
+
+    public void desasociarEquiposMultiple(ArrayList<Equipo> equiposDel, int responsable) throws HistorialEquiposException {
+        for(Equipo equipo : equiposDel){
+            this.darDeBajaEquipo(equipo.getId(), "","","","", responsable);
+        }
+        this.equipos = null;
     }
 
     /* Getter and Setter */
@@ -229,4 +258,8 @@ public class EquipoBean extends BasePageBean {
     public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
     }
+
+    public ArrayList<Equipo> getEquiposSeleccionados() { return equiposSeleccionados; }
+
+    public void setEquiposSeleccionados(ArrayList<Equipo> equiposSeleccionados) { this.equiposSeleccionados = equiposSeleccionados; }
 }

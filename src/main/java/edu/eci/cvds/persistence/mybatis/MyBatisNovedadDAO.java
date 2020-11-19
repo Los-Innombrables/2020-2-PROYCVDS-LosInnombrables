@@ -32,4 +32,13 @@ public class MyBatisNovedadDAO implements NovedadDAO {
         }
     }
 
+    @Override
+    public List<Novedad> consultarNovedadesEquipo(int id) throws HistorialEquiposException {
+        try{
+            return novedadMapper.consultarNovedadesEquipo(id);
+        }catch (Exception e){
+            throw new HistorialEquiposException("Error al consultar novedades de equipo " + id);
+        }
+    }
+
 }

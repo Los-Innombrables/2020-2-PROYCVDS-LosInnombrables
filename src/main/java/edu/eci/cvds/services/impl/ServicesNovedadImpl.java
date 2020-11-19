@@ -32,4 +32,13 @@ public class ServicesNovedadImpl implements ServicesNovedad {
         }
     }
 
+    @Override
+    public List<Novedad> consultarNovedadesEquipo(int id) throws HistorialEquiposException {
+        try{
+            return novedadDAO.consultarNovedadesEquipo(id);
+        }catch (Exception e){
+            throw new HistorialEquiposException(e.getMessage());
+        }
+    }
+
 }

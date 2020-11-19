@@ -70,4 +70,23 @@ public class MyBatisEquipoDAO implements EquipoDAO {
             throw new HistorialEquiposException("No se pudo consultar los equipos");
         }
     }
+
+    @Override
+    public void cambiarNombre(String nombre, int id) throws HistorialEquiposException {
+        try {
+            equipoMapper.cambiarNombre(nombre, id);
+        }catch (Exception e){
+            throw new HistorialEquiposException("No se pudo cambiar el nombre");
+        }
+    }
+
+    @Override
+    public void cambiarEstado(boolean activo, int id) throws HistorialEquiposException {
+        try {
+            equipoMapper.cambiarEstado(activo, id);
+        }catch (Exception e){
+            throw new HistorialEquiposException("No se pudo cambiar el estado");
+        }
+    }
+
 }

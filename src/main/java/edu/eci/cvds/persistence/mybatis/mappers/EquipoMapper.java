@@ -19,4 +19,8 @@ public interface EquipoMapper {
 
     List<Equipo> consultarEquiposLab(@Param("id") int id);
 
+    void cambiarNombre(@Param("nombre") String nombre, @Param("id") int id);
+
+    void cambiarEstado(@Param("activo") boolean activo, @Param("id") int id);
+
 }

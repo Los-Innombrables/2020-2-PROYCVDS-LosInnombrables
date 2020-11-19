@@ -19,4 +19,8 @@ public interface ServicesEquipo {
     void asociarLaboratorio(int laboratorio, int id) throws HistorialEquiposException;
 
     List<Equipo> consultarEquiposLab(int id) throws HistorialEquiposException;
+
+    void cambiarNombre(String nombre, int id) throws HistorialEquiposException;
+
+    void cambiarEstado(boolean activo, int id) throws HistorialEquiposException;
 }

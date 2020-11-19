@@ -50,6 +50,46 @@
         ORDER BY n.fecha
     </select>
 
+    <!--Consultar Novedades Equipo-->
+    <select id="consultarNovedadesEquipo" resultMap="NovedadResultObj">
+        SELECT
+            n.id as n_id,
+            n.fecha as n_fecha,
+            n.titulo as n_titulo,
+            n.novedad as n_novedad,
+            u.carnet as u_carnet,
+            u.nombre as u_nombre,
+            u.apellido as u_apellido,
+            u.correo as u_correo,
+            u.username as u_username,
+            u.passwd as u_passwd,
+            u.activo as u_activo,
+            u.rol as u_rol,
+            eq.id as eq_id,
+            eq.nombre as eq_nombre,
+            eq.activo as eq_activo,
+            lb.id as lb_id,
+            lb.nombre as lb_nombre,
+            lb.fechaDeCreacion as lb_fechadeCreacion,
+            lb.fechaDeCierre as lb_fechadeCierre,
+            lb.activo as lb_activo,
+            e.id as e_id,
+            e.marca as e_marca,
+            e.referencia as e_referencia,
+            e.fechaDeRegistro as e_fechaDeRegistro,
+            e.activo as e_activo,
+            te.nombre as te_nombre,
+            te.descripcion as te_descripcion
+        FROM novedad as n
+            JOIN usuario as u ON n.responsable = u.carnet
+            JOIN equipo as eq ON n.equipo = eq.id
+            JOIN elemento as e ON n.elemento = e.id
+            JOIN laboratorio as lb ON eq.laboratorio = lb.id
+            JOIN tipoelemento as te ON e.tipo = te.nombre
+        WHERE eq.id = #{id}
+        ORDER BY n.fecha
+    </select>
+
     <!-- Adicionar Novedad Equipo y Elemento -->
     <insert id="registrarNovedad" parameterType="map">
         INSERT INTO Novedad (responsable, equipo, elemento, fecha, titulo, novedad)
