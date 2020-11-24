@@ -1,6 +1,16 @@
 package edu.eci.cvds.view;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
 import com.google.inject.Inject;
+
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Novedad;
 import edu.eci.cvds.entities.TipoElemento;
@@ -9,19 +19,11 @@ import edu.eci.cvds.services.ServicesElemento;
 import edu.eci.cvds.services.ServicesHistorialDeEquipoFactory;
 import edu.eci.cvds.services.ServicesNovedad;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "elementoBean")
 @SessionScoped
 
-public class ElementoBean extends BasePageBean{
+public class ElementoBean extends BasePageBean {
     private static final long serialVersionUID = 1L;
 
     private Map<String, Integer> elementoMapTorre;
@@ -36,6 +38,9 @@ public class ElementoBean extends BasePageBean{
     private Map<String, Integer> elementoMapTeclado;
     private String selectedElementoTeclado;
 
+    private ArrayList<Elemento> elementos;
+    private ArrayList<Elemento> elementosSeleccionados;
+
     private String selectedElemento;
 
     private String selectedElementoAct;
@@ -46,22 +51,23 @@ public class ElementoBean extends BasePageBean{
 
     private String message;
 
-
     @Inject
     private ServicesElemento servicesElemento;
 
     public ArrayList<Elemento> consultarElementosObj() throws HistorialEquiposException {
-        ArrayList<Elemento> elementos = (ArrayList<Elemento>) servicesElemento.consultarElementosObj();
-        return  elementos;
+        if (elementos == null) {
+            elementos = (ArrayList<Elemento>) servicesElemento.consultarElementosObj();
+        }
+        return elementos;
     }
 
     public void makeElementoMap() throws HistorialEquiposException {
         ArrayList<Elemento> elementos = consultarElementosObj();
-        elementoMapTorre = new LinkedHashMap<String,Integer>();
-        elementoMapPantalla = new LinkedHashMap<String,Integer>();
-        elementoMapMouse = new LinkedHashMap<String,Integer>();
-        elementoMapTeclado = new LinkedHashMap<String,Integer>();
-        for(Elemento elemento : elementos){
+        elementoMapTorre = new LinkedHashMap<String, Integer>();
+        elementoMapPantalla = new LinkedHashMap<String, Integer>();
+        elementoMapMouse = new LinkedHashMap<String, Integer>();
+        elementoMapTeclado = new LinkedHashMap<String, Integer>();
+        for (Elemento elemento : elementos) {
             TipoElemento tipoElemento = elemento.getTipoElemento();
             if (elemento.getEquipoOb().getId() == 0 && elemento.isActivo()) {
                 if (tipoElemento.getNombre().equalsIgnoreCase("Torre")) {
@@ -78,32 +84,36 @@ public class ElementoBean extends BasePageBean{
     }
 
     public void actualizarEquipoAsociado(int id, int equipo) throws HistorialEquiposException {
-        servicesElemento.actualizarEquipoAsociado(id , equipo);
+        servicesElemento.actualizarEquipoAsociado(id, equipo);
+        this.elementos = null;
     }
 
-    public void addElemento(String tipo, int equipo, String marca, String referencia, String activoS) throws HistorialEquiposException {
+    public void addElemento(String tipo, int equipo, String marca, String referencia, String activoS)
+            throws HistorialEquiposException {
         Elemento elemento;
         boolean activo = false;
-        if (activoS.equalsIgnoreCase("Activo")){
+        if (activoS.equalsIgnoreCase("Activo")) {
             activo = true;
         }
         elemento = new Elemento(0, tipo, equipo, marca, referencia, null, activo);
         servicesElemento.addElemento(elemento);
+        this.elementos = null;
     }
 
     public void asociarElemento(int equipo, int elemento, int responsable) throws HistorialEquiposException {
         ArrayList<Elemento> elementos = (ArrayList<Elemento>) servicesElemento.consultarElementosEquipo(equipo);
         Elemento elementoS = servicesElemento.consultarElementoId(elemento);
         String tipo = elementoS.getTipoElemento().getNombre();
-        for (Elemento e : elementos){
-            if (e.getTipoElemento().getNombre().equalsIgnoreCase(tipo)){
+        for (Elemento e : elementos) {
+            if (e.getTipoElemento().getNombre().equalsIgnoreCase(tipo)) {
                 servicesElemento.actualizarEquipoAsociado(e.getId(), 0);
             }
         }
         servicesElemento.actualizarEquipoAsociado(elemento, equipo);
         ServicesNovedad servicesNovedad = ServicesHistorialDeEquipoFactory.getInstance().getServicesNovedad();
-        servicesNovedad.registrarNovedad(new Novedad(1, responsable, equipo, elemento, null,
-                "Cambio de elementos", "Se realizo el cambio del elemento " + elementoS.getNombre()));
+        servicesNovedad.registrarNovedad(new Novedad(1, responsable, equipo, elemento, null, "Cambio de elementos",
+                "Se realizo el cambio del elemento " + elementoS.getNombre()));
+        this.elementos = null;
     }
 
     public int getEquipoId(int id) throws HistorialEquiposException {
@@ -114,8 +124,17 @@ public class ElementoBean extends BasePageBean{
     public void darDeBajaElemento(int id, int responsable) throws HistorialEquiposException {
         servicesElemento.actualizarEstado(id, false);
         ServicesNovedad servicesNovedad = ServicesHistorialDeEquipoFactory.getInstance().getServicesNovedad();
-        servicesNovedad.registrarNovedad(new Novedad(1, responsable, 0, id, null,
-                "Elemento Dado de baja", "Se dio de baja al elemento con identificador " + id));
+        servicesNovedad.registrarNovedad(new Novedad(1, responsable, 0, id, null, "Elemento Dado de baja",
+                "Se dio de baja al elemento con identificador " + id));
+        this.elementos = null;
+    }
+
+    public void darDeBajaElementos(ArrayList<Elemento> elementosElim, int responsable)
+            throws HistorialEquiposException {
+        for (Elemento e : elementosElim) {
+            darDeBajaElemento(e.getId(), responsable);
+        }
+        this.elementos = null;
     }
 
     /*-------------Getter-Setter-------------*/
@@ -210,14 +229,14 @@ public class ElementoBean extends BasePageBean{
 
     public void saveMessage(String message, String value) {
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(value,  message) );
+        context.addMessage(null, new FacesMessage(value, message));
     }
 
     public Map<String, Integer> getElementoMap() throws HistorialEquiposException {
         ArrayList<Elemento> elementos = this.consultarElementosObj();
-        Map<String, Integer> elementoMap = new LinkedHashMap<String,Integer>();
-        for(Elemento elemento : elementos){
-            if(elemento.getEquipoOb().getId() == 0){
+        Map<String, Integer> elementoMap = new LinkedHashMap<String, Integer>();
+        for (Elemento elemento : elementos) {
+            if (elemento.getEquipoOb().getId() == 0) {
                 elementoMap.put(elemento.getNombre(), elemento.getId());
             }
         }
@@ -226,18 +245,18 @@ public class ElementoBean extends BasePageBean{
 
     public Map<String, Integer> getElementoMapFull() throws HistorialEquiposException {
         ArrayList<Elemento> elementos = this.consultarElementosObj();
-        Map<String, Integer> elementoMap = new LinkedHashMap<String,Integer>();
-        for(Elemento elemento : elementos){
-                elementoMap.put(elemento.getNombre(), elemento.getId());
+        Map<String, Integer> elementoMap = new LinkedHashMap<String, Integer>();
+        for (Elemento elemento : elementos) {
+            elementoMap.put(elemento.getNombre(), elemento.getId());
         }
         return elementoMap;
     }
 
     public Map<String, Integer> getElementoMapAct() throws HistorialEquiposException {
         ArrayList<Elemento> elementos = this.consultarElementosObj();
-        Map<String, Integer> elementoMap = new LinkedHashMap<String,Integer>();
-        for(Elemento elemento : elementos){
-            if(elemento.getEquipoOb().getId() == 0 && elemento.isActivo()){
+        Map<String, Integer> elementoMap = new LinkedHashMap<String, Integer>();
+        for (Elemento elemento : elementos) {
+            if (elemento.getEquipoOb().getId() == 0 && elemento.isActivo()) {
                 elementoMap.put(elemento.getNombre(), elemento.getId());
             }
         }
@@ -266,5 +285,13 @@ public class ElementoBean extends BasePageBean{
 
     public void setSelectedElementoAct(String selectedElementoAct) {
         this.selectedElementoAct = selectedElementoAct;
+    }
+
+    public ArrayList<Elemento> getElementosSeleccionados() {
+        return elementosSeleccionados;
+    }
+
+    public void setElementosSeleccionados(ArrayList<Elemento> elementosSeleccionados) {
+        this.elementosSeleccionados = elementosSeleccionados;
     }
 }

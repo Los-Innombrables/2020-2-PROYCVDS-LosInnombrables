@@ -75,34 +75,74 @@
                                 Elementos - Historial De Equipos
                             </h6>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <p:dataTable var="Elemento" value="#{elementoBean.consultarElementosObj()}"
-                                    class="table table-bordered" style="width: 100%" width="100%" cellspacing="0"
-                                    paginator="true"
-                                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                    tableStyleClass="table table-striped table-bordered p-3 mb-2 bg-primary text-white">
-                                    <p:column headerText="Identificador">
-                                        <h:outputText value="#{Elemento.getId()}" />
-                                    </p:column>
-                                    <p:column headerText="Nombre">
-                                        <h:outputText value="#{Elemento.getNombre()}" />
-                                    </p:column>
-                                    <p:column headerText="Tipo">
-                                        <h:outputText value="#{Elemento.getTipoElemento().getNombre()}" />
-                                    </p:column>
-                                    <p:column headerText="Equipo">
-                                        <h:outputText value="#{Elemento.getEquipoOb().getNombre()}" />
-                                    </p:column>
-                                    <p:column headerText="Fecha De Registro">
-                                        <h:outputText value="#{Elemento.getFechaDeRegistro()}" />
-                                    </p:column>
-                                    <p:column headerText="Estado">
-                                        <h:outputText value="#{Elemento.isActivo()}" />
-                                    </p:column>
-                                </p:dataTable>
+                        <h:form id="Form_Elementos">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <p:dataTable var="Elemento" value="#{elementoBean.consultarElementosObj()}"
+                                        class="table table-bordered" style="width: 100%" width="100%" cellspacing="0"
+                                        paginator="true" selectionMode="multiple"
+                                        selection="#{elementoBean.elementosSeleccionados}" rowKey="#{Elemento.getId()}"
+                                        rows="10"
+                                        paginatorTemplate="{CurrentPageReport} {FirstPageLink}
+                                        {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                        currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                        rowsPerPageTemplate="5,10,15,20"
+                                        tableStyleClass="table table-striped table-bordered p-3 mb-2 bg-primary text-white">
+                                        <p:column headerText="Identificador" sortBy="#{Elemento.getId()}">
+                                            <h:outputText value="#{Elemento.getId()}" />
+                                        </p:column>
+                                        <p:column headerText="Nombre" sortBy="#{Elemento.getNombre()}">
+                                            <h:outputText value="#{Elemento.getNombre()}" />
+                                        </p:column>
+                                        <p:column headerText="Tipo" sortBy="#{Elemento.getTipoElemento().getNombre()}">
+                                            <h:outputText value="#{Elemento.getTipoElemento().getNombre()}" />
+                                        </p:column>
+                                        <p:column headerText="Equipo" sortBy="#{Elemento.getEquipoOb().getNombre()}">
+                                            <h:outputText value="#{Elemento.getEquipoOb().getNombre()}" />
+                                        </p:column>
+                                        <p:column headerText="Fecha De Registro"
+                                            sortBy="#{Elemento.getFechaDeRegistro()}">
+                                            <h:outputText value="#{Elemento.getFechaDeRegistro()}" />
+                                        </p:column>
+                                        <p:column headerText="Estado" sortBy="#{Elemento.isActivo()}">
+                                            <h:outputText value="#{Elemento.isActivo()}" />
+                                        </p:column>
+                                        <f:facet name="footer">
+                                            <h:commandButton id="ConsultarElemento" value="Consultar"
+                                                action="elementoConsulta.xhtml?faces-redirect=true"
+                                                class="btn btn-primary" />
+                                            <h class="btn btn-primary" href="#" data-toggle="modal"
+                                                data-target="#confirmacionAs3">Dar De Baja</h>
+                                            <div class="modal fade" id="confirmacionAs3" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabeAs3">Seguro
+                                                                deseas realizar este cambio ?</h5>
+                                                            <button class="close" type="button" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">Selecciona Confirmar si deseas realizar
+                                                            el cambio.</div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-secondary" type="button"
+                                                                data-dismiss="modal">Cancelar</button>
+                                                            <h:commandButton styleClass="btn btn-primary"
+                                                                update="Form_DarDeBaja"
+                                                                actionListener="#{elementoBean.darDeBajaElementos(elementoBean.getElementosSeleccionados(), loginBean.usuarioCarnet)}"
+                                                                href="#" value="Confirmar" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </f:facet>
+                                    </p:dataTable>
+                                </div>
                             </div>
-                        </div>
+                        </h:form>
                     </div>
                 </div>
                 <!-- /.container-fluid -->
