@@ -137,8 +137,21 @@ public class ElementoBean extends BasePageBean {
         this.elementos = null;
     }
 
-    public void actualizarElemento(Elemento elementoAct, String nombre, int equipo, String estado) {
-
+    public void actualizarElemento(Elemento elementoAct, String nombre, int equipo, String estado, int responsable)
+            throws HistorialEquiposException {
+        if (!nombre.equalsIgnoreCase(elementoAct.getNombre()) && !nombre.isEmpty()) {
+            // servicesElemento.cambiarNombre(nombre, elementoAct.getId());
+            System.out.println("Hay que actualizar la marca y la referencia, tienen que ser dos campos");
+        }
+        if (equipo != elementoAct.getEquipoOb().getId() && equipo != 0) {
+            asociarElemento(equipo, elementoAct.getId(), responsable);
+        }
+        if (estado.equalsIgnoreCase("Activo") || estado.equalsIgnoreCase("Inactivo")) {
+            servicesElemento.actualizarEstado(elementoAct.getId(), estado.equalsIgnoreCase("Activo"));
+        }
+        Elemento elementoTemp = servicesElemento.consultarElementoId(elementoAct.getId());
+        this.elementosSeleccionados.set(0, elementoTemp);
+        this.elementos = null;
     }
 
     /*-------------Getter-Setter-------------*/

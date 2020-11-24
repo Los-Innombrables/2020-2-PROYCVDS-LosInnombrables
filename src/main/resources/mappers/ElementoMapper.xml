@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.ElementoMapper">
 
@@ -108,24 +106,24 @@
 
     <!-- Resultado Elemento -->
     <resultMap type="Elemento" id="ElementoResult">
-        <result property="id" column="id"/>
-        <result property="tipo" column="tipo"/>
-        <result property="equipo" column="equipo"/>
-        <result property="marca" column="marca"/>
-        <result property="referencia" column="referencia"/>
-        <result property="fechaDeRegistro" column="fechaDeRegistro"/>
-        <result property="activo" column="activo"/>
+        <result property="id" column="id" />
+        <result property="tipo" column="tipo" />
+        <result property="equipo" column="equipo" />
+        <result property="marca" column="marca" />
+        <result property="referencia" column="referencia" />
+        <result property="fechaDeRegistro" column="fechaDeRegistro" />
+        <result property="activo" column="activo" />
     </resultMap>
 
     <!-- Resultado Elemento Obj -->
     <resultMap type="Elemento" id="ElementoResultObj">
-        <result property="id" column="e_id"/>
-        <result property="marca" column="e_marca"/>
-        <result property="referencia" column="e_referencia"/>
-        <result property="fechaDeRegistro" column="e_fechaDeRegistro"/>
-        <result property="activo" column="e_activo"/>
-        <association property="tipoElemento" resultMap="edu.eci.cvds.persistence.mybatis.mappers.TipoElementoMapper.TipoElementoResult"/>
-        <association property="equipoOb" resultMap="edu.eci.cvds.persistence.mybatis.mappers.EquipoMapper.EquipoResultObj"/>
+        <result property="id" column="e_id" />
+        <result property="marca" column="e_marca" />
+        <result property="referencia" column="e_referencia" />
+        <result property="fechaDeRegistro" column="e_fechaDeRegistro" />
+        <result property="activo" column="e_activo" />
+        <association property="tipoElemento" resultMap="edu.eci.cvds.persistence.mybatis.mappers.TipoElementoMapper.TipoElementoResult" />
+        <association property="equipoOb" resultMap="edu.eci.cvds.persistence.mybatis.mappers.EquipoMapper.EquipoResultObj" />
     </resultMap>
 
 </mapper>
