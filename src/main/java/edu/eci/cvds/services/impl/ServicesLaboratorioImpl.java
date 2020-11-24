@@ -49,4 +49,22 @@ public class ServicesLaboratorioImpl implements ServicesLaboratorio {
         }
     }
 
+    @Override
+    public void actualizarNombre(int id, String nombre) throws HistorialEquiposException {
+        try{
+            laboratorioDAO.actualizarNombre(id, nombre);
+        }catch (Exception e){
+            throw new HistorialEquiposException(e.getMessage());
+        }
+    }
+
+    @Override
+    public void abrirLaboratorio(int id) throws HistorialEquiposException {
+        try{
+            laboratorioDAO.abrirLaboratorio(id);
+        }catch (Exception e){
+            throw new HistorialEquiposException(e.getMessage());
+        }
+    }
+
 }
