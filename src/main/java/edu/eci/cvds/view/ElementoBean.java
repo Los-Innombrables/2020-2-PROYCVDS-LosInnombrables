@@ -137,6 +137,10 @@ public class ElementoBean extends BasePageBean {
         this.elementos = null;
     }
 
+    public void actualizarElemento(Elemento elementoAct, String nombre, int equipo, String estado) {
+
+    }
+
     /*-------------Getter-Setter-------------*/
     public Map<String, Integer> getElementoMapTorre() throws HistorialEquiposException {
         this.makeElementoMap();

@@ -16,7 +16,7 @@ import java.util.List;
 @ManagedBean(name = "novedadBean")
 @SessionScoped
 
-public class NovedadBean extends BasePageBean{
+public class NovedadBean extends BasePageBean {
 
     private static final long serialVersionUID = 1L;
     private Novedad novedad;
@@ -28,19 +28,29 @@ public class NovedadBean extends BasePageBean{
         return servicesNovedad.consultarNovedadesObj();
     }
 
-    public List<Novedad> consultarNovedadesEquipo(int id) throws HistorialEquiposException{
+    public List<Novedad> consultarNovedadesEquipo(int id) throws HistorialEquiposException {
         return servicesNovedad.consultarNovedadesEquipo(id);
     }
 
-    public void registrarNovedad(int responsable, int equipo, int elemento, String titulo, String novedad) throws HistorialEquiposException {
+    public List<Novedad> consultarNovedadesElemento(int id) throws HistorialEquiposException {
+        return servicesNovedad.consultarNovedadesElemento(id);
+    }
+
+    public void registrarNovedad(int responsable, int equipo, int elemento, String titulo, String novedad)
+            throws HistorialEquiposException {
         servicesNovedad.registrarNovedad(new Novedad(1, responsable, equipo, elemento, null, titulo, novedad));
     }
 
-    public void registrarNovedadEquipo(int responsable, int equipo, String titulo, String novedad) throws HistorialEquiposException {
+    public void registrarNovedadEquipo(int responsable, int equipo, String titulo, String novedad)
+            throws HistorialEquiposException {
         servicesNovedad.registrarNovedad(new Novedad(1, responsable, equipo, 0, null, titulo, novedad));
     }
 
-    public Novedad getNovedad() { return novedad; }
+    public Novedad getNovedad() {
+        return novedad;
+    }
 
-    public void setNovedad(Novedad novedad) { this.novedad = novedad; }
+    public void setNovedad(Novedad novedad) {
+        this.novedad = novedad;
+    }
 }

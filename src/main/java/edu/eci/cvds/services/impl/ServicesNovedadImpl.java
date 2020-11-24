@@ -15,9 +15,9 @@ public class ServicesNovedadImpl implements ServicesNovedad {
 
     @Override
     public List<Novedad> consultarNovedadesObj() throws HistorialEquiposException {
-        try{
+        try {
             return novedadDAO.consultarNovedadesObj();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new HistorialEquiposException(e.getMessage());
         }
@@ -25,18 +25,27 @@ public class ServicesNovedadImpl implements ServicesNovedad {
 
     @Override
     public void registrarNovedad(Novedad novedad) throws HistorialEquiposException {
-        try{
+        try {
             novedadDAO.registrarNovedad(novedad);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new HistorialEquiposException(e.getMessage());
         }
     }
 
     @Override
     public List<Novedad> consultarNovedadesEquipo(int id) throws HistorialEquiposException {
-        try{
+        try {
             return novedadDAO.consultarNovedadesEquipo(id);
-        }catch (Exception e){
+        } catch (Exception e) {
+            throw new HistorialEquiposException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Novedad> consultarNovedadesElemento(int id) throws HistorialEquiposException {
+        try {
+            return novedadDAO.consultarNovedadesElemento(id);
+        } catch (Exception e) {
             throw new HistorialEquiposException(e.getMessage());
         }
     }

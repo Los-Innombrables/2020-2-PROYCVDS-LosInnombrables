@@ -13,4 +13,6 @@ public interface NovedadDAO {
 
     List<Novedad> consultarNovedadesEquipo(int id) throws HistorialEquiposException;
 
+    List<Novedad> consultarNovedadesElemento(int id) throws HistorialEquiposException;
+
 }

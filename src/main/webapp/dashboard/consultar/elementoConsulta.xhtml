@@ -70,7 +70,157 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <h1 class="h3 mb-2 text-gray-800">En construcción &#128513;</h1>
+                    <!--Informacion General -->
+                    <h:form id="Form_inforGen">
+                        <h1 class="h3 mb-2 text-gray-800">Información General</h1>
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Info</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <h:dataTable class="table table-bordered" var="Elemento"
+                                        value="#{elementoBean.getElementosSeleccionados().get(0)}" style="width:100%"
+                                        width="100%" cellspacing="0"
+                                        tableStyleClass="table table-striped table-bordered p-3 mb-2 bg-primary text-white">
+                                        <p:column headerText="Identificador">
+                                            <f:facet name="header">Identificador</f:facet>
+                                            <h:outputText value="#{Elemento.getId()}" />
+                                        </p:column>
+                                        <p:column headerText="Nombre">
+                                            <f:facet name="header">Nombre</f:facet>
+                                            <h:outputText value="#{Elemento.getNombre()}" />
+                                        </p:column>
+                                        <p:column headerText="Tipo">
+                                            <f:facet name="header">Tipo</f:facet>
+                                            <h:outputText value="#{Elemento.getTipoElemento().getNombre()}" />
+                                        </p:column>
+                                        <p:column headerText="Equipo">
+                                            <f:facet name="header">Equipo</f:facet>
+                                            <h:outputText value="#{Elemento.getEquipoOb().getNombre()}" />
+                                        </p:column>
+                                        <p:column headerText="Fecha De Registro">
+                                            <f:facet name="header">Fecha De Registro</f:facet>
+                                            <h:outputText value="#{Elemento.getFechaDeRegistro()}" />
+                                        </p:column>
+                                        <p:column headerText="Estado">
+                                            <f:facet name="header">Estado</f:facet>
+                                            <h:outputText value="#{Elemento.isActivo()}" />
+                                        </p:column>
+                                    </h:dataTable>
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>
+                    <!-- Administrar Elemento -->
+                    <h:form id="Form_Equipos" rendered="#{loginBean.canEdit()}">
+                        <!-- Page Heading -->
+                        <h1 class="h3 mb-2 text-gray-800">Administracion</h1>
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">
+                                    Editar Elemento: #{elementoBean.getElementosSeleccionados().get(0).getNombre()}
+                                </h6>
+                            </div>
+                            <h:panelGrid columns="6" cellpadding="20" class="h3 mb-2 text-gray-800">
+                                <p:outputLabel for="nombre" value="Nombre:"
+                                    class="form-control bg-light border-0 small" />
+                                <p:inputText id="nombre" name="nombre" class="form-control bg-light border-0 small"
+                                    type="text" required="false" placeholder="Nombre" binding="#{nombre}" />
+
+                                <p:outputLabel value="Equipo: " class="form-control bg-light border-0 small" />
+                                <h:selectOneMenu name="Equipo" id="equipo" required="false" binding="#{equipo}"
+                                    type="number" class="form-control">
+                                    <f:selectItems value="#{equipoBean.getEquipoMapActivo()}" />
+                                </h:selectOneMenu>
+
+                                <p:outputLabel value="Estado:" class="form-control bg-light border-0 small" />
+                                <h:selectOneMenu name="Estado" id="estado" required="false" binding="#{estado}"
+                                    type="text" class="form-control">
+                                    <f:selectItem itemLabel="--------" itemValue="noCambia" />
+                                    <f:selectItem itemLabel="Activo" itemValue="Activo" />
+                                    <f:selectItem itemLabel="Inactivo" itemValue="Inactivo" />
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                            <div class="modal-footer">
+                                <a class="btn btn-primary" href="#" data-toggle="modal"
+                                    data-target="#confirmacionAs3">Guardar Cambios</a>
+                                <div class="modal fade" id="confirmacionAs3" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabeAs3">Seguro deseas realizar
+                                                    estos cambios ?</h5>
+                                                <button class="close" type="button" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">Selecciona Confirmar si deseas realizar los cambios.
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" type="button"
+                                                    data-dismiss="modal">Cancelar</button>
+                                                <h:commandButton styleClass="btn btn-primary" update="Form_inforGen"
+                                                    actionListener="#{equipoBean.actualizarEquipo(equipoBean.getEquiposSeleccionados().get(0), nombre.value, laboratorio.value,  estado.value, loginBean.usuarioCarnet)}"
+                                                    href="#" value="Confirmar" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>
+                    <!--Novedades de un elemento-->
+                    <h:form id="Form_NovElemento">
+                        <h1 class="h3 mb-2 text-gray-800">Novedades</h1>
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">
+                                    Elemento: #{elementoBean.getElementosSeleccionados().get(0).getNombre()}
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <p:dataTable class="table table-bordered" var="novedad"
+                                    value="#{novedadBean.consultarNovedadesElemento(elementoBean.getElementosSeleccionados().get(0).getId())}"
+                                    style="width:100%" width="100%" cellspacing="0" paginator="true" rows="10"
+                                    paginatorTemplate="{CurrentPageReport} {FirstPageLink}
+                                            {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                    currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                    rowsPerPageTemplate="5,10,15,20"
+                                    tableStyleClass="table table-striped table-bordered p-3 mb-2 bg-primary text-white">
+                                    <p:column headerText="Identificador">
+                                        <f:facet name="header">Identificador</f:facet>
+                                        <h:outputText value="#{novedad.getId()}" />
+                                    </p:column>
+                                    <p:column headerText="Titulo">
+                                        <f:facet name="header">Titulo</f:facet>
+                                        <h:outputText value="#{novedad.getTitulo()}" />
+                                    </p:column>
+                                    <p:column headerText="Responsable">
+                                        <f:facet name="header">Responsable</f:facet>
+                                        <h:outputText value="#{novedad.getUsuario().getCarnet()}" />
+                                    </p:column>
+                                    <p:column headerText="Equipo">
+                                        <h:outputText value="#{novedad.getEquipoObj().getId()}" />
+                                    </p:column>
+                                    <p:column headerText="Equipo">
+                                        <h:outputText value="#{novedad.getEquipoObj().getNombre()}" />
+                                    </p:column>
+                                    <p:column headerText="Elemento">
+                                        <h:outputText value="#{novedad.getElementoObj().getNombre()}" />
+                                    </p:column>
+                                    <p:column headerText="Fecha">
+                                        <h:outputText value="#{novedad.getFecha()}" />
+                                    </p:column>
+                                    <p:column headerText="Descripcion">
+                                        <h:outputText value="#{novedad.getNovedad()}" />
+                                    </p:column>
+                                </p:dataTable>
+                            </div>
+                        </div>
+                    </h:form>
                 </div>
                 <!-- /.container-fluid -->
 

@@ -15,9 +15,9 @@ public class MyBatisNovedadDAO implements NovedadDAO {
 
     @Override
     public List<Novedad> consultarNovedadesObj() throws HistorialEquiposException {
-        try{
+        try {
             return novedadMapper.consultarNovedadesObj();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new HistorialEquiposException("Error al consultar novedades");
         }
@@ -25,19 +25,28 @@ public class MyBatisNovedadDAO implements NovedadDAO {
 
     @Override
     public void registrarNovedad(Novedad novedad) throws HistorialEquiposException {
-        try{
+        try {
             novedadMapper.registrarNovedad(novedad);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new HistorialEquiposException("Error Al Agregar Novedad");
         }
     }
 
     @Override
     public List<Novedad> consultarNovedadesEquipo(int id) throws HistorialEquiposException {
-        try{
+        try {
             return novedadMapper.consultarNovedadesEquipo(id);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new HistorialEquiposException("Error al consultar novedades de equipo " + id);
+        }
+    }
+
+    @Override
+    public List<Novedad> consultarNovedadesElemento(int id) throws HistorialEquiposException {
+        try {
+            return novedadMapper.consultarNovedadesElemento(id);
+        } catch (Exception e) {
+            throw new HistorialEquiposException("Error al consultar novedades de elemento " + id);
         }
     }
 

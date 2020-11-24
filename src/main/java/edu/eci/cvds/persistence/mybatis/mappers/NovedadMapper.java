@@ -13,4 +13,6 @@ public interface NovedadMapper {
 
     List<Novedad> consultarNovedadesEquipo(@Param("id") int id);
 
+    List<Novedad> consultarNovedadesElemento(@Param("id") int id);
+
 }
