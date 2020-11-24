@@ -15,4 +15,8 @@ public interface ServicesLaboratorio {
 
     void cerrarLaboratorio(int id) throws HistorialEquiposException;
 
+    void actualizarNombre(int id, String nombre) throws HistorialEquiposException;
+
+    void abrirLaboratorio(int id) throws  HistorialEquiposException;
+
 }

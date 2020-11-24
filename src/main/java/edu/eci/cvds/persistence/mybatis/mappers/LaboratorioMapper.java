@@ -14,4 +14,8 @@ public interface LaboratorioMapper {
     void addLaboratorio(@Param("laboratorio") Laboratorio laboratorio);
 
     void cerrarLaboratorio(@Param("id") int id);
+
+    void actualizarNombre(@Param("id") int id, @Param("nombre") String nombre);
+
+    void abrirLaboratorio(@Param("id") int id);
 }

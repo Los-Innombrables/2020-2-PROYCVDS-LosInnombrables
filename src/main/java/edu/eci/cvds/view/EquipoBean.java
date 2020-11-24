@@ -147,11 +147,7 @@ public class EquipoBean extends BasePageBean {
             servicesEquipo.cambiarEstado(estado.equalsIgnoreCase("Activo"), equipo.getId());
         }
         Equipo equipoTemp = servicesEquipo.consultarEquipoId(equipo.getId());
-        Equipo equipoTemp2 = this.equiposSeleccionados.get(0);
-        equipoTemp2.setActivo(equipoTemp.getActivo());
-        equipoTemp2.setLaboratorioObj(equipoTemp.getLaboratorioObj());
-        equipoTemp2.setLaboratorio(equipoTemp.getLaboratorio());
-        equipoTemp2.setNombre(equipoTemp.getNombre());
+        this.equiposSeleccionados.set(0, equipoTemp);
         this.equipos = null;
     }
 
@@ -259,7 +255,13 @@ public class EquipoBean extends BasePageBean {
         this.equipo = equipo;
     }
 
-    public ArrayList<Equipo> getEquiposSeleccionados() { return equiposSeleccionados; }
+    public ArrayList<Equipo> getEquiposSeleccionados() throws HistorialEquiposException {
+        if (equiposSeleccionados == null || equiposSeleccionados.size() == 0 || equiposSeleccionados.get(0)==null){
+            equiposSeleccionados = new ArrayList<>();
+            equiposSeleccionados.add(servicesEquipo.consultarEquipoId(1));
+        }
+        return equiposSeleccionados;
+    }
 
     public void setEquiposSeleccionados(ArrayList<Equipo> equiposSeleccionados) { this.equiposSeleccionados = equiposSeleccionados; }
 }

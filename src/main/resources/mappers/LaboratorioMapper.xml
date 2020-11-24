@@ -30,6 +30,20 @@
         WHERE id = #{id}
     </update>
 
+    <!-- Actualizar Nombre -->
+    <update id="actualizarNombre" parameterType="map">
+        UPDATE laboratorio
+        SET nombre =#{nombre}
+        WHERE id = #{id}
+    </update>
+
+    <!-- Actualizar Estado -->
+    <update id="abrirLaboratorio" parameterType="map">
+        UPDATE laboratorio
+        SET activo = true, fechadecierre = null
+        WHERE id = #{id}
+    </update>
+
     <!-- Resultado Usuario -->
     <resultMap type="Laboratorio" id="LaboratorioResult">
         <result property="id" column="id" />

@@ -50,4 +50,22 @@ public class MyBatisLaboratorioDAO implements LaboratorioDAO {
         }
     }
 
+    @Override
+    public void actualizarNombre(int id, String nombre) throws HistorialEquiposException {
+        try{
+            laboratorioMapper.actualizarNombre(id, nombre);
+        }catch (Exception e){
+            throw new HistorialEquiposException("No se pudo actualizar el nombre del labortorio");
+        }
+    }
+
+    @Override
+    public void abrirLaboratorio(int id) throws HistorialEquiposException {
+        try{
+            laboratorioMapper.abrirLaboratorio(id);
+        }catch (Exception e){
+            throw new HistorialEquiposException("No se pudo reabrir el laboratorio");
+        }
+    }
+
 }
