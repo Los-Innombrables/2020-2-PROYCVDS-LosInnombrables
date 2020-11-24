@@ -15,13 +15,13 @@
 # Arquitectura y Diseño detallado
 >
 ## Modelo E-R
-![](/resources/DiagramaClases.png)
+![](/resources/DiagramaEntidadRelacion.png)
 ## Diagrama de clases
->
+![](/resources/DiagramaClases.png)
 ## Capas
 >
 ## Tecnologías utilizadas
-| Tecnologias |
+| Tecnologías |
 | :--: |
 |Primefaces|
 |Google Guice|
