@@ -98,8 +98,11 @@
                                         <p:column headerText="Nombre" sortBy="#{laboratorio.getNombre()}">
                                             <h:outputText value="#{laboratorio.getNombre()}" />
                                         </p:column>
-                                        <p:column headerText="Estado" sortBy="#{laboratorio.getActivo()}">
-                                            <h:outputText value="#{laboratorio.getActivo()}" />
+                                        <p:column headerText="Cantidad Equipos" sortBy="#{laboratorio.getCatidadAsociados()}">
+                                            <h:outputText value="#{laboratorio.getCatidadAsociados()}" />
+                                        </p:column>
+                                        <p:column headerText="Estado" sortBy="#{laboratorio.getActivoS()}">
+                                            <h:outputText value="#{laboratorio.getActivoS()}" />
                                         </p:column>
                                         <p:column headerText="Fecha De Creacion" sortBy="#{laboratorio.getFechadeCreacion()}">
                                             <h:outputText value="#{laboratorio.getFechadeCreacion()}" />

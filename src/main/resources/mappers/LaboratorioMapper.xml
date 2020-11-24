@@ -5,16 +5,28 @@
 
     <!-- Consultar -->
     <select id="consultarLaboratorios" resultMap="LaboratorioResult">
-        SELECT *
-        FROM Laboratorio
-        ORDER BY id
+        SELECT
+            lb.id as lb_id,
+            lb.nombre as lb_nombre,
+            lb.fechaDeCreacion as lb_fechadeCreacion,
+            lb.fechaDeCierre as lb_fechadeCierre,
+            lb.activo as lb_activo,
+            (SELECT COUNT(*) FROM equipo as eq WHERE eq.laboratorio = lb.id) as lb_totalLabs
+        FROM Laboratorio as lb
+        ORDER BY lb.id
     </select>
 
     <!-- Consultar Dependiendo Nombre -->
     <select id="consultarLaboratorioNombre" resultMap="LaboratorioResult">
-        SELECT *
-        FROM Laboratorio
-        WHERE nombre = #{nombre}
+        SELECT
+            lb.id as lb_id,
+            lb.nombre as lb_nombre,
+            lb.fechaDeCreacion as lb_fechadeCreacion,
+            lb.fechaDeCierre as lb_fechadeCierre,
+            lb.activo as lb_activo,
+            (SELECT COUNT(*) FROM equipo as eq WHERE eq.laboratorio = lb.id) as lb_totalLabs
+        FROM Laboratorio as lb
+        WHERE lb.nombre = #{nombre}
     </select>
 
     <!-- Agregar Laboratorio -->
@@ -46,6 +58,16 @@
 
     <!-- Resultado Usuario -->
     <resultMap type="Laboratorio" id="LaboratorioResult">
+        <result property="id" column="lb_id" />
+        <result property="nombre" column="lb_nombre" />
+        <result property="fechadeCreacion" column="lb_fechadeCreacion" />
+        <result property="fechadeCierre" column="lb_fechadeCierre" />
+        <result property="activo" column="lb_activo" />
+        <result property="catidadAsociados" column="lb_totalLabs" />
+    </resultMap>
+
+    <!-- Resultado Usuario -->
+    <resultMap type="Laboratorio" id="LaboratorioResult2">
         <result property="id" column="id" />
         <result property="nombre" column="nombre" />
         <result property="fechadeCreacion" column="fechadeCreacion" />

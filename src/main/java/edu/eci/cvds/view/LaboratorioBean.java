@@ -61,7 +61,7 @@ public class LaboratorioBean extends BasePageBean{
         if (estado.equalsIgnoreCase("Activo")){
             activo = true;
         }
-        Laboratorio laboratorio = new Laboratorio(0, nombre, null, activo, null);
+        Laboratorio laboratorio = new Laboratorio(0, nombre, null, activo, null, 0);
         servicesLaboratorio.addLaboratorio(laboratorio);
         this.laboratorios = null;
     }

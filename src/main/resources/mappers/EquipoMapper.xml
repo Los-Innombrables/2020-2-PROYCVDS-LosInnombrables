@@ -107,7 +107,7 @@
         <result property='id' column='eq_id'/>
         <result property='nombre' column='eq_nombre'/>
         <result property='activo' column='eq_activo'/>
-        <association property="laboratorioObj" resultMap="edu.eci.cvds.persistence.mybatis.mappers.LaboratorioMapper.LaboratorioResult" columnPrefix="lb_"/>
+        <association property="laboratorioObj" resultMap="edu.eci.cvds.persistence.mybatis.mappers.LaboratorioMapper.LaboratorioResult2" columnPrefix="lb_"/>
     </resultMap>
 
 </mapper>
