@@ -8,16 +8,19 @@ import edu.eci.cvds.services.ServicesElemento;
 import edu.eci.cvds.services.ServicesEquipo;
 import edu.eci.cvds.services.ServicesHistorialDeEquipoFactory;
 import edu.eci.cvds.services.ServicesNovedad;
+import org.primefaces.component.datatable.DataTable;
+import org.primefaces.component.export.Exporter;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
 import java.util.*;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "equipoBean")
 @SessionScoped
 
-public class EquipoBean extends BasePageBean {
+public class EquipoBean extends BasePageBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private String tipoEstado;
@@ -36,6 +39,10 @@ public class EquipoBean extends BasePageBean {
     private String mouseE;
     private String tecladoE;
     private String pantallaE;
+
+    /*Exportar*/
+
+    private Exporter<DataTable> textExporter = new TextExporter();
 
     private ArrayList<Equipo> equipos;
 
@@ -56,6 +63,7 @@ public class EquipoBean extends BasePageBean {
         }
         equipo = new Equipo(id, laboratorio, nombre, activo);
         servicesEquipo.addEquipo(equipo);
+        textExporter = new TextExporter();
         /* Para asociar Elementos */
         asociarElemento(id, torre, pantalla, mouse, teclado);
         /* Para Registrar Novedades */
@@ -264,4 +272,14 @@ public class EquipoBean extends BasePageBean {
     }
 
     public void setEquiposSeleccionados(ArrayList<Equipo> equiposSeleccionados) { this.equiposSeleccionados = equiposSeleccionados; }
+
+    public Exporter<DataTable> getTextExporter() {
+        return textExporter;
+    }
+
+    public void setTextExporter(Exporter<DataTable> textExporter) {
+        this.textExporter = textExporter;
+    }
 }
+
+

@@ -82,7 +82,7 @@
                         <h:form id="Form_DarDeBaja">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <p:dataTable class="table table-bordered" var="laboratorio"
+                                    <p:dataTable class="table table-bordered" id="tbl" var="laboratorio"
                                         value="#{laboratorioBean.laboratorios}" style="width:100%" width="100%"
                                         cellspacing="0" paginator="true" selectionMode="multiple"
                                         selection="#{laboratorioBean.laboratoriosSeleccionados}" rowKey="#{laboratorio.getId()}" rows="10"
@@ -138,6 +138,26 @@
                                             </div>
                                         </f:facet>
                                     </p:dataTable>
+                                    <h3>Export Page Data Only</h3>
+                                    <h:commandLink>
+                                        <p:graphicImage value="/images/excel.png" width="10%" height="10%" />
+                                        <p:dataExporter type="xls" target="tbl" fileName="Laboratorio" pageOnly="true"/>
+                                    </h:commandLink>
+
+                                    <h:commandLink>
+                                        <p:graphicImage value="/images/pdf.png" width="10%" height="10%" />
+                                        <p:dataExporter type="pdf" target="tbl" fileName="Laboratorio" pageOnly="true" />
+                                    </h:commandLink>
+
+                                    <h:commandLink>
+                                        <p:graphicImage value="/images/csv.png" width="10%" height="10%" />
+                                        <p:dataExporter type="csv" target="tbl" fileName="Laboratorio" pageOnly="true" />
+                                    </h:commandLink>
+
+                                    <h:commandLink>
+                                        <p:graphicImage value="/images/xml.png" width="10%" height="10%" />
+                                        <p:dataExporter type="xml" target="tbl" fileName="Laboratorio" pageOnly="true" />
+                                    </h:commandLink>
                                 </div>
                             </div>
                         </h:form>

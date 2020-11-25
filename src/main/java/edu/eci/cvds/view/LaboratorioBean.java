@@ -7,6 +7,8 @@ import edu.eci.cvds.exceptions.HistorialEquiposException;
 import edu.eci.cvds.services.ServicesEquipo;
 import edu.eci.cvds.services.ServicesHistorialDeEquipoFactory;
 import edu.eci.cvds.services.ServicesLaboratorio;
+import org.primefaces.component.datatable.DataTable;
+import org.primefaces.component.export.Exporter;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -27,6 +29,10 @@ public class LaboratorioBean extends BasePageBean{
     private Laboratorio laboratorio;
     private ArrayList<Laboratorio> laboratoriosSeleccionados;
     private ArrayList<Laboratorio> laboratoriosFiltro;
+
+    /*Exportar*/
+
+    private Exporter<DataTable> textExporter = new TextExporter();
 
     @Inject
     private ServicesLaboratorio servicesLaboratorio;
@@ -63,6 +69,7 @@ public class LaboratorioBean extends BasePageBean{
         }
         Laboratorio laboratorio = new Laboratorio(0, nombre, null, activo, null, 0);
         servicesLaboratorio.addLaboratorio(laboratorio);
+        textExporter = new TextExporter();
         this.laboratorios = null;
     }
 
@@ -135,4 +142,10 @@ public class LaboratorioBean extends BasePageBean{
     public String getTipoEstado() { return tipoEstado; }
 
     public void setTipoEstado(String tipoEstado) { this.tipoEstado = tipoEstado; }
+    public Exporter<DataTable> getTextExporter() {
+        return textExporter;
+    }
+
+    public void setTextExporter(Exporter<DataTable> textExporter) {
+        this.textExporter = textExporter;}
 }

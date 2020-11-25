@@ -1,5 +1,6 @@
 package edu.eci.cvds.view;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -18,12 +19,14 @@ import edu.eci.cvds.exceptions.HistorialEquiposException;
 import edu.eci.cvds.services.ServicesElemento;
 import edu.eci.cvds.services.ServicesHistorialDeEquipoFactory;
 import edu.eci.cvds.services.ServicesNovedad;
+import org.primefaces.component.datatable.DataTable;
+import org.primefaces.component.export.Exporter;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "elementoBean")
 @SessionScoped
 
-public class ElementoBean extends BasePageBean {
+public class ElementoBean extends BasePageBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Map<String, Integer> elementoMapTorre;
@@ -50,6 +53,9 @@ public class ElementoBean extends BasePageBean {
     private String tipoEstado;
 
     private String message;
+    /*Exportar*/
+
+    private Exporter<DataTable> textExporter = new TextExporter();
 
     @Inject
     private ServicesElemento servicesElemento;
@@ -97,6 +103,7 @@ public class ElementoBean extends BasePageBean {
         }
         elemento = new Elemento(0, tipo, equipo, marca, referencia, null, activo);
         servicesElemento.addElemento(elemento);
+        textExporter = new TextExporter();
         this.elementos = null;
     }
 
@@ -310,5 +317,13 @@ public class ElementoBean extends BasePageBean {
 
     public void setElementosSeleccionados(ArrayList<Elemento> elementosSeleccionados) {
         this.elementosSeleccionados = elementosSeleccionados;
+    }
+
+    public Exporter<DataTable> getTextExporter() {
+        return textExporter;
+    }
+
+    public void setTextExporter(Exporter<DataTable> textExporter) {
+        this.textExporter = textExporter;
     }
 }
