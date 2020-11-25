@@ -98,6 +98,20 @@
         WHERE id = #{id}
     </update>
 
+    <!-- Actualizar Marca -->
+    <update id="actualizarMarca" parameterType="map">
+        UPDATE Elemento
+        SET marca = #{marca}
+        WHERE id = #{id}
+    </update>
+
+    <!-- Actualizar Referncia -->
+    <update id="actualizarReferencia" parameterType="map">
+        UPDATE Elemento
+        SET referencia = #{referencia}
+        WHERE id = #{id}
+    </update>
+
     <!-- Agregar Equipo -->
     <insert id="addElemento" parameterType="map">
         INSERT INTO elemento (tipo, equipo, marca, referencia, fechaDeRegistro, activo)

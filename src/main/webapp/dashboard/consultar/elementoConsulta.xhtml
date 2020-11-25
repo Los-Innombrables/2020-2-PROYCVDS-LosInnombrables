@@ -123,10 +123,19 @@
                                 </h6>
                             </div>
                             <h:panelGrid columns="6" cellpadding="20" class="h3 mb-2 text-gray-800">
-                                <p:outputLabel for="nombre" value="Nombre:"
+                                <p:outputLabel for="marca" value="Marca:"
                                     class="form-control bg-light border-0 small" />
-                                <p:inputText id="nombre" name="nombre" class="form-control bg-light border-0 small"
-                                    type="text" required="false" placeholder="Nombre" binding="#{nombre}" />
+                                <p:inputText id="marca" name="marca" class="form-control bg-light border-0 small"
+                                    type="text" required="false"
+                                    placeholder="#{elementoBean.getElementosSeleccionados().get(0).getMarca()}"
+                                    binding="#{marca}" />
+
+                                <p:outputLabel for="referencia" value="Referencia:"
+                                    class="form-control bg-light border-0 small" />
+                                <p:inputText id="referencia" name="referencia"
+                                    class="form-control bg-light border-0 small" type="text" required="false"
+                                    placeholder="#{elementoBean.getElementosSeleccionados().get(0).getReferencia()}"
+                                    binding="#{referencia}" />
 
                                 <p:outputLabel value="Equipo: " class="form-control bg-light border-0 small" />
                                 <h:selectOneMenu name="Equipo" id="equipo" required="false" binding="#{equipo}"
@@ -163,7 +172,7 @@
                                                 <button class="btn btn-secondary" type="button"
                                                     data-dismiss="modal">Cancelar</button>
                                                 <h:commandButton styleClass="btn btn-primary" update="Form_inforGen"
-                                                    actionListener="#{elementoBean.actualizarElemento(elementoBean.getElementosSeleccionados().get(0), nombre.value, equipo.value,  estado.value, loginBean.usuarioCarnet)}"
+                                                    actionListener="#{elementoBean.actualizarElemento(elementoBean.getElementosSeleccionados().get(0), marca.value, referencia.value, equipo.value,  estado.value, loginBean.usuarioCarnet)}"
                                                     href="#" value="Confirmar" />
                                             </div>
                                         </div>

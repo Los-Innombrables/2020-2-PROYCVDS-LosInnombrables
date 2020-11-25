@@ -53,7 +53,7 @@ public class ElementoBean extends BasePageBean implements Serializable {
     private String tipoEstado;
 
     private String message;
-    /*Exportar*/
+    /* Exportar */
 
     private Exporter<DataTable> textExporter = new TextExporter();
 
@@ -144,11 +144,13 @@ public class ElementoBean extends BasePageBean implements Serializable {
         this.elementos = null;
     }
 
-    public void actualizarElemento(Elemento elementoAct, String nombre, int equipo, String estado, int responsable)
-            throws HistorialEquiposException {
-        if (!nombre.equalsIgnoreCase(elementoAct.getNombre()) && !nombre.isEmpty()) {
-            // servicesElemento.cambiarNombre(nombre, elementoAct.getId());
-            System.out.println("Hay que actualizar la marca y la referencia, tienen que ser dos campos");
+    public void actualizarElemento(Elemento elementoAct, String marca, String referencia, int equipo, String estado,
+            int responsable) throws HistorialEquiposException {
+        if (!marca.equalsIgnoreCase(elementoAct.getMarca()) && !marca.isEmpty()) {
+            servicesElemento.actualizarMarca(elementoAct.getId(), marca);
+        }
+        if (!referencia.equalsIgnoreCase(elementoAct.getReferencia()) && !referencia.isEmpty()) {
+            servicesElemento.actualizarReferencia(elementoAct.getId(), referencia);
         }
         if (equipo != elementoAct.getEquipoOb().getId() && equipo != 0) {
             asociarElemento(equipo, elementoAct.getId(), responsable);

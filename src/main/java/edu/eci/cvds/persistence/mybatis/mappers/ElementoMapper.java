@@ -1,10 +1,10 @@
 package edu.eci.cvds.persistence.mybatis.mappers;
 
-import edu.eci.cvds.entities.Elemento;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
-import java.sql.Date;
-import java.util.List;
+import edu.eci.cvds.entities.Elemento;
 
 public interface ElementoMapper {
 
@@ -20,4 +20,7 @@ public interface ElementoMapper {
 
     void actualizarEstado(@Param("id") int id, @Param("activo") boolean activo);
 
+    void actualizarMarca(@Param("id") int id, @Param("marca") String marca);
+
+    void actualizarReferencia(@Param("id") int id, @Param("referencia") String referencia);
 }

@@ -19,4 +19,7 @@ public interface ElementoDAO {
 
     void actualizarEstado(int id, boolean activo) throws HistorialEquiposException;
 
+    void actualizarMarca(int id, String marca) throws HistorialEquiposException;
+
+    void actualizarReferencia(int id, String referencia) throws HistorialEquiposException;
 }
