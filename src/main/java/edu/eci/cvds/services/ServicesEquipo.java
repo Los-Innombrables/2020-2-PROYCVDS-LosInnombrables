@@ -1,10 +1,9 @@
 package edu.eci.cvds.services;
 
+import java.util.List;
+
 import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.exceptions.HistorialEquiposException;
-
-import javax.xml.bind.Element;
-import java.util.List;
 
 public interface ServicesEquipo {
 

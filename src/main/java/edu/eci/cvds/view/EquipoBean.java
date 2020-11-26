@@ -1,6 +1,8 @@
 package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
+
+import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.entities.Novedad;
 import edu.eci.cvds.exceptions.HistorialEquiposException;
@@ -30,6 +32,8 @@ public class EquipoBean extends BasePageBean implements Serializable {
 
     @Inject
     private ServicesEquipo servicesEquipo;
+    @Inject
+    private ServicesElemento servicesElemento;
 
     private String selectedEquipo;
     private String selectedEquipoAct;
@@ -40,7 +44,7 @@ public class EquipoBean extends BasePageBean implements Serializable {
     private String tecladoE;
     private String pantallaE;
 
-    /*Exportar*/
+    /* Exportar */
 
     private Exporter<DataTable> textExporter = new TextExporter();
 
@@ -144,14 +148,15 @@ public class EquipoBean extends BasePageBean implements Serializable {
         this.equipos = null;
     }
 
-    public void actualizarEquipo(Equipo equipo, String nombre, int laboratorio, String estado, int responsable) throws HistorialEquiposException {
-        if (!nombre.equalsIgnoreCase(equipo.getNombre()) && !nombre.isEmpty()){
+    public void actualizarEquipo(Equipo equipo, String nombre, int laboratorio, String estado, int responsable)
+            throws HistorialEquiposException {
+        if (!nombre.equalsIgnoreCase(equipo.getNombre()) && !nombre.isEmpty()) {
             servicesEquipo.cambiarNombre(nombre, equipo.getId());
         }
-        if (laboratorio != equipo.getLaboratorioObj().getId() && laboratorio != 0){
+        if (laboratorio != equipo.getLaboratorioObj().getId() && laboratorio != 0) {
             this.asociarLaboratorio(laboratorio, equipo.getId(), responsable);
         }
-        if (estado.equalsIgnoreCase("Activo") || estado.equalsIgnoreCase("Inactivo")){
+        if (estado.equalsIgnoreCase("Activo") || estado.equalsIgnoreCase("Inactivo")) {
             servicesEquipo.cambiarEstado(estado.equalsIgnoreCase("Activo"), equipo.getId());
         }
         Equipo equipoTemp = servicesEquipo.consultarEquipoId(equipo.getId());
@@ -159,11 +164,22 @@ public class EquipoBean extends BasePageBean implements Serializable {
         this.equipos = null;
     }
 
-    public void desasociarEquiposMultiple(ArrayList<Equipo> equiposDel, int responsable) throws HistorialEquiposException {
-        for(Equipo equipo : equiposDel){
-            this.darDeBajaEquipo(equipo.getId(), "","","","", responsable);
+    public void desasociarEquiposMultiple(ArrayList<Equipo> equiposDel, int responsable)
+            throws HistorialEquiposException {
+        for (Equipo equipo : equiposDel) {
+            this.darDeBajaEquipo(equipo.getId(), "", "", "", "", responsable);
         }
         this.equipos = null;
+    }
+
+    public String consultarNombreElemento(int idEquipo, String tipoElemento) throws HistorialEquiposException {
+        ArrayList<Elemento> elementosEquipo = (ArrayList<Elemento>) servicesElemento.consultarElementosEquipo(idEquipo);
+        for (Elemento elemento : elementosEquipo) {
+            if (elemento.getTipoElemento().getNombre().equals(tipoElemento)) {
+                return elemento.getNombre();
+            }
+        }
+        return servicesElemento.consultarElementoId(0).getNombre();
     }
 
     /* Getter and Setter */
@@ -264,14 +280,16 @@ public class EquipoBean extends BasePageBean implements Serializable {
     }
 
     public ArrayList<Equipo> getEquiposSeleccionados() throws HistorialEquiposException {
-        if (equiposSeleccionados == null || equiposSeleccionados.size() == 0 || equiposSeleccionados.get(0)==null){
+        if (equiposSeleccionados == null || equiposSeleccionados.size() == 0 || equiposSeleccionados.get(0) == null) {
             equiposSeleccionados = new ArrayList<>();
             equiposSeleccionados.add(servicesEquipo.consultarEquipoId(1));
         }
         return equiposSeleccionados;
     }
 
-    public void setEquiposSeleccionados(ArrayList<Equipo> equiposSeleccionados) { this.equiposSeleccionados = equiposSeleccionados; }
+    public void setEquiposSeleccionados(ArrayList<Equipo> equiposSeleccionados) {
+        this.equiposSeleccionados = equiposSeleccionados;
+    }
 
     public Exporter<DataTable> getTextExporter() {
         return textExporter;
@@ -281,5 +299,3 @@ public class EquipoBean extends BasePageBean implements Serializable {
         this.textExporter = textExporter;
     }
 }
-
-
