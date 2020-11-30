@@ -82,7 +82,7 @@
                         <h:form id="form_XD">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <p:dataTable class="table table-bordered" var="novedad"
+                                <p:dataTable class="table table-bordered" id ="tbl" var="novedad"
                                     value="#{novedadBean.consultarNovedadesObj()}" style="width:100%" width="100%"
                                     cellspacing="0" paginator="true" selectionMode="single" selection="#{novedadBean.novedad}"
                                     rowKey="#{novedad.getId()}" rows="10" paginatorTemplate="{CurrentPageReport} {FirstPageLink}
@@ -113,6 +113,26 @@
                                     </p:column>
                                 </p:dataTable>
                             </div>
+                            <h3>Export Page Data Table</h3>
+                            <h:commandLink>
+                                <p:graphicImage value="/images/excel.png" width="10%" height="10%" />
+                                <p:dataExporter type="xls" target="tbl" fileName="Novedades" pageOnly="true"/>
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage value="/images/pdf.png" width="10%" height="10%" />
+                                <p:dataExporter type="pdf" target="tbl" fileName="Novedades" pageOnly="true" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage value="/images/csv.png" width="10%" height="10%" />
+                                <p:dataExporter type="csv" target="tbl" fileName="Novedades" pageOnly="true" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage value="/images/xml.png" width="10%" height="10%" />
+                                <p:dataExporter type="xml" target="tbl" fileName="Novedades" pageOnly="true" />
+                            </h:commandLink>
                         </div>
                         </h:form>
                     </div>

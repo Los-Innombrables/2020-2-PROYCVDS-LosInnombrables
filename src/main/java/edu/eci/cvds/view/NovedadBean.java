@@ -4,6 +4,8 @@ import com.google.inject.Inject;
 import edu.eci.cvds.entities.Novedad;
 import edu.eci.cvds.exceptions.HistorialEquiposException;
 import edu.eci.cvds.services.ServicesNovedad;
+import org.primefaces.component.datatable.DataTable;
+import org.primefaces.component.export.Exporter;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -20,6 +22,10 @@ public class NovedadBean extends BasePageBean {
 
     private static final long serialVersionUID = 1L;
     private Novedad novedad;
+
+    /* Exportar */
+
+    private Exporter<DataTable> textExporter = new TextExporter();
 
     @Inject
     private ServicesNovedad servicesNovedad;
@@ -52,5 +58,13 @@ public class NovedadBean extends BasePageBean {
 
     public void setNovedad(Novedad novedad) {
         this.novedad = novedad;
+    }
+
+    public Exporter<DataTable> getTextExporter() {
+        return textExporter;
+    }
+
+    public void setTextExporter(Exporter<DataTable> textExporter) {
+        this.textExporter = textExporter;
     }
 }
