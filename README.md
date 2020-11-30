@@ -1,13 +1,15 @@
 # Historial de Equipos 🚀
 ## 2020-2-PROYCVDS-LosInnombrables
-# Roles
->### *Oscar David Ospina Rodriguez* : Dueño del Producto
->### *Daniel Felipe Rincon Muñoz* : Team Developer
->### *Guillermo Alfonso Castro Camelo* : Team Developer
->### *Andrés Mateo Calderón Ortega* : Team Developer
-# Descripción del producto
-## Descripción
->
+# Roles ✒️
+>*Oscar David Ospina Rodriguez* : Dueño del Producto
+
+>*Daniel Felipe Rincon Muñoz* : Team Developer
+
+>*Guillermo Alfonso Castro Camelo* : Team Developer
+
+>*Andrés Mateo Calderón Ortega* : Team Developer
+# Descripción del producto 📄
+_La plataforma Historial de Equipos, es una herramienta donde los profesores y monitores encargados de la adminsitración de los equipos de la Facultad de Ingenieria De Sistemas de la Escuela Colombiana de Ingenieria Julio Garavito podrán Administrar, Consultar y Generar reportes de los equipos presentes en el laboratorio, además de las partes de cada uno de ellos y de las salas informáticas en las cuales estos son utilizados y guardados, esta plataforma cuenta con un sistema de autentificación avanazado que permitirá mantener la integridad tanto de los usuarios que ingresen como de la información que allí se maneje._
 ## Manual De usuario
 >
 ## Funcionalidades Principales
