@@ -52,12 +52,22 @@ _Se manejo en la base de datos de heroku que utiliza un motor PostgreSQL, adicio
 _Se trabajó mediante la metodología ágil de: **Scrum**, que es un proceso en el que se aplican de manera regular un conjunto de buenas prácticas para trabajar colaborativamente, en equipo, y obtener el mejor resultado posible de un proyecto. Se hicieron 3 sprints, de los cuales cada uno tuvo una duración de 2 semanas._
 ## Taiga 🎤:
 [![Taiga Backlog](https://images.assets-landingi.com/jvS0A3Tm24feIBqs/logo_horizontal.png)](https://tree.taiga.io/project/candres1019-historial-de-equipos-labinfo/backlog)
-## Release-Burndown Chart:
-### Sprint1:
+# Release-Burndown Chart:
+![](/resources/BackLog.PNG)
+## Sprint1:
+### Sprint-Backlog:
+_Nos quedo pendiente realizar la asociacion entre elementos, el registro de novedades y dar de baja elementos, debido a que estabamos aprendiendo a darle forma al proyecto y crear se estructura base, ademas de problemas que se tuvieron con el manejo de tiempo._
+### Sprint-burndown chart:
 ![](/resources/Sprint1.PNG)
-### Sprint2:
+## Sprint2:
+### Sprint-Backlog:
+_Se cumplió con la totalidad de las historias de usuario y tareas asginadas._
+### Sprint-burndown chart:
 ![](/resources/Sprint2.PNG)
-### Sprint3:
+## Sprint3:
+### Sprint-Backlog:
+_Se cumplió con la totalidad de las historias de usuario y tareas asginadas._
+### Sprint-burndown chart:
 ![](/resources/Sprint3.PNG)
 ## Reporte De Pruebas:
 >
