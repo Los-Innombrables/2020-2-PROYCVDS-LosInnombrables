@@ -60,6 +60,6 @@ _Se trabajó mediante la metodología ágil de: **Scrum**, que es un proceso en 
 ### Sprint3:
 ![](/resources/Sprint3.PNG)
 ## Reporte De Pruebas:
->
+![](/resources/Test.PNG)
 ## Codacy
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/6ae092aed25d47a897b7ee6d26ff857f)](https://www.codacy.com/gh/Los-Innombrables/2020-2-PROYCVDS-LosInnombrables/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Los-Innombrables/2020-2-PROYCVDS-LosInnombrables&amp;utm_campaign=Badge_Grade)
