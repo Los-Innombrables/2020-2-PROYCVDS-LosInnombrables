@@ -81,6 +81,26 @@
                         </div>
                         <h:form id="form_XD">
                         <div class="card-body">
+                            <h3>Exportar:</h3>
+                            <h:commandLink>
+                                <p:graphicImage value="/images/excel.png" width="5%" />
+                                <p:dataExporter type="xls" target="tbl" fileName="Novedades" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage value="/images/pdf.png" width="5%" />
+                                <p:dataExporter type="pdf" target="tbl" fileName="Novedades" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage value="/images/csv.png" width="5%" />
+                                <p:dataExporter type="csv" target="tbl" fileName="Novedades"  />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage value="/images/xml.png" width="5%" />
+                                <p:dataExporter type="xml" target="tbl" fileName="Novedades"  />
+                            </h:commandLink>
                             <div class="table-responsive">
                                 <p:dataTable class="table table-bordered" id ="tbl" var="novedad"
                                     value="#{novedadBean.consultarNovedadesObj()}" style="width:100%" width="100%"
@@ -113,26 +133,6 @@
                                     </p:column>
                                 </p:dataTable>
                             </div>
-                            <h3>Export Page Data Table</h3>
-                            <h:commandLink>
-                                <p:graphicImage value="/images/excel.png" width="10%" height="10%" />
-                                <p:dataExporter type="xls" target="tbl" fileName="Novedades" />
-                            </h:commandLink>
-
-                            <h:commandLink>
-                                <p:graphicImage value="/images/pdf.png" width="10%" height="10%" />
-                                <p:dataExporter type="pdf" target="tbl" fileName="Novedades" />
-                            </h:commandLink>
-
-                            <h:commandLink>
-                                <p:graphicImage value="/images/csv.png" width="10%" height="10%" />
-                                <p:dataExporter type="csv" target="tbl" fileName="Novedades"  />
-                            </h:commandLink>
-
-                            <h:commandLink>
-                                <p:graphicImage value="/images/xml.png" width="10%" height="10%" />
-                                <p:dataExporter type="xml" target="tbl" fileName="Novedades"  />
-                            </h:commandLink>
                         </div>
                         </h:form>
                     </div>

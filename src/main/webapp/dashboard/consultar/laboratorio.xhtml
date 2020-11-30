@@ -81,6 +81,26 @@
                         </div>
                         <h:form id="Form_DarDeBaja">
                             <div class="card-body">
+                                <h3>Exportar: </h3>
+                                <h:commandLink>
+                                    <p:graphicImage value="/images/excel.png" width="5%" />
+                                    <p:dataExporter type="xls" target="tbl" fileName="Laboratorio" />
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <p:graphicImage value="/images/pdf.png" width="5%" />
+                                    <p:dataExporter type="pdf" target="tbl" fileName="Laboratorio"  />
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <p:graphicImage value="/images/csv.png" width="5%" />
+                                    <p:dataExporter type="csv" target="tbl" fileName="Laboratorio"  />
+                                </h:commandLink>
+
+                                <h:commandLink>
+                                    <p:graphicImage value="/images/xml.png" width="5%" />
+                                    <p:dataExporter type="xml" target="tbl" fileName="Laboratorio" />
+                                </h:commandLink>
                                 <div class="table-responsive">
                                     <p:dataTable class="table table-bordered" id="tbl" var="laboratorio"
                                         value="#{laboratorioBean.laboratorios}" style="width:100%" width="100%"
@@ -138,26 +158,6 @@
                                             </div>
                                         </f:facet>
                                     </p:dataTable>
-                                    <h3>Export Page Data Table</h3>
-                                    <h:commandLink>
-                                        <p:graphicImage value="/images/excel.png" width="10%" height="10%" />
-                                        <p:dataExporter type="xls" target="tbl" fileName="Laboratorio" />
-                                    </h:commandLink>
-
-                                    <h:commandLink>
-                                        <p:graphicImage value="/images/pdf.png" width="10%" height="10%" />
-                                        <p:dataExporter type="pdf" target="tbl" fileName="Laboratorio"  />
-                                    </h:commandLink>
-
-                                    <h:commandLink>
-                                        <p:graphicImage value="/images/csv.png" width="10%" height="10%" />
-                                        <p:dataExporter type="csv" target="tbl" fileName="Laboratorio"  />
-                                    </h:commandLink>
-
-                                    <h:commandLink>
-                                        <p:graphicImage value="/images/xml.png" width="10%" height="10%" />
-                                        <p:dataExporter type="xml" target="tbl" fileName="Laboratorio" />
-                                    </h:commandLink>
                                 </div>
                             </div>
                         </h:form>
