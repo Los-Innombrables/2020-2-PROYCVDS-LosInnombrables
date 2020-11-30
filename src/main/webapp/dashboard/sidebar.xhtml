@@ -54,6 +54,30 @@
         </div>
     </li>
 
+    <h:form id="adminUsr" rendered="#{loginBean.canEditUsr()}">
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Creacion
+        </div>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseXD" aria-expanded="true"
+               aria-controls="collapseTwo">
+                <i class="fas fa-edit"></i>
+                <span>Usuarios</span>
+            </a>
+            <div id="collapseXD" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Opciones:</h6>
+                    <a class="collapse-item" href="/faces/dashboard/usuarios/administrarUsuarios.xhtml">Usuarios</a>
+                </div>
+            </div>
+        </li>
+    </h:form>
+
     <!-- Divider -->
     <hr class="sidebar-divider" />
 
@@ -71,7 +95,9 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/faces/dashboard/usuarios/usuarios.xhtml">Usuarios</a>
+                <h:form id="UserOnly" rendered="#{loginBean.canEditUsr()}">
+                    <a class="collapse-item" href="/faces/dashboard/usuarios/usuarios.xhtml">Usuarios</a>
+                </h:form>
                 <a class="collapse-item" href="/faces/dashboard/consultar/laboratorio.xhtml">Laboratorios</a>
                 <a class="collapse-item" href="/faces/dashboard/consultar/equipos.xhtml">Equipos</a>
                 <a class="collapse-item" href="/faces/dashboard/consultar/elementos.xhtml">Elementos</a>

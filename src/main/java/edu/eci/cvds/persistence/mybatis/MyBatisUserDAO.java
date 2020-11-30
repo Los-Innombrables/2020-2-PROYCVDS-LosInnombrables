@@ -69,4 +69,14 @@ public class MyBatisUserDAO implements UsuarioDAO {
         }
     }
 
+    @Override
+    public void addUsuario(Usuario usuario) throws HistorialEquiposException {
+        try{
+            usuarioMapper.addUsuario(usuario);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new HistorialEquiposException("Error al insertar usuario");
+        }
+    }
+
 }
