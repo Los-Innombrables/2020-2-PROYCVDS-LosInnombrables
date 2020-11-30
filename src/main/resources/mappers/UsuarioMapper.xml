@@ -19,6 +19,12 @@
         ORDER BY carnet
     </select>
 
+    <!-- Insertar usuario -->
+    <insert id="addUsuario" parameterType="map">
+        INSERT INTO usuario(carnet, nombre, apellido, correo, username, passwd, activo, rol)
+        VALUES (#{usuario.carnet}, #{usuario.nombre}, #{usuario.apellido}, #{usuario.correo}, #{usuario.userName}, #{usuario.passwd}, #{usuario.activo}, #{usuario.rol})
+    </insert>
+
     <!-- Resultado Usuario -->
     <resultMap type="Usuario" id="UsuarioResult">
         <result property="carnet" column="carnet"/>

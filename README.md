@@ -1,10 +1,10 @@
-# Historial de Equipos
+# Historial de Equipos 🚀
 ## 2020-2-PROYCVDS-LosInnombrables
 # Roles
 >### *Oscar David Ospina Rodriguez* : Dueño del Producto
->### *Daniel Felipe Rincon Muñoz* : Developer - Designer
->### *Guillermo Alfonso Castro Camelo* : Developer - Back
->### *Andrés Mateo Calderón Ortega* : Developer - Front
+>### *Daniel Felipe Rincon Muñoz* : Team Developer
+>### *Guillermo Alfonso Castro Camelo* : Team Developer
+>### *Andrés Mateo Calderón Ortega* : Team Developer
 # Descripción del producto
 ## Descripción
 >
@@ -24,12 +24,13 @@
 | Tecnologías |
 | :--: |
 |Primefaces|
+|Mojarra|
 |Google Guice|
 |Java|
 |PostgreSQL|
 |XHTML|
 |CSS|
-|JS|
+|JavaScript|
 ## HerokuApp
 [![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://historial-de-equipos.herokuapp.com/)
 ## CircleCI
@@ -50,7 +51,7 @@
 ## Sprint2:
 ![](/resources/Sprint2.PNG)
 ## Sprint3:
->
+![](/resources/Sprint3.PNG)
 ## Reporte De Pruebas:
 >
 ## Codacy

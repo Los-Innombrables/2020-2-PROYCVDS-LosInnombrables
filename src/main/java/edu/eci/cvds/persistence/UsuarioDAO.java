@@ -13,4 +13,6 @@ public interface UsuarioDAO {
     /* Consultar */
     List<Usuario> consultarUsuarios() throws HistorialEquiposException;
 
+    void addUsuario (Usuario usuario) throws HistorialEquiposException;
+
 }

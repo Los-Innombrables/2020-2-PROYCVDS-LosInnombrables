@@ -40,4 +40,13 @@ public class ServicesUsuarioImpl implements ServicesUsuario {
         }
     }
 
+    @Override
+    public void addUsuario(Usuario usuario) throws HistorialEquiposException {
+        try{
+            usuarioDAO.addUsuario(usuario);
+        }catch (Exception e){
+            throw new HistorialEquiposException("Error al insertar usuario");
+        }
+    }
+
 }

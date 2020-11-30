@@ -9,4 +9,6 @@ public interface UsuarioMapper {
     Usuario logIn(@Param("username") String username, @Param("passwd") String passwd);
 
     List<Usuario> consultarUsuarios();
+
+    void addUsuario (@Param("usuario") Usuario usuario);
 }

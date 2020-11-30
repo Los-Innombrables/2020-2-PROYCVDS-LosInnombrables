@@ -40,8 +40,8 @@ public class LoginBean extends BasePageBean {
     public String login() {
         /* System.out.println(Objects.isNull(servicesUsuario)); */
         try {
-            this.password = convertSHA256(password);
-            usuario = servicesUsuario.logInUsuario(userName, password);
+            String passwordTemp = convertSHA256(password);
+            usuario = servicesUsuario.logInUsuario(userName, passwordTemp);
             rol = usuario.getRolS();
             FacesContext context = FacesContext.getCurrentInstance();
             if (usuario == null) {
@@ -49,6 +49,7 @@ public class LoginBean extends BasePageBean {
                 this.setCanLog("Contraseña o Usuario Incorrectos");
                 return null;
             } else {
+                this.password = passwordTemp;
                 context.getExternalContext().getSessionMap().put("user", usuario);
                 String webpage = redirectPage(usuario.getRol());
                 usuarioCarnet = usuario.getCarnet();
@@ -86,6 +87,8 @@ public class LoginBean extends BasePageBean {
     }
 
     public boolean canEdit(){ return usuario.getRol() != 3; }
+
+    public boolean canEditUsr(){ return usuario.getRol() == 1;}
 
     public String getUserName() {
         return userName;

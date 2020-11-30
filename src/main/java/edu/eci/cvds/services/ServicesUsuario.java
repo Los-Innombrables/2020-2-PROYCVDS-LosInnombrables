@@ -13,4 +13,6 @@ public interface ServicesUsuario {
     Usuario logInUsuario(String username, String passwd) throws HistorialEquiposException;
     /* Consultar */
     List<Usuario> consultarUsuarios() throws HistorialEquiposException;
+
+    void addUsuario (Usuario usuario) throws HistorialEquiposException;
 }
