@@ -11,7 +11,7 @@
 ## Descripción del producto 📄
 _La plataforma Historial de Equipos, es una herramienta donde los profesores y monitores encargados de la adminsitración de los equipos de la Facultad de Ingenieria De Sistemas de la Escuela Colombiana de Ingenieria Julio Garavito podrán Administrar, Consultar y Generar reportes de los equipos presentes en el laboratorio, además de las partes de cada uno de ellos y de las salas informáticas en las cuales estos son utilizados y guardados, esta plataforma cuenta con un sistema de autentificación avanazado que permitirá mantener la integridad tanto de los usuarios que ingresen como de la información que allí se maneje._
 ## Manual De usuario 📖
-> 
+El manual del usuario lo encontrarás disponible dando click [aquí](/MANUAL%20DE%20USUARIO.pdf) .
 ## Funcionalidades Principales
 >
 # Arquitectura y Diseño 🔧
