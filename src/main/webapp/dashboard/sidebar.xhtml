@@ -36,23 +36,24 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-            aria-controls="collapseTwo">
-            <i class="fas fa-edit"></i>
-            <span>Administracion</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Opciones:</h6>
-                <a class="collapse-item" href="">Usuarios</a>
-                <a class="collapse-item" href="/faces/dashboard/administrar/administrarLaboratorio.xhtml">Laboratorios</a>
-                <a class="collapse-item" href="/faces/dashboard/administrar/administrarEquipo.xhtml">Equipos</a>
-                <a class="collapse-item" href="/faces/dashboard/administrar/administrarElemento.xhtml">Elementos</a>
-                <a class="collapse-item" href="/faces/dashboard/administrar/administrarNovedad.xhtml">Novedades</a>
+    <h:form id="adminGen" rendered="#{loginBean.canEdit()}">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+                aria-controls="collapseTwo">
+                <i class="fas fa-edit"></i>
+                <span>Administracion</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Opciones:</h6>
+                    <a class="collapse-item" href="/faces/dashboard/administrar/administrarLaboratorio.xhtml">Laboratorios</a>
+                    <a class="collapse-item" href="/faces/dashboard/administrar/administrarEquipo.xhtml">Equipos</a>
+                    <a class="collapse-item" href="/faces/dashboard/administrar/administrarElemento.xhtml">Elementos</a>
+                    <a class="collapse-item" href="/faces/dashboard/administrar/administrarNovedad.xhtml">Novedades</a>
+                </div>
             </div>
-        </div>
-    </li>
+        </li>
+    </h:form>
 
     <h:form id="adminUsr" rendered="#{loginBean.canEditUsr()}">
         <!-- Divider -->
