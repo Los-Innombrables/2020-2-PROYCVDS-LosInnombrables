@@ -74,4 +74,4 @@ _Se cumplió con la totalidad de las historias de usuario y tareas asginadas._
 ## Reporte De Pruebas:
 ![](/resources/Test.PNG)
 ## Codacy
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/6ae092aed25d47a897b7ee6d26ff857f)](https://www.codacy.com/gh/Los-Innombrables/2020-2-PROYCVDS-LosInnombrables/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Los-Innombrables/2020-2-PROYCVDS-LosInnombrables&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/6ae092aed25d47a897b7ee6d26ff857f)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Los-Innombrables/2020-2-PROYCVDS-LosInnombrables&amp;utm_campaign=Badge_Grade)
