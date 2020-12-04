@@ -125,7 +125,11 @@ public class LaboratorioBean extends BasePageBean{
         this.laboratorio = laboratorio;
     }
 
-    public ArrayList<Laboratorio> getLaboratoriosSeleccionados() {
+    public ArrayList<Laboratorio> getLaboratoriosSeleccionados() throws HistorialEquiposException {
+        if(laboratoriosSeleccionados == null || laboratoriosSeleccionados.size() == 0 || laboratoriosSeleccionados.get(0) == null){
+            laboratoriosSeleccionados = new ArrayList<>();
+            laboratoriosSeleccionados.add(servicesLaboratorio.consultarLaboratorioNombre("Plataformas Computacionales"));
+        }
         return laboratoriosSeleccionados;
     }
 
@@ -142,10 +146,8 @@ public class LaboratorioBean extends BasePageBean{
     public String getTipoEstado() { return tipoEstado; }
 
     public void setTipoEstado(String tipoEstado) { this.tipoEstado = tipoEstado; }
-    public Exporter<DataTable> getTextExporter() {
-        return textExporter;
-    }
 
-    public void setTextExporter(Exporter<DataTable> textExporter) {
-        this.textExporter = textExporter;}
+    public Exporter<DataTable> getTextExporter() { return textExporter; }
+
+    public void setTextExporter(Exporter<DataTable> textExporter) { this.textExporter = textExporter;}
 }

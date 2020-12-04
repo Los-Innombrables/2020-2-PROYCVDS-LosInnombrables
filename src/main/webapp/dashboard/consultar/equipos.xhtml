@@ -104,24 +104,30 @@
                                 <div class="table-responsive">
                                     <p:dataTable class="table table-bordered" id="tbl" var="Equipo"
                                         value="#{equipoBean.consultarEquiposObj()}" style="width:100%" width="100%"
-                                        cellspacing="0" paginator="true" selectionMode="multiple"
-                                        selection="#{equipoBean.equiposSeleccionados}" rowKey="#{Equipo.getId()}" rows="10"
+                                        cellspacing="0" paginator="true" selectionMode="multiple" filteredValue="#{equipoBean.filteredEquipo}"
+                                        selection="#{equipoBean.equiposSeleccionados}" rowKey="#{Equipo.getId()}" rows="10" widgetVar="equipoTable"
                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink}
                                         {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                         currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
                                         rowsPerPageTemplate="5,10,15,20"
                                         tableStyleClass="table table-striped table-bordered p-3 mb-2 bg-primary text-white">
-                                        <p:column headerText="Identificador" sortBy="#{Equipo.getId()}">
+                                        <f:facet name="header">
+                                            <p:outputPanel>
+                                                <h:outputText value="Buscar:" />
+                                                <p:inputText id="globalFilter" onkeyup="PF('equipoTable').filter()" style="width:150px" placeholder="buscar"/>
+                                            </p:outputPanel>
+                                        </f:facet>
+                                        <p:column headerText="Identificador" sortBy="#{Equipo.getId()}" filterBy="#{Equipo.getId()}">
                                             <h:outputText value="#{Equipo.getId()}" />
                                         </p:column>
-                                        <p:column headerText="Nombre" sortBy="#{Equipo.getNombre()}">
+                                        <p:column headerText="Nombre" sortBy="#{Equipo.getNombre()}" filterBy="#{Equipo.getNombre()}">
                                             <h:outputText value="#{Equipo.getNombre()}" />
                                         </p:column>
-                                        <p:column headerText="Laboratorio" sortBy="#{Equipo.getLaboratorioObj().getNombre()}">
+                                        <p:column headerText="Laboratorio" sortBy="#{Equipo.getLaboratorioObj().getNombre()}" filterBy="#{Equipo.getLaboratorioObj().getNombre()}">
                                             <h:outputText value="#{Equipo.getLaboratorioObj().getNombre()}" />
                                         </p:column>
-                                        <p:column headerText="Estado" sortBy="#{Equipo.getActivo()}">
-                                            <h:outputText value="#{Equipo.getActivo()}" />
+                                        <p:column headerText="Estado" sortBy="#{Equipo.getActivoS()}" filterBy="#{Equipo.getActivoS()}">
+                                            <h:outputText value="#{Equipo.getActivoS()}" />
                                         </p:column>
                                         <f:facet name="footer">
                                             <h:commandButton id="Equipo" value="Consultar"

@@ -53,6 +53,8 @@ public class ElementoBean extends BasePageBean implements Serializable {
     private String tipoEstado;
 
     private String message;
+
+    private ArrayList<Elemento> filteredElements;
     /* Exportar */
 
     private Exporter<DataTable> textExporter = new TextExporter();
@@ -313,7 +315,11 @@ public class ElementoBean extends BasePageBean implements Serializable {
         this.selectedElementoAct = selectedElementoAct;
     }
 
-    public ArrayList<Elemento> getElementosSeleccionados() {
+    public ArrayList<Elemento> getElementosSeleccionados() throws HistorialEquiposException {
+        if (elementosSeleccionados == null || elementosSeleccionados.size() == 0 || elementosSeleccionados.get(0) == null){
+            elementosSeleccionados = new ArrayList<>();
+            elementosSeleccionados.add(servicesElemento.consultarElementoId(1));
+        }
         return elementosSeleccionados;
     }
 
@@ -327,5 +333,13 @@ public class ElementoBean extends BasePageBean implements Serializable {
 
     public void setTextExporter(Exporter<DataTable> textExporter) {
         this.textExporter = textExporter;
+    }
+
+    public ArrayList<Elemento> getFilteredElements() {
+        return filteredElements;
+    }
+
+    public void setFilteredElements(ArrayList<Elemento> filteredElements) {
+        this.filteredElements = filteredElements;
     }
 }

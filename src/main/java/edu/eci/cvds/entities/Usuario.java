@@ -13,6 +13,8 @@ public class Usuario {
     private int rol;
     private String rolS;
 
+    private String activoS;
+
     public Usuario(){}
 
     public Usuario(int carnet, String nombre, String apellido, String correo, String userName, String passwd, boolean activo, int rol){
@@ -104,4 +106,8 @@ public class Usuario {
     public String getRolS() { return rolS; }
 
     public void setRolS(String rolS) { this.rolS = rolS; }
+
+    public String getActivoS() { return activo ? "Activo" : "Inactivo"; }
+
+    public void setActivoS(String activoS) { this.activoS = activoS; }
 }

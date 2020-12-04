@@ -15,6 +15,8 @@ public class Elemento {
     private boolean activo;
     private String nombre;
 
+    private String activoS;
+
     public Elemento(){}
 
     public Elemento(int id, String tipo, int equipo, String marca, String referencia, Date fechaDeRegistro, Boolean activo){
@@ -101,4 +103,8 @@ public class Elemento {
     public Equipo getEquipoOb() { return equipoOb; }
 
     public void setEquipoOb(Equipo equipoOb) { this.equipoOb = equipoOb; }
+
+    public String getActivoS() { return activo ? "Activo" : "Inactivo"; }
+
+    public void setActivoS(String activoS) { this.activoS = activoS; }
 }

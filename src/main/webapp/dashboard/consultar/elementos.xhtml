@@ -98,34 +98,38 @@
                                     <p:dataExporter type="xml" target="tbl" fileName="Elemento"  />
                                 </h:commandLink>
                                 <div class="table-responsive">
-                                    <p:dataTable var="Elemento" id="tbl" value="#{elementoBean.consultarElementosObj()}"
-                                        class="table table-bordered" style="width: 100%" width="100%" cellspacing="0"
-                                        paginator="true" selectionMode="multiple"
+                                    <p:dataTable var="Elemento" id="tbl" value="#{elementoBean.consultarElementosObj()}" rows="10"
+                                        class="table table-bordered" style="width: 100%" width="100%" cellspacing="0" widgetVar="elementTable"
+                                        paginator="true" selectionMode="multiple" filteredValue="#{elementoBean.filteredElements}"
                                         selection="#{elementoBean.elementosSeleccionados}" rowKey="#{Elemento.getId()}"
-                                        rows="10"
                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink}
                                         {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                         currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
                                         rowsPerPageTemplate="5,10,15,20"
                                         tableStyleClass="table table-striped table-bordered p-3 mb-2 bg-primary text-white">
-                                        <p:column headerText="Identificador" sortBy="#{Elemento.getId()}">
+                                        <f:facet name="header">
+                                            <p:outputPanel>
+                                                <h:outputText value="Buscar:" />
+                                                <p:inputText id="globalFilter" onkeyup="PF('elementTable').filter()" style="width:150px" placeholder="buscar"/>
+                                            </p:outputPanel>
+                                        </f:facet>
+                                        <p:column headerText="Identificador" sortBy="#{Elemento.getId()}" filterBy="#{Elemento.getId()}" filterMatchMode="contains">
                                             <h:outputText value="#{Elemento.getId()}" />
                                         </p:column>
-                                        <p:column headerText="Nombre" sortBy="#{Elemento.getNombre()}">
+                                        <p:column headerText="Nombre" sortBy="#{Elemento.getNombre()}" filterBy="#{Elemento.getNombre()}" filterMatchMode="contains">
                                             <h:outputText value="#{Elemento.getNombre()}" />
                                         </p:column>
-                                        <p:column headerText="Tipo" sortBy="#{Elemento.getTipoElemento().getNombre()}">
+                                        <p:column headerText="Tipo" sortBy="#{Elemento.getTipoElemento().getNombre()}" filterBy="#{Elemento.getTipoElemento().getNombre()}" filterMatchMode="contains">
                                             <h:outputText value="#{Elemento.getTipoElemento().getNombre()}" />
                                         </p:column>
-                                        <p:column headerText="Equipo" sortBy="#{Elemento.getEquipoOb().getNombre()}">
+                                        <p:column headerText="Equipo" sortBy="#{Elemento.getEquipoOb().getNombre()}" filterBy="#{Elemento.getEquipoOb().getNombre()}" filterMatchMode="contains">
                                             <h:outputText value="#{Elemento.getEquipoOb().getNombre()}" />
                                         </p:column>
-                                        <p:column headerText="Fecha De Registro"
-                                            sortBy="#{Elemento.getFechaDeRegistro()}">
+                                        <p:column headerText="Fecha De Registro" sortBy="#{Elemento.getFechaDeRegistro()}" filterBy="#{Elemento.getFechaDeRegistro()}" filterMatchMode="contains">
                                             <h:outputText value="#{Elemento.getFechaDeRegistro()}" />
                                         </p:column>
-                                        <p:column headerText="Estado" sortBy="#{Elemento.isActivo()}">
-                                            <h:outputText value="#{Elemento.isActivo()}" />
+                                        <p:column headerText="Estado" sortBy="#{Elemento.getActivoS()}" filterBy="#{Elemento.getActivoS()}" filterMatchMode="contains">
+                                            <h:outputText value="#{Elemento.getActivoS()}" />
                                         </p:column>
                                         <f:facet name="footer">
                                             <h:commandButton id="ConsultarElemento" value="Consultar"

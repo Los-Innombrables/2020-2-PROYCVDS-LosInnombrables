@@ -50,6 +50,8 @@ public class EquipoBean extends BasePageBean implements Serializable {
 
     private ArrayList<Equipo> equipos;
 
+    private ArrayList<Equipo> filteredEquipo;
+
     public ArrayList<Equipo> consultarEquiposObj() throws HistorialEquiposException {
         if (equipos == null) {
             equipos = (ArrayList<Equipo>) servicesEquipo.consultarEquiposObj();
@@ -298,4 +300,8 @@ public class EquipoBean extends BasePageBean implements Serializable {
     public void setTextExporter(Exporter<DataTable> textExporter) {
         this.textExporter = textExporter;
     }
+
+    public ArrayList<Equipo> getFilteredEquipo() { return filteredEquipo; }
+
+    public void setFilteredEquipo(ArrayList<Equipo> filteredEquipo) { this.filteredEquipo = filteredEquipo; }
 }

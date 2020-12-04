@@ -7,6 +7,8 @@ public class Equipo {
     private String nombre;
     private Boolean activo;
 
+    private String activoS;
+
     public Equipo() {
     }
 
@@ -56,4 +58,7 @@ public class Equipo {
 
     public void setLaboratorioObj(Laboratorio laboratorioObj) { this.laboratorioObj = laboratorioObj; }
 
+    public String getActivoS() { return activo ? "Activo" : "Inactivo"; }
+
+    public void setActivoS(String activoS) { this.activoS = activoS; }
 }
