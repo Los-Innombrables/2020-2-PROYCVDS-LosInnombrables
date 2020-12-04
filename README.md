@@ -18,7 +18,7 @@ _Se presenta un inicio de sesión de usuarios con diferentes roles, con una segu
 
 ![](/resources/capt1.png)
 ### Registro
-_Se realiza un registro en cada una de las dependencias creadas y se actualizan las novedades de cada registró, además de poder registrar novedades de lo que pueda pasar en el aplicativo._
+_Se realiza un registro en cada una de las dependencias creadas y se actualizan las novedades de cada registró, además de poder registrar novedades de lo que pueda ocurrir en el aplicativo y eliminar las actividades innecesarias._
 
 ![](/resources/capt2.png)
 ### Reporte
