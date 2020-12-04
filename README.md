@@ -14,28 +14,26 @@ _La plataforma Historial de Equipos, es una herramienta donde los profesores y m
 El manual del usuario lo encontrarás disponible dando click [aquí](/MANUAL%20DE%20USUARIO.pdf) .
 ## Funcionalidades Principales
 ### Login
-_Se presenta un inicio de sesion de usuarios con diferentes roles, con una seguridad optima con clave tipo sha256 y seguridad punto a punto._
+_Se presenta un inicio de sesión de usuarios con diferentes roles, con una seguridad optima con clave tipo sha256 y seguridad punto a punto._
 
 ![](/resources/capt1.png)
 ### Registro
-_Se presenta un inicio de sesion de usuarios con diferentes roles, con una seguridad optima con clave tipo sha256 y seguridad punto a punto._
+_Se realiza un registro en cada una de las dependencias creadas y se actualizan las novedades de cada registró, además de poder registrar novedades de lo que pueda pasar en el aplicativo._
 
 ![](/resources/capt2.png)
 ### Reporte
-_Se presenta un inicio de sesion de usuarios con diferentes roles, con una seguridad optima con clave tipo sha256 y seguridad punto a punto._
+_Se presenta un reporte general en cada una de las entidades creadas, en los cuales podemos ver una consulta generalizada de cada una de los elementos que contiene cada entidad._
 
 ![](/resources/capt3.png)
-
 ### Reporte especifico
-_Se presenta un inicio de sesion de usuarios con diferentes roles, con una seguridad optima con clave tipo sha256 y seguridad punto a punto._
+_Se genera un reporte especifico en una ventana adicional del aplicativo en donde se pueden realizar registros o desasociar las diferentes actividades que se soliciten, además de ver las novedades que se realizaron y las actualizaciones modificadas._
 
 ![](/resources/capt4.png)
+### Exportación
+_Se genera un archivo con las bases de datos creadas en varios formatos como lo son pdf,csv, xml y Excel._
 
-### exportacion
-_Se presenta un inicio de sesion de usuarios con diferentes roles, con una seguridad optima con clave tipo sha256 y seguridad punto a punto._
 
 ![](/resources/capt5.png)
-
 # Arquitectura y Diseño 🔧
 ## Modelo E-R
 ![](/resources/DiagramaEntidadRelacion.png)
