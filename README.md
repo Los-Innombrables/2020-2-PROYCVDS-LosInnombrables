@@ -15,7 +15,7 @@ El manual del usuario lo encontrarás disponible dando click [aquí](/MANUAL%20D
 ## Funcionalidades Principales
 ### Login
 _Se presenta un inicio de sesion de usuarios con diferentes roles, con una seguridad optima con clave tipo sha256 y seguridad punto a punto._
-![](/resources/Captura de pantalla 2020-12-04 113138.png)
+![](/resources/Captura1.png)
 # Arquitectura y Diseño 🔧
 ## Modelo E-R
 ![](/resources/DiagramaEntidadRelacion.png)
