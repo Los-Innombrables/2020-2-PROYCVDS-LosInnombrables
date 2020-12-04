@@ -18,9 +18,17 @@ _Se presenta un inicio de sesión de usuarios con diferentes roles, con una segu
 
 ![](/resources/capt1.png)
 ### Registro
-_Se realiza un registro en cada una de las dependencias creadas y se actualizan las novedades de cada registró, además de poder registrar novedades de lo que pueda ocurrir en el aplicativo y eliminar las actividades innecesarias._
+_Se realiza un registro en cada una de las dependencias creadas y se actualizan las novedades de cada registró, además de poder registrar novedades de lo que pueda ocurrir en el aplicativo ._
 
 ![](/resources/capt2.png)
+### Elminar
+_Se permite eliminar cualquier tipo de entidad especifica que no se solicite._
+
+![](/resources/capt21.png)
+### Asociar o Desasociar
+_Ya que algunas entidades se pueden asociar entre si, podemos notar que existe la funcionalidad para poder relacionarse entre entidades y así mismo como el código es de bajo acoplamiento, permite desasociarlo sin ningún problema._
+
+![](/resources/capt22.png)
 ### Reporte
 _Se presenta un reporte general en cada una de las entidades creadas, en los cuales podemos ver una consulta generalizada de cada una de los elementos que contiene cada entidad._
 
