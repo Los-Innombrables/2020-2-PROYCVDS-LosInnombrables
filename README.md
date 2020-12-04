@@ -13,7 +13,9 @@ _La plataforma Historial de Equipos, es una herramienta donde los profesores y m
 ## Manual De usuario 📖
 El manual del usuario lo encontrarás disponible dando click [aquí](/MANUAL%20DE%20USUARIO.pdf) .
 ## Funcionalidades Principales
->memo esta en proceso
+_Login
+Se presenta un inicio de sesion de usuarios con diferentes roles, con una seguridad optima con clave tipo sha256 y seguridad punto a punto.
+![](/resources/DiagramaClases.png)
 # Arquitectura y Diseño 🔧
 ## Modelo E-R
 ![](/resources/DiagramaEntidadRelacion.png)
