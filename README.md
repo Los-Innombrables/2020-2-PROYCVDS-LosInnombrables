@@ -15,7 +15,27 @@ El manual del usuario lo encontrarás disponible dando click [aquí](/MANUAL%20D
 ## Funcionalidades Principales
 ### Login
 _Se presenta un inicio de sesion de usuarios con diferentes roles, con una seguridad optima con clave tipo sha256 y seguridad punto a punto._
+
 ![](/resources/capt1.png)
+### Registro
+_Se presenta un inicio de sesion de usuarios con diferentes roles, con una seguridad optima con clave tipo sha256 y seguridad punto a punto._
+
+![](/resources/capt2.png)
+### Reporte
+_Se presenta un inicio de sesion de usuarios con diferentes roles, con una seguridad optima con clave tipo sha256 y seguridad punto a punto._
+
+![](/resources/capt3.png)
+
+### Reporte especifico
+_Se presenta un inicio de sesion de usuarios con diferentes roles, con una seguridad optima con clave tipo sha256 y seguridad punto a punto._
+
+![](/resources/capt4.png)
+
+### exportacion
+_Se presenta un inicio de sesion de usuarios con diferentes roles, con una seguridad optima con clave tipo sha256 y seguridad punto a punto._
+
+![](/resources/capt5.png)
+
 # Arquitectura y Diseño 🔧
 ## Modelo E-R
 ![](/resources/DiagramaEntidadRelacion.png)
